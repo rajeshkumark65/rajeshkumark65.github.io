@@ -35,6 +35,7 @@ section{padding:120px 0;position:relative}
 .sec-top p{max-width:340px;color:var(--ink2);font-size:15px}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
+.progress{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--navy),var(--gold));z-index:200;pointer-events:none}
 
 /* ---------- nav ---------- */
 .nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:50;display:flex;gap:2px;padding:6px;background:rgba(251,249,243,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:999px;box-shadow:var(--shadow)}
@@ -332,7 +333,7 @@ section{padding:120px 0;position:relative}
         <div class="halo"></div>
         <div class="pfx" id="pfx"><img id="heroImg" src="../photo.jpg" alt="Rajeshkumar K"></div>
         <div class="sheen"></div>
-        <!-- intro video button hidden until a better-voice version exists: <button class="playb" id="playIntro" type="button"><span class="pi"><svg viewBox="0 0 16 16"><path d="M5 3.2v9.6L13 8z" fill="currentColor"/></svg></span>Watch my intro · 13s</button> -->
+        <button class="playb" id="playIntro" type="button"><span class="pi"><svg viewBox="0 0 16 16"><path d="M5 3.2v9.6L13 8z" fill="currentColor"/></svg></span>Watch my intro · 13s</button>
         <div class="live"><span class="dot"></span> Open to DevOps &amp; SRE roles</div>
       </div>
       <div class="chip c1"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/kubernetes/kubernetes-original.svg" alt="">Kubernetes</div>
@@ -683,7 +684,18 @@ section{padding:120px 0;position:relative}
 
   /* reveal on scroll */
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  /* staggered entrance for card groups */
+  document.querySelectorAll('.split .half, .pipe li, .moments > *, .certs > *').forEach(function(el){el.classList.add('reveal')});
+  document.querySelectorAll('.reveal').forEach(function(el){
+    var sib=[].filter.call(el.parentNode.children,function(c){return c.classList.contains('reveal')});
+    var k=sib.indexOf(el); if(k>0) el.style.transitionDelay=Math.min(k*0.1,0.5)+'s';
+    io.observe(el);
+  });
+
+  /* scroll progress line */
+  var pg=document.createElement('div'); pg.className='progress'; document.body.appendChild(pg);
+  function prog(){var h=document.documentElement; pg.style.transform='scaleX('+(h.scrollTop/((h.scrollHeight-h.clientHeight)||1))+')';}
+  window.addEventListener('scroll',prog,{passive:true}); prog();
 
   /* nav active section */
   var links=[].slice.call(document.querySelectorAll('#nav a'));
