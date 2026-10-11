@@ -103,6 +103,7 @@ section{padding:120px 0;position:relative}
 .live{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:500;box-shadow:var(--shadow);white-space:nowrap}
 .playb{position:absolute;left:50%;bottom:66px;transform:translateX(-50%);z-index:2;display:flex;align-items:center;gap:9px;background:var(--navy);color:#fff;border:0;border-radius:999px;padding:6px 16px 6px 6px;font:600 13px var(--sans);cursor:pointer;box-shadow:0 10px 24px -8px rgba(36,38,74,.6);white-space:nowrap;transition:transform .2s}
 .playb:hover{transform:translateX(-50%) translateY(-2px)}
+.playb.on{background:var(--gold);color:var(--ink)}.playb.on .pi{animation:none}
 .playb .pi{width:28px;height:28px;border-radius:50%;background:#fff;color:var(--navy);display:grid;place-items:center;animation:ping2 2.2s infinite}.playb svg{width:12px;height:12px;margin-left:2px}
 @keyframes ping2{0%{box-shadow:0 0 0 0 rgba(255,255,255,.6)}80%,100%{box-shadow:0 0 0 9px rgba(255,255,255,0)}}
 .vmodal{position:fixed;inset:0;z-index:120;background:rgba(15,15,28,.9);display:grid;place-items:center;padding:20px}
@@ -131,27 +132,31 @@ section{padding:120px 0;position:relative}
 .clip{width:40px;height:22px;border-radius:6px;background:linear-gradient(#d7d2c4,#b7b09d);margin-top:-2px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.15)}
 .swing{transform-origin:50% -170px;animation:swing 6s ease-in-out infinite}
 @keyframes swing{0%,100%{transform:rotate(2.2deg)}50%{transform:rotate(-2.2deg)}}
-.idcard{width:270px;height:390px;position:relative;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,.7,.2,1);cursor:pointer;margin-top:6px}
+.idcard{width:280px;height:450px;position:relative;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,.7,.2,1);cursor:pointer;margin-top:6px}
 .idcard.flip{transform:rotateY(180deg)}
 .face{position:absolute;inset:0;border-radius:18px;background:var(--card);border:1px solid var(--line);box-shadow:0 30px 60px -24px rgba(40,34,20,.45);backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
 .face.front .band{background:var(--navy);color:#fff;padding:14px 18px;display:flex;align-items:center;gap:10px}
 .face.front .band .lg{width:30px;height:30px;border-radius:50%;background:#fff;color:var(--navy);display:grid;place-items:center;font-weight:800;font-size:12px}
 .face.front .band b{display:block;font-size:13px;letter-spacing:.14em}
 .face.front .band span{font-size:11px;opacity:.7;letter-spacing:.08em}
-.face.front .ph{width:140px;height:164px;margin:22px auto 0;border-radius:12px;overflow:hidden;border:3px solid #fff;box-shadow:0 6px 18px -8px rgba(0,0,0,.35)}
+.face.front .ph{width:136px;height:156px;margin:18px auto 0;border-radius:12px;overflow:hidden;border:3px solid #fff;box-shadow:0 6px 18px -8px rgba(0,0,0,.35)}
 .face.front .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
 .face.front h4{text-align:center;margin-top:14px;font-size:17px;letter-spacing:.04em}
 .face.front .rl{text-align:center;font-size:12px;color:var(--mute)}
 .face.front .meta{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin:14px 18px 0;font-size:11px;text-align:center;color:var(--ink2)}
 .face.front .meta i{display:block;font-style:normal;font-family:var(--mono);font-size:8px;color:var(--mute);letter-spacing:.12em}
 .barcode{height:26px;margin:12px 34px 0;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 5px,transparent 5px 8px,var(--ink) 8px 11px,transparent 11px 12px)}
-.face.back{transform:rotateY(180deg);padding:22px 20px}
+.face.back{transform:rotateY(180deg);padding:20px 20px 16px;display:flex;flex-direction:column}
 .face.back h4{font-size:18px}
 .face.back ul{list-style:none;margin-top:14px}
-.face.back li{display:flex;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:13.5px;font-weight:600}
+.face.back li{display:flex;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:13.5px;font-weight:600}
 .face.back li small{display:block;font-weight:400;color:var(--mute);font-size:11.5px}
 .face.back li:before{content:"✓";flex:0 0 20px;height:20px;border-radius:50%;background:var(--navy);color:#fff;font-size:11px;display:grid;place-items:center;margin-top:1px}
-.face.back .sig{font-family:var(--serif);font-style:italic;font-size:26px;margin-top:12px;color:var(--navy2)}
+.face.back .who{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding-top:10px;border-top:1px solid var(--line)}
+.face.back .sig{font-family:"Playfair Display",var(--serif);font-style:italic;font-weight:700;font-size:20px;line-height:1;color:var(--navy);white-space:nowrap}
+.face.back .nm{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--mute);text-transform:uppercase;margin-top:5px}
+.face.back .barcode.sm{width:70px;height:30px;margin:0;flex:0 0 auto}
+.bcn{text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.3em;color:var(--mute);margin-top:4px}
 .flip-hint{margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.14em}
 .facts h5{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--mute);font-weight:500;margin-bottom:10px}
 .facts dl{display:grid;grid-template-columns:auto 1fr;gap:0}
@@ -398,7 +403,7 @@ section{padding:120px 0;position:relative}
         <iframe class="hv" src="https://app.heygen.com/embeds/bf6ed3416c444ce3b577a8c430e1ad5e?autoplay=1&amp;muted=1&amp;loop=1&amp;controls=0" title="Rajeshkumar K intro" allow="autoplay; encrypted-media" tabindex="-1" aria-hidden="true"></iframe>
         <div class="fade"></div>
         <div class="sheen"></div>
-        <button class="playb" id="playIntro" type="button"><span class="pi"><svg viewBox="0 0 16 16"><path d="M5 3.2v9.6L13 8z" fill="currentColor"/></svg></span>Watch with sound · 13s</button>
+        <button class="playb" id="playIntro" type="button"><span class="pi"><svg viewBox="0 0 16 16"><path d="M5 3.2v9.6L13 8z" fill="currentColor"/></svg></span>Hear me speak · 13s</button>
         <div class="live"><span class="dot"></span> Open to DevOps &amp; SRE roles</div>
       </div>
       <div class="chip c1"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/kubernetes/kubernetes-original.svg" alt="">Kubernetes</div>
@@ -440,6 +445,7 @@ section{padding:120px 0;position:relative}
             <div class="rl">DevOps Engineer</div>
             <div class="meta"><div><i>ID</i>RK-0065</div><div><i>FOCUS</i>Observability</div><div><i>SINCE</i>2025</div></div>
             <div class="barcode"></div>
+            <div class="bcn">RK-0065-OBS</div>
           </div>
           <div class="face back">
             <h4>What I am</h4>
@@ -450,7 +456,7 @@ section{padding:120px 0;position:relative}
               <li><div>Cluster installer<small>New Kubernetes clusters on demand</small></div></li>
               <li><div>Security fixer<small>Exposures closed, Nginx hardened</small></div></li>
             </ul>
-            <div class="sig">Rajeshkumar</div>
+            <div class="who"><div><div class="sig">Rajeshkumar K</div><div class="nm">DevOps Engineer</div></div><div class="barcode sm"></div></div>
           </div>
         </div>
       </div>
@@ -896,17 +902,17 @@ section{padding:120px 0;position:relative}
   /* hero video: fade in once the HeyGen player has had time to start */
   var hv=document.querySelector(".figure .hv"); if(hv) hv.addEventListener("load",function(){setTimeout(function(){hv.classList.add("on")},1200)});
 
-  /* intro video (HeyGen embed) in a pop-up */
-  var pb=document.getElementById("playIntro");
-  if(pb) pb.addEventListener("click",function(e){
-    e.stopPropagation();
-    var m=document.createElement("div"); m.className="vmodal";
-    m.innerHTML='<div class="vbox"><iframe src="https://app.heygen.com/embeds/bf6ed3416c444ce3b577a8c430e1ad5e" title="Rajeshkumar K intro video" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe></div><button class="x" aria-label="Close">&times;</button>';
-    function close(){m.remove();document.removeEventListener("keydown",esc);}
-    function esc(k){if(k.key==="Escape")close();}
-    m.addEventListener("click",function(ev){if(ev.target===m||ev.target.classList.contains("x"))close();});
-    document.addEventListener("keydown",esc); document.body.appendChild(m);
-  });
+  /* intro: the hero avatar speaks in place (browsers allow sound only after a click) */
+  var pb=document.getElementById("playIntro"), hvf=document.querySelector(".figure .hv");
+  if(pb && hvf){
+    var HG="https://app.heygen.com/embeds/bf6ed3416c444ce3b577a8c430e1ad5e", talking=false, lbl=pb.lastChild;
+    pb.addEventListener("click",function(e){
+      e.stopPropagation(); talking=!talking;
+      hvf.src=HG+(talking?"?autoplay=1&loop=0&controls=0":"?autoplay=1&muted=1&loop=1&controls=0");
+      pb.classList.toggle("on",talking);
+      lbl.textContent=talking?"Mute":"Hear me speak · 13s";
+    });
+  }
 
   /* lightbox */
   document.addEventListener('click',function(e){
