@@ -195,7 +195,7 @@ section{padding:120px 0;position:relative}
 .fam button i{width:9px;height:9px;border-radius:2px;background:var(--c)}
 .fam button.on{background:var(--c);color:#fff;border-color:var(--c)}.fam button.on i{background:#fff}
 .ptable{display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start}
-.grid-el{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:7px;min-width:0}.grid-el .el{min-width:0}
+.grid-el{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px;min-width:0}.grid-el .el{min-width:0}
 .el{aspect-ratio:1;border-radius:10px;padding:8px 9px;position:relative;cursor:pointer;background:var(--card);border:1px solid var(--line);transition:transform .25s,opacity .35s,background .35s,color .35s,box-shadow .25s;display:flex;flex-direction:column;justify-content:space-between}
 .el .n{font-family:var(--mono);font-size:11px;color:var(--mute)}
 .el .s{font-size:clamp(18px,2vw,26px);font-weight:700;letter-spacing:-.03em;line-height:1}
@@ -204,7 +204,7 @@ section{padding:120px 0;position:relative}
 .el.lit{color:#fff;border-color:transparent}
 .el.lit .n,.el.lit .nm{color:rgba(255,255,255,.7)}
 .el{background:color-mix(in srgb,var(--c) 9%,var(--card));border:1px solid color-mix(in srgb,var(--c) 22%,var(--line));border-top:3px solid var(--c)}
-.el .s{color:var(--c);font-size:clamp(15px,1.55vw,22px)}
+.el .s{color:var(--c);font-size:clamp(17px,1.9vw,25px)}
 .el:hover{transform:translateY(-6px) scale(1.07);box-shadow:0 16px 30px -12px color-mix(in srgb,var(--c) 75%,transparent);z-index:2}
 .el.lit{background:var(--c);border-color:var(--c);color:#fff;box-shadow:0 10px 22px -12px var(--c)}.el.lit .s{color:#fff}
 .el.dim{opacity:.72}
@@ -511,7 +511,7 @@ section{padding:120px 0;position:relative}
   <div class="wrap">
     <div class="sec-top reveal">
       <div><div class="eyebrow"><b>03</b> Skills</div><h2 class="big">The periodic table <span class="serif">of my stack.</span></h2></div>
-      <p>Fifty elements in six families. Hover a tile to see how I use it, or pick a family to light it up.</p>
+      <p>Elements in five families. Hover a tile to see how I use it, or pick a family to light it up.</p>
     </div>
     <div class="fam reveal" id="fam"></div>
     <div class="ptable reveal">
@@ -796,7 +796,7 @@ section{padding:120px 0;position:relative}
 
   /* periodic table */
   var D='https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/';
-  var fams=[['k8s','Delivery & Kubernetes','#24264a'],['obs','OpenObserve','#1d6b67'],['ai','Gen AI monitoring','#8a3a78'],['mon','Logging & Monitoring','#94561a'],['dlh','Data Lake House','#4a4a9c'],['code','Scripting & OS','#3c6a37']];
+  var fams=[['k8s','Delivery & Kubernetes','#24264a'],['obs','OpenObserve','#1d6b67'],['ai','Gen AI monitoring','#8a3a78'],['mon','Logging & Monitoring','#94561a'],['code','Scripting & OS','#3c6a37']];
   var E=[
    ['Ks','Kubernetes','k8s','kubernetes/kubernetes-original','Production clusters for 20+ live projects: operate, troubleshoot, install new ones.'],
    ['Hm','Helm','k8s','helm/helm-original','Charts and per-environment values; chart bugs fixed at the source.'],
@@ -831,23 +831,10 @@ section{padding:120px 0;position:relative}
    ['Kb','Kibana','mon','kibana/kibana-original','Log search and investigation for client issues.'],
    ['Ls','Logstash','mon','logstash/logstash-original','Log parsing and pipelines.'],
    ['Am','Alertmanager','mon','','Routing alerts to email and Telegram by severity.'],
-   ['Sp','Spark','dlh','apachespark/apachespark-original','Job, executor and streaming health.'],
-   ['Tn','Trino','dlh','','Query engine health and performance.'],
-   ['Af','Airflow','dlh','apacheairflow/apacheairflow-original','DAG and task health with clear failure signals.'],
-   ['Kf','Kafka','dlh','apachekafka/apachekafka-original','Broker, topic and consumer-lag health.'],
-   ['Kc','Kafka Connect','dlh','','Connector and task status.'],
-   ['Mn','MinIO','dlh','','Object storage capacity and request health.'],
-   ['Dr','Druid','dlh','','Ingestion, segment and storage health.'],
-   ['Lv','Livy','dlh','','Spark session and batch submission health.'],
-   ['Rg','Ranger','dlh','','Access-policy service and audit health.'],
-   ['Om','OpenMetadata','dlh','','Metadata service availability.'],
-   ['Hs','Hasura','dlh','','GraphQL API latency and errors.'],
-   ['If','InfluxDB','dlh','influxdb/influxdb-original','Time-series storage health.'],
    ['Lx','Linux','code','linux/linux-original','Daily server work: storage, clock drift, disk pressure.'],
    ['Sh','Bash','code','bash/bash-original','Automation and operational scripts.'],
    ['Py','Python','code','python/python-original','Exporters and API automation.'],
-   ['Sq','SQL','code','','Observability queries, dashboards and alert logic.'],
-   ['Pq','PromQL','code','','Metric queries and alert expressions.']
+   ['Sq','SQL','code','','Observability queries, dashboards and alert logic.']
   ];
   var fc={}; fams.forEach(function(f){fc[f[0]]=f});
   var grid=document.getElementById('grid'), det=document.getElementById('detail'), fam=document.getElementById('fam');
