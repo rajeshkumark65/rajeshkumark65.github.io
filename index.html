@@ -14,8 +14,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f3efe4; --bg2:#ebe5d6; --card:#fbf9f3; --ink:#15151c; --ink2:#4a4a55; --mute:#8a8676;
-  --line:#ddd6c4; --navy:#24264a; --navy2:#3b3e73; --gold:#c9a24b; --ok:#2f8f5b;
+  --bg:#f3efe4; --bg2:#ebe5d6; --card:#fbf9f3; --ink:#15151c; --ink2:#4a4a55; --mute:#625e51;
+  --line:#ddd6c4; --navy:#24264a; --navy2:#3b3e73; --gold:#c9a24b; --ok:#237a4b;
   --shadow:0 1px 2px rgba(40,34,20,.06),0 12px 32px -12px rgba(40,34,20,.18);
   --sans:"Inter Tight",system-ui,"Segoe UI",Arial,sans-serif; --serif:"Instrument Serif",Georgia,serif; --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
 }
@@ -61,6 +61,14 @@ section{padding:120px 0;position:relative}
   animation:breathe 7s ease-in-out infinite}
 @keyframes breathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-6px) scale(1.012)}}
 @keyframes rise{from{opacity:0;transform:translateY(70px) scale(.94)}to{opacity:1;transform:none}}
+.ticker{position:relative;z-index:6;overflow:hidden;background:var(--navy);color:#fff;padding:18px 0;margin:0 0 40px;transform:rotate(-1deg) scale(1.02)}
+.ticker .tk{display:flex;width:max-content;animation:tick 38s linear infinite}
+.ticker span{font:600 clamp(16px,1.6vw,21px)/1 var(--sans);letter-spacing:-.01em;padding:0 34px;white-space:nowrap;display:flex;align-items:center;gap:34px}
+.ticker span:after{content:"✦";color:var(--gold);font-size:.8em}
+.ticker i{font-family:var(--serif);font-weight:400;font-size:1.15em;color:#f1d9a0}
+@keyframes tick{to{transform:translateX(-50%)}}
+.ticker:hover .tk{animation-play-state:paused}
+.figure .hv{position:absolute;left:-50%;top:-13.9%;width:200%;aspect-ratio:9/16;height:auto;border:0;pointer-events:none;z-index:0;opacity:0;transition:opacity .8s}.figure .hv.on{opacity:1}
 .figure .pfx{position:absolute;inset:-3%;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .figure .sheen{position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.38) 50%,transparent 65%);background-size:250% 100%;mix-blend-mode:soft-light;animation:sheen 7s ease-in-out 1.6s infinite}
 @keyframes sheen{0%{background-position:130% 0}45%,100%{background-position:-30% 0}}
@@ -110,12 +118,12 @@ section{padding:120px 0;position:relative}
 .face.front .band{background:var(--navy);color:#fff;padding:14px 18px;display:flex;align-items:center;gap:10px}
 .face.front .band .lg{width:30px;height:30px;border-radius:50%;background:#fff;color:var(--navy);display:grid;place-items:center;font-weight:800;font-size:12px}
 .face.front .band b{display:block;font-size:13px;letter-spacing:.14em}
-.face.front .band span{font-size:10px;opacity:.7;letter-spacing:.08em}
+.face.front .band span{font-size:11px;opacity:.7;letter-spacing:.08em}
 .face.front .ph{width:140px;height:164px;margin:22px auto 0;border-radius:12px;overflow:hidden;border:3px solid #fff;box-shadow:0 6px 18px -8px rgba(0,0,0,.35)}
 .face.front .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
 .face.front h4{text-align:center;margin-top:14px;font-size:17px;letter-spacing:.04em}
 .face.front .rl{text-align:center;font-size:12px;color:var(--mute)}
-.face.front .meta{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin:14px 18px 0;font-size:10px;text-align:center;color:var(--ink2)}
+.face.front .meta{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin:14px 18px 0;font-size:11px;text-align:center;color:var(--ink2)}
 .face.front .meta i{display:block;font-style:normal;font-family:var(--mono);font-size:8px;color:var(--mute);letter-spacing:.12em}
 .barcode{height:26px;margin:12px 34px 0;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 5px,transparent 5px 8px,var(--ink) 8px 11px,transparent 11px 12px)}
 .face.back{transform:rotateY(180deg);padding:22px 20px}
@@ -172,13 +180,13 @@ section{padding:120px 0;position:relative}
 .ptable{display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start}
 .grid-el{display:grid;grid-template-columns:repeat(8,1fr);gap:8px}
 .el{aspect-ratio:1;border-radius:10px;padding:8px 9px;position:relative;cursor:pointer;background:var(--card);border:1px solid var(--line);transition:transform .25s,opacity .35s,background .35s,color .35s,box-shadow .25s;display:flex;flex-direction:column;justify-content:space-between}
-.el .n{font-family:var(--mono);font-size:9.5px;color:var(--mute)}
+.el .n{font-family:var(--mono);font-size:11px;color:var(--mute)}
 .el .s{font-size:clamp(18px,2vw,26px);font-weight:700;letter-spacing:-.03em;line-height:1}
-.el .nm{font-size:9.5px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.el .nm{font-size:11px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .el:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
 .el.lit{color:#fff;border-color:transparent}
 .el.lit .n,.el.lit .nm{color:rgba(255,255,255,.7)}
-.el.dim{opacity:.28}
+.el.dim{opacity:.4}
 .detail{position:sticky;top:110px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;min-height:330px;box-shadow:var(--shadow);text-align:center}
 .detail .logo{width:110px;height:110px;margin:8px auto 14px;display:grid;place-items:center}
 .detail .logo img{width:96px;height:96px;object-fit:contain}
@@ -221,7 +229,7 @@ section{padding:120px 0;position:relative}
 @keyframes pod{0%,100%{opacity:1}50%{opacity:.55}}
 .bar{height:7px;border-radius:4px;background:#2c2e52;position:relative;overflow:hidden}
 .bar b{position:absolute;inset:0 auto 0 0;border-radius:4px;background:linear-gradient(90deg,#3d5af1,#7ee2a8);transition:width 1.6s cubic-bezier(.3,.7,.2,1)}
-.th{position:relative;height:16px;margin-top:4px;color:#7d80ad;font-size:9.5px}
+.th{position:relative;height:16px;margin-top:4px;color:#a9abd2;font-size:11px}
 .th span{position:absolute;transform:translateX(-50%)}
 .alert{margin-top:12px;border:1px dashed #e6b54a;border-radius:8px;padding:9px 10px;color:#f1d9a0;display:flex;gap:8px;align-items:center}
 
@@ -243,12 +251,12 @@ section{padding:120px 0;position:relative}
 .tl .rail{position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--line);transform:translateX(-50%)}
 .tl .fill{position:absolute;left:0;top:0;width:100%;background:var(--navy);height:0;transition:height .15s linear}
 .step{display:grid;grid-template-columns:1fr 80px 1fr;align-items:center;margin-bottom:70px}
-.step .yr{font-size:clamp(46px,5.4vw,78px);font-weight:700;letter-spacing:-.05em;color:var(--line);transition:color .6s}
+.step .yr{font-size:clamp(46px,5.4vw,78px);font-weight:700;letter-spacing:-.05em;color:var(--mute);transition:color .6s}
 .step.in .yr{color:var(--ink)}
 .step .pin{width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--line);justify-self:center;transition:all .6s;position:relative;z-index:1}
 .step.in .pin{border-color:var(--navy);background:var(--navy);box-shadow:0 0 0 6px rgba(36,38,74,.12)}
 .step .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow)}
-.step .card .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--mute);text-transform:uppercase}
+.step .card .k{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--mute);text-transform:uppercase}
 .step .card h4{font-size:20px;letter-spacing:-.02em;margin:6px 0 2px}
 .step .card .w{color:var(--mute);font-size:13.5px}
 .step .card p{color:var(--ink2);font-size:14.5px;margin-top:10px}
@@ -269,7 +277,7 @@ section{padding:120px 0;position:relative}
 .mo .big{font-size:52px;font-weight:700;letter-spacing:-.05em;line-height:1}
 .mo .big small{font-size:.5em;color:var(--mute);font-weight:600}
 .mo h4{font-size:16px;margin-top:10px;letter-spacing:-.01em}
-.mo .k{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--mute);text-transform:uppercase;margin-top:3px}
+.mo .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--mute);text-transform:uppercase;margin-top:3px}
 .mo p{font-size:13.5px;color:var(--ink2);margin-top:8px}
 
 /* ---------- contact ---------- */
@@ -299,7 +307,7 @@ section{padding:120px 0;position:relative}
   .wrap{padding:0 16px}
   section{padding:84px 0}
   .hero,.hero .wrap{min-height:0}.hero{margin-bottom:0}.hero .wrap{grid-template-columns:1fr;align-items:start;padding-top:70px;padding-bottom:40px;gap:10px}.cue{display:none}
-  .figbox{grid-row:1;justify-self:center}.figure{width:min(320px,74vw)}.chip{font-size:11.5px;padding:6px 10px 6px 7px}.chip.c1{left:-14px}.chip.c2{right:-14px}.chip.c3{left:-10px}
+  .figbox{grid-row:1;justify-self:center}.figure{width:min(320px,74vw)}.chip{font-size:11.5px;padding:6px 10px 6px 7px}.chip.c1{left:-14px}.chip.c2{right:-14px}.chip.c3{left:-10px;top:52%}.ghost{display:none}
   .hero-r{align-items:flex-start;text-align:left;justify-self:start}.hero-r .tags{display:none}
   .about-grid,.certs{grid-template-columns:1fr}.lanyard{grid-row:auto}
   .grid-el{grid-template-columns:repeat(4,1fr)}
@@ -332,8 +340,9 @@ section{padding:120px 0;position:relative}
       <div class="figure" id="fig">
         <div class="halo"></div>
         <div class="pfx" id="pfx"><img id="heroImg" src="photo.jpg" alt="Rajeshkumar K"></div>
+        <iframe class="hv" src="https://app.heygen.com/embeds/bf6ed3416c444ce3b577a8c430e1ad5e?autoplay=1&amp;muted=1&amp;loop=1&amp;controls=0" title="Rajeshkumar K intro" allow="autoplay; encrypted-media" tabindex="-1" aria-hidden="true"></iframe>
         <div class="sheen"></div>
-        <button class="playb" id="playIntro" type="button"><span class="pi"><svg viewBox="0 0 16 16"><path d="M5 3.2v9.6L13 8z" fill="currentColor"/></svg></span>Watch my intro · 13s</button>
+        <button class="playb" id="playIntro" type="button"><span class="pi"><svg viewBox="0 0 16 16"><path d="M5 3.2v9.6L13 8z" fill="currentColor"/></svg></span>Watch with sound · 13s</button>
         <div class="live"><span class="dot"></span> Open to DevOps &amp; SRE roles</div>
       </div>
       <div class="chip c1"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/kubernetes/kubernetes-original.svg" alt="">Kubernetes</div>
@@ -348,6 +357,10 @@ section{padding:120px 0;position:relative}
     <div class="cue">SCROLL ↓</div>
   </div>
 </header>
+
+<div class="ticker" aria-label="Highlights">
+  <div class="tk"><span>Issues fixed <i>before</i> clients notice</span><span>From the cluster to the <i>last log line</i></span><span>Every alert → a Jira ticket → a <i>root cause</i></span><span>git push to <i>validated</i> in one flow</span><span>20+ live projects kept <i>inside SLA</i></span><span>Logs · traces · metrics in <i>one place</i></span></div>
+</div>
 
 <!-- ABOUT -->
 <section id="about">
@@ -548,12 +561,12 @@ section{padding:120px 0;position:relative}
           <div class="cluster">
             <div class="hd"><span>release · openobserve-config</span><b>● synced &amp; healthy</b></div>
             <div style="display:grid;gap:9px;line-height:1.5">
-              <div><span style="color:#7d80ad">$</span> git push origin main <span style="color:#7ee2a8">→ GitLab</span></div>
-              <div><span style="color:#7d80ad">jenkins</span> build #latest ......... <span style="color:#7ee2a8">SUCCESS</span></div>
-              <div><span style="color:#7d80ad">nexus</span> artifact stored ........ <span style="color:#7ee2a8">OK</span></div>
-              <div><span style="color:#7d80ad">argocd</span> app sync .............. <span style="color:#7ee2a8">Synced</span></div>
-              <div><span style="color:#7d80ad">argocd</span> health ................ <span style="color:#7ee2a8">Healthy</span></div>
-              <div><span style="color:#7d80ad">validate</span> logs · traces · metrics <span style="color:#7ee2a8">✓ flowing</span></div>
+              <div><span style="color:#a9abd2">$</span> git push origin main <span style="color:#7ee2a8">→ GitLab</span></div>
+              <div><span style="color:#a9abd2">jenkins</span> build #latest ......... <span style="color:#7ee2a8">SUCCESS</span></div>
+              <div><span style="color:#a9abd2">nexus</span> artifact stored ........ <span style="color:#7ee2a8">OK</span></div>
+              <div><span style="color:#a9abd2">argocd</span> app sync .............. <span style="color:#7ee2a8">Synced</span></div>
+              <div><span style="color:#a9abd2">argocd</span> health ................ <span style="color:#7ee2a8">Healthy</span></div>
+              <div><span style="color:#a9abd2">validate</span> logs · traces · metrics <span style="color:#7ee2a8">✓ flowing</span></div>
             </div>
             <div class="alert" style="border-color:#7ee2a8;color:#c9f3da">✓ Release verified end to end: data flowing, dashboards live</div>
           </div>
@@ -605,13 +618,15 @@ section{padding:120px 0;position:relative}
     <div class="l reveal">
       <div class="eyebrow"><b>05</b> Certifications</div>
       <h2 class="big">Always <span class="serif">learning.</span></h2>
-      <p>Cloud and DevOps foundations, backed every day by production work.</p>
+      <p>Kubernetes, monitoring, cloud and DevOps courses, put to work every day in production.</p>
     </div>
     <ul class="clist reveal">
-      <li><span class="i">01</span><div><b>Microsoft Azure Fundamentals (AZ-900)</b><small>Microsoft</small></div><span class="ar">↗</span></li>
-      <li><span class="i">02</span><div><b>DevOps Fundamentals</b><small>IBM</small></div><span class="ar">↗</span></li>
-      <li><span class="i">03</span><div><b>DevOps Engineer Internship</b><small>StarAgile, with IBM</small></div><span class="ar">↗</span></li>
-      <li><span class="i">04</span><div><b>NCC "C" Certificate</b><small>National Cadet Corps</small></div><span class="ar">↗</span></li>
+      <li><span class="i">01</span><div><b>Kubernetes Overview</b><small>Udemy</small></div><span class="ar">↗</span></li>
+      <li><span class="i">02</span><div><b>Prometheus</b><small>Udemy</small></div><span class="ar">↗</span></li>
+      <li><span class="i">03</span><div><b>Microsoft Azure Fundamentals (AZ-900)</b><small>Microsoft</small></div><span class="ar">↗</span></li>
+      <li><span class="i">04</span><div><b>DevOps Fundamentals</b><small>IBM</small></div><span class="ar">↗</span></li>
+      <li><span class="i">05</span><div><b>DevOps Engineer Internship</b><small>StarAgile, with IBM</small></div><span class="ar">↗</span></li>
+      <li><span class="i">06</span><div><b>NCC "C" Certificate</b><small>National Cadet Corps</small></div><span class="ar">↗</span></li>
     </ul>
   </div>
 </section>
@@ -786,6 +801,12 @@ section{padding:120px 0;position:relative}
   });
   function bars(){document.querySelectorAll('#cluster .bar b').forEach(function(b){b.style.width='0';setTimeout(function(){b.style.width=b.dataset.w},60)})}
   new IntersectionObserver(function(es,o){if(es[0].isIntersecting){bars();o.disconnect()}}).observe(document.getElementById('cluster'));
+
+  /* ticker: duplicate the line so the loop is seamless */
+  var tk=document.querySelector(".ticker .tk"); if(tk) tk.innerHTML+=tk.innerHTML;
+
+  /* hero video: fade in once the HeyGen player has had time to start */
+  var hv=document.querySelector(".figure .hv"); if(hv) hv.addEventListener("load",function(){setTimeout(function(){hv.classList.add("on")},1200)});
 
   /* intro video (HeyGen embed) in a pop-up */
   var pb=document.getElementById("playIntro");
