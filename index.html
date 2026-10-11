@@ -407,6 +407,13 @@ html.intro-lock,html.intro-lock body{overflow:hidden;overscroll-behavior:none}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 </style>
+<script>
+/* every visit (and refresh) opens at the top with the presenter, never at the old scroll position */
+if('scrollRestoration' in history){history.scrollRestoration='manual';}
+function rkTop(){window.scrollTo({top:0,left:0,behavior:'instant'});}
+rkTop(); window.addEventListener('pageshow',rkTop); window.addEventListener('beforeunload',rkTop);
+if(location.hash){history.replaceState(null,'',location.pathname+location.search);}
+</script>
 </head>
 <body>
 
@@ -833,7 +840,7 @@ html.intro-lock,html.intro-lock body{overflow:hidden;overscroll-behavior:none}
       window.addEventListener('touchmove',block,{passive:false});
       window.addEventListener('keydown',function(e){ if(locked&&KEYS[e.keyCode]) e.preventDefault(); });
       document.addEventListener('click',function(e){ if(locked&&e.target.closest('a[href^="#"]')){ e.preventDefault(); } },true);
-      function lock(){ locked=true; html.classList.add('intro-lock'); window.scrollTo(0,0); }
+      function lock(){ locked=true; window.scrollTo({top:0,left:0,behavior:'instant'}); html.classList.add('intro-lock'); }
       function unlock(){ locked=false; html.classList.remove('intro-lock'); hint.classList.remove('on'); }
       function speak(withSound){
         again.classList.remove('on'); cue.classList.remove('on'); v.loop=false; v.currentTime=0; v.muted=!withSound;
