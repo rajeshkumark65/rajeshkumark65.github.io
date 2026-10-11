@@ -2,594 +2,792 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rajeshkumar K | DevOps & Observability Engineer</title>
-<meta name="description" content="Associate DevOps Engineer: Kubernetes in production (cluster build, GitLab CI/CD, ArgoCD, Helm, SLA monitoring) and OpenObserve + OpenTelemetry observability R&amp;D.">
-<meta property="og:type" content="website">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rajeshkumar K · DevOps Engineer</title>
+<meta name="description" content="Rajeshkumar K, DevOps Engineer: OpenObserve + OpenTelemetry observability R&amp;D lead and production SLA owner for 20+ live Kubernetes projects.">
+<meta property="og:title" content="Rajeshkumar K · DevOps Engineer">
+<meta property="og:description" content="50% OpenObserve &amp; OpenTelemetry R&amp;D lead, 50% production SLA owner for 20+ live projects.">
 <meta property="og:url" content="https://rajeshkumark65.github.io/">
-<meta property="og:title" content="Rajeshkumar K &#8211; DevOps &amp; Observability Engineer">
-<meta property="og:description" content="Kubernetes in production for 20+ live projects, OpenObserve + OpenTelemetry platform development and improved Data Lake House monitoring.">
 <meta property="og:image" content="https://rajeshkumark65.github.io/og-card.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="627">
-<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#ffffff; --bg-soft:#f4f7fb; --card:#ffffff; --line:#e3e8f0;
-  --text:#0f172a; --muted:#516075; --accent:#2563eb; --accent-2:#0ea5e9; --accent-soft:#eaf1ff;
-  --good:#059669; --warn:#d97706; --shadow:0 10px 30px rgba(15,23,42,.07);
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#0b1120; --bg-soft:#0f172a; --card:#111a2e; --line:#1f2a44;
-    --text:#e6edf7; --muted:#9aa8bf; --accent:#60a5fa; --accent-2:#38bdf8; --accent-soft:#16233f; --shadow:0 10px 30px rgba(0,0,0,.35);
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#0b1120; --bg-soft:#0f172a; --card:#111a2e; --line:#1f2a44;
-  --text:#e6edf7; --muted:#9aa8bf; --accent:#60a5fa; --accent-2:#38bdf8; --accent-soft:#16233f; --shadow:0 10px 30px rgba(0,0,0,.35);
+  --bg:#f3efe4; --bg2:#ebe5d6; --card:#fbf9f3; --ink:#15151c; --ink2:#4a4a55; --mute:#8a8676;
+  --line:#ddd6c4; --navy:#24264a; --navy2:#3b3e73; --gold:#c9a24b; --ok:#2f8f5b;
+  --shadow:0 1px 2px rgba(40,34,20,.06),0 12px 32px -12px rgba(40,34,20,.18);
+  --sans:"Inter Tight",system-ui,"Segoe UI",Arial,sans-serif; --serif:"Instrument Serif",Georgia,serif; --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Inter,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16.5px}
-h1,h2,h3{font-family:"Plus Jakarta Sans",Inter,sans-serif;line-height:1.2;letter-spacing:-.01em}
-a{color:var(--accent);text-decoration:none}
-.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
-section{padding:84px 0}
-.alt{background:var(--bg-soft)}
-.eyebrow{display:inline-block;font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-.sec-head{max-width:760px;margin-bottom:44px}
-.sec-head h2{font-size:clamp(1.8rem,3.2vw,2.5rem);margin-bottom:12px}
-.sec-head p{color:var(--muted);font-size:1.08rem}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);display:flex;align-items:center;gap:12px}
+.eyebrow:before{content:"";width:34px;height:1px;background:var(--mute)}
+.eyebrow b{font-weight:500;color:var(--ink2)}
+.reelsec{padding-top:40px}.reel-grid{display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}.reel-l p{margin-top:18px;max-width:460px;color:var(--ink2)}.reel-l .row{margin-top:24px}
+.phone{width:340px;aspect-ratio:9/16;border-radius:42px;padding:10px;background:#111;box-shadow:0 0 0 2px #2a2a30,0 50px 90px -30px rgba(40,34,20,.55);transform:rotate(2deg)}.phone iframe{width:100%;height:100%;border:0;border-radius:32px;display:block;background:#16161b}
+@media (max-width:820px){.reel-grid{grid-template-columns:1fr;gap:30px}.phone{width:min(320px,82vw);justify-self:center;transform:none}}
+h2.big{font-size:clamp(44px,6.4vw,92px);line-height:.95;letter-spacing:-.035em;font-weight:700;margin:18px 0 0}
+.serif{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.01em;color:var(--ink2)}
+section{padding:120px 0;position:relative}
+.sec-top{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:56px;flex-wrap:wrap}
+.sec-top p{max-width:340px;color:var(--ink2);font-size:15px}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
 
-/* nav */
-nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
-.logo{font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:1.25rem;color:var(--text)}
-.logo span{color:var(--accent)}
-.links{display:flex;align-items:center;gap:26px}
-.links a{color:var(--muted);font-weight:500;font-size:.95rem}
-.links a:hover{color:var(--text)}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-weight:600;font-size:.97rem;border:1px solid transparent;transition:transform .15s,box-shadow .15s}
-.btn:hover{transform:translateY(-1px)}
-.btn-primary{background:var(--accent);color:#fff;box-shadow:0 6px 18px color-mix(in srgb,var(--accent) 35%,transparent)}
-.btn-ghost{border-color:var(--line);color:var(--text);background:var(--card)}
-.btn-sm{padding:8px 14px;font-size:.88rem}
-.links a.btn-primary{color:#fff}
-.theme{background:none;border:1px solid var(--line);color:var(--muted);width:38px;height:38px;border-radius:10px;cursor:pointer}
+/* ---------- nav ---------- */
+.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:50;display:flex;gap:2px;padding:6px;background:rgba(251,249,243,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:999px;box-shadow:var(--shadow)}
+.nav a{font-size:14px;font-weight:500;padding:8px 16px;border-radius:999px;color:var(--ink2);transition:background .35s,color .35s;white-space:nowrap}
+.nav a:hover{color:var(--ink)}
+.nav a.on{background:var(--navy);color:#fff}
+.brand{position:fixed;top:30px;left:32px;z-index:49;font-weight:700;font-size:15px;letter-spacing:-.01em}
+.brand i{font-family:var(--serif);font-weight:400;font-size:19px}
 
-/* hero */
-.hero{padding:72px 0 64px}
-.hero .wrap{display:grid;grid-template-columns:1.25fr .85fr;gap:56px;align-items:center}
-.hero h1{font-size:clamp(2.2rem,4.6vw,3.5rem);font-weight:800;margin:10px 0 18px}
-.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero .lead{font-size:1.15rem;color:var(--muted);max-width:620px;margin-bottom:28px}
-.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{font-size:.85rem;font-weight:500;padding:6px 12px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
-.chip.plain{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line)}
-.photo{position:relative;justify-self:center;width:min(380px,100%)}
-.photo img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:24px;box-shadow:var(--shadow);border:1px solid var(--line)}
-.float{position:absolute;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:14px;padding:10px 14px;font-size:.85rem;color:var(--muted);line-height:1.3}
-.float b{display:block;color:var(--text);font-size:1.15rem;font-family:"Plus Jakarta Sans",sans-serif}
-.f1{left:-34px;top:38px}.f2{right:-28px;bottom:54px}
-.f1 b{color:var(--good)}
+/* ---------- hero ---------- */
+.hero{min-height:min(100vh,880px);margin-bottom:60px;padding:0;display:flex;align-items:stretch;overflow:hidden}
+.hero .wrap{position:relative;width:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:end;min-height:min(100vh,880px);padding-top:96px;padding-bottom:70px;gap:28px}
+.ghost{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;font-weight:800;font-size:clamp(140px,24vw,380px);letter-spacing:-.06em;color:var(--ink);opacity:.045;line-height:1;user-select:none;white-space:nowrap}
+.hero-l{align-self:end;z-index:2}
+.hero-l .who{font-family:var(--mono);font-size:12px;letter-spacing:.24em;color:var(--mute);text-transform:uppercase}
+.hero-l h1{font-size:clamp(50px,6vw,88px);line-height:.9;letter-spacing:-.045em;font-weight:700;margin-top:14px}
+.hero-l h1 .serif{display:block;font-size:.62em;margin-top:10px;color:var(--navy2)}
+.hero-l .sub{margin-top:22px;color:var(--ink2);max-width:420px;font-size:16px}
+.figbox{position:relative;z-index:1;align-self:end;justify-self:center;perspective:1000px}
+.figure{position:relative;width:min(420px,30vw);transition:transform .5s cubic-bezier(.2,.7,.2,1);will-change:transform;animation:rise 1.3s cubic-bezier(.2,.8,.2,1) .15s backwards;aspect-ratio:4/5.1;border-radius:999px 999px 28px 28px;overflow:hidden;background:linear-gradient(180deg,#e4dfd2,#d9d3c3);box-shadow:0 0 0 10px rgba(251,249,243,.7),0 40px 80px -30px rgba(40,34,20,.45)}
+.figure .halo{position:absolute;inset:8% 4% 0;background:radial-gradient(closest-side,rgba(255,255,255,.9),rgba(255,255,255,0));filter:blur(8px)}
+.figure img,.figure video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;
+  animation:breathe 7s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-6px) scale(1.012)}}
+@keyframes rise{from{opacity:0;transform:translateY(70px) scale(.94)}to{opacity:1;transform:none}}
+.figure .pfx{position:absolute;inset:-3%;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.figure .sheen{position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.38) 50%,transparent 65%);background-size:250% 100%;mix-blend-mode:soft-light;animation:sheen 7s ease-in-out 1.6s infinite}
+@keyframes sheen{0%{background-position:130% 0}45%,100%{background-position:-30% 0}}
+.ghost{animation:drift 18s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translateX(-2.5%)}to{transform:translateX(2.5%)}}
+.chip{position:absolute;z-index:3;display:flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 12px 7px 8px;font-size:12.5px;font-weight:600;box-shadow:var(--shadow);white-space:nowrap;animation:bob 5s ease-in-out infinite,pop .7s cubic-bezier(.2,.9,.3,1.3) backwards}
+.chip img{width:18px;height:18px}
+.chip.c1{top:18%;left:-58px;animation-delay:0s,1.2s}
+.chip.c2{top:44%;right:-66px;animation-delay:-1.7s,1.45s}
+.chip.c3{top:70%;left:-44px;animation-delay:-3.3s,1.7s}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -10px}}
+@keyframes pop{from{opacity:0;scale:.6}to{opacity:1;scale:1}}
+.live{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:500;box-shadow:var(--shadow);white-space:nowrap}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(47,143,91,.5);animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(47,143,91,.5)}80%,100%{box-shadow:0 0 0 10px rgba(47,143,91,0)}}
+.hero-r{align-self:end;justify-self:end;z-index:2;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:16px}
+.hero-r .tags{display:flex;flex-direction:column;gap:6px;font-family:var(--mono);font-size:12px;color:var(--ink2);letter-spacing:.06em}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font-size:15px;font-weight:600;transition:transform .25s,background .25s,box-shadow .25s;border:1px solid transparent}
+.btn.dark{background:var(--navy);color:#fff;box-shadow:0 10px 24px -10px rgba(36,38,74,.6)}
+.btn.dark:hover{transform:translateY(-2px);background:var(--navy2)}
+.btn.ghostb{border-color:var(--line);background:var(--card)}
+.btn.ghostb:hover{transform:translateY(-2px);border-color:var(--ink2)}
+.btn svg{width:16px;height:16px}
+.cue{position:absolute;right:32px;bottom:24px;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--mute);z-index:3}
 
-/* metrics */
-.hero .wrap.mrow{display:block;margin-top:40px}
-.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px}
-.metric{position:relative;text-align:center;padding:28px 18px;border-radius:18px;background:linear-gradient(145deg,#0f1b33,#0b1222);border:1px solid rgba(56,189,248,.22);box-shadow:0 10px 30px rgba(15,23,42,.18);transition:transform .25s,box-shadow .25s}
-.metric:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(56,189,248,.25)}
-.metric b{display:block;font-family:"Plus Jakarta Sans",sans-serif;font-size:2.7rem;font-weight:800;line-height:1.1;background:linear-gradient(90deg,#38bdf8,#64ffda);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 22px rgba(56,189,248,.35)}
-.metric b.word{font-size:2.2rem}
-.metric span{color:#9fb3cc;font-size:.95rem;display:block;margin-top:6px}
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:1.15fr .9fr 1fr;gap:48px;align-items:start}
+.about-l p{color:var(--ink2);margin-top:22px;max-width:440px}
+.about-l .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.lanyard{position:relative;display:flex;flex-direction:column;align-items:center;margin-top:-150px;perspective:1200px}
+.strap{width:26px;height:150px;background:repeating-linear-gradient(180deg,var(--navy) 0 14px,var(--navy2) 14px 15px);border-radius:0 0 4px 4px;position:relative}
+.strap:after{content:"RAJESHKUMAR K · DEVOPS · ";position:absolute;left:50%;top:10px;writing-mode:vertical-rl;transform:translateX(-50%);font-family:var(--mono);font-size:8px;letter-spacing:.2em;color:rgba(255,255,255,.65);white-space:nowrap;overflow:hidden;height:130px}
+.clip{width:40px;height:22px;border-radius:6px;background:linear-gradient(#d7d2c4,#b7b09d);margin-top:-2px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.15)}
+.swing{transform-origin:50% -170px;animation:swing 6s ease-in-out infinite}
+@keyframes swing{0%,100%{transform:rotate(2.2deg)}50%{transform:rotate(-2.2deg)}}
+.idcard{width:270px;height:390px;position:relative;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,.7,.2,1);cursor:pointer;margin-top:6px}
+.idcard.flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:18px;background:var(--card);border:1px solid var(--line);box-shadow:0 30px 60px -24px rgba(40,34,20,.45);backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.face.front .band{background:var(--navy);color:#fff;padding:14px 18px;display:flex;align-items:center;gap:10px}
+.face.front .band .lg{width:30px;height:30px;border-radius:50%;background:#fff;color:var(--navy);display:grid;place-items:center;font-weight:800;font-size:12px}
+.face.front .band b{display:block;font-size:13px;letter-spacing:.14em}
+.face.front .band span{font-size:10px;opacity:.7;letter-spacing:.08em}
+.face.front .ph{width:140px;height:164px;margin:22px auto 0;border-radius:12px;overflow:hidden;border:3px solid #fff;box-shadow:0 6px 18px -8px rgba(0,0,0,.35)}
+.face.front .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.face.front h4{text-align:center;margin-top:14px;font-size:17px;letter-spacing:.04em}
+.face.front .rl{text-align:center;font-size:12px;color:var(--mute)}
+.face.front .meta{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin:14px 18px 0;font-size:10px;text-align:center;color:var(--ink2)}
+.face.front .meta i{display:block;font-style:normal;font-family:var(--mono);font-size:8px;color:var(--mute);letter-spacing:.12em}
+.barcode{height:26px;margin:12px 34px 0;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 5px,transparent 5px 8px,var(--ink) 8px 11px,transparent 11px 12px)}
+.face.back{transform:rotateY(180deg);padding:22px 20px}
+.face.back h4{font-size:18px}
+.face.back ul{list-style:none;margin-top:14px}
+.face.back li{display:flex;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:13.5px;font-weight:600}
+.face.back li small{display:block;font-weight:400;color:var(--mute);font-size:11.5px}
+.face.back li:before{content:"✓";flex:0 0 20px;height:20px;border-radius:50%;background:var(--navy);color:#fff;font-size:11px;display:grid;place-items:center;margin-top:1px}
+.face.back .sig{font-family:var(--serif);font-style:italic;font-size:26px;margin-top:12px;color:var(--navy2)}
+.flip-hint{margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.14em}
+.facts h5{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--mute);font-weight:500;margin-bottom:10px}
+.facts dl{display:grid;grid-template-columns:auto 1fr;gap:0}
+.facts dt,.facts dd{padding:13px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.facts dt{color:var(--mute)}
+.facts dd{text-align:right;font-weight:500}
+.facts blockquote{font-family:var(--serif);font-style:italic;font-size:26px;line-height:1.2;margin-top:28px;color:var(--ink2)}
 
-/* pillars */
-.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.pillars.four{grid-template-columns:repeat(2,1fr)}
-.pillar.main{border:2px solid var(--accent);background:linear-gradient(180deg,var(--accent-soft),var(--card) 60%)}
-.pillar.main h3:after{content:"Core skill";margin-left:10px;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 8px;border-radius:999px;vertical-align:middle}
-.pillar{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow)}
-.pillar i{font-size:1.4rem;color:var(--accent);background:var(--accent-soft);width:48px;height:48px;display:grid;place-items:center;border-radius:12px;margin-bottom:16px}
-.pillar h3{font-size:1.25rem;margin-bottom:8px}
-.pillar p{color:var(--muted);margin-bottom:12px}
-.pillar ul{list-style:none;display:grid;gap:6px}
-.pillar li{padding-left:22px;position:relative;font-size:.96rem}
-.pillar li:before{content:"\f00c";font-family:"Font Awesome 6 Free";font-weight:900;position:absolute;left:0;color:var(--good);font-size:.8rem;top:4px}
+/* ---------- how I work ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.half{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:34px;box-shadow:var(--shadow)}
+.half.dark{background:var(--navy);color:#fff;border-color:var(--navy)}
+.half .pct{font-size:86px;font-weight:700;letter-spacing:-.06em;line-height:.9}
+.half .pct span{font-size:inherit}
+.half .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin-top:14px}
+.half.dark .k{color:#b6b8dc}
+.half h3{font-size:26px;letter-spacing:-.02em;margin:6px 0 10px}
+.half p{color:var(--ink2);font-size:15.5px}
+.half.dark p{color:#c6c8e6}.half.dark b{color:#fff}
+.half ul{list-style:none;margin-top:16px;display:grid;gap:8px}
+.half li{font-size:14.5px;padding-left:18px;position:relative}
+.half li:before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:2px;background:var(--navy2)}
+.half.dark li:before{background:#9ea2ff}
+.meter{height:6px;border-radius:4px;background:var(--bg2);margin-top:24px;overflow:hidden}
+.half.dark .meter{background:rgba(255,255,255,.15)}
+.meter b{display:block;height:100%;background:var(--gold);border-radius:4px}
+.subhead{font-size:20px;letter-spacing:-.01em;margin:56px 0 18px}
+.pipe{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);gap:10px;counter-reset:p}
+.pipe li{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 16px;box-shadow:var(--shadow);overflow:hidden}
+.pipe li:not(:last-child):after{content:"→";position:absolute;right:-9px;top:50%;transform:translateY(-50%);z-index:2;width:18px;height:18px;border-radius:50%;background:var(--navy);color:#fff;font-size:11px;display:grid;place-items:center}
+.pipe li:before{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:var(--navy2);animation:flow 6s infinite}
+.pipe li:nth-child(2):before{animation-delay:1s}.pipe li:nth-child(3):before{animation-delay:2s}.pipe li:nth-child(4):before{animation-delay:3s}.pipe li:nth-child(5):before{animation-delay:4s}.pipe li:nth-child(6):before{animation-delay:5s;background:var(--ok)}
+@keyframes flow{0%{width:0}15%{width:100%}100%{width:100%;opacity:0}}
+.pipe .ic{font-family:var(--mono);font-size:11px;color:var(--mute)}
+.pipe b{display:block;font-size:18px;letter-spacing:-.01em;margin-top:8px}
+.pipe small{display:block;color:var(--ink2);font-size:12.5px;margin-top:4px;line-height:1.35}
+.pipe li.ok{border-color:var(--ok)}
+.pipe li.ok b{color:var(--ok)}
 
-/* case studies */
-.case{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:center;padding:44px 0;border-top:1px solid var(--line)}
-.case:first-of-type{border-top:0}
-.case.flip .text{order:2}
-.case.wide{grid-template-columns:1fr;gap:28px}
-.case.wide .text{display:grid;grid-template-columns:.9fr 1.1fr;column-gap:48px;align-items:start}
-.case.wide .text .head{grid-column:1}
-.case.wide .text .pbr{grid-column:2;grid-row:1 / span 2}
-.case.wide .text .chips{grid-column:1}
-.case.wide .visual figure{padding:12px}
-.case.wide .visual img{width:auto;max-width:100%;margin:0 auto}
-.case .tag{font-size:.8rem;font-weight:600;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
-.case h3{font-size:1.65rem;margin:8px 0 10px}
-.case .strength{font-size:1.08rem;font-weight:500;color:var(--text);margin-bottom:18px}
-.pbr{display:grid;gap:12px;margin-bottom:18px}
-.pbr div{padding-left:16px;border-left:3px solid var(--line)}
-.pbr div.r{border-left-color:var(--good)}
-.pbr b{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block}
-.pbr p{font-size:.98rem}
-.visual{display:grid;gap:14px}
-.visual figure{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:var(--shadow)}
-.visual img{width:100%;height:auto;display:block;border-radius:10px;cursor:zoom-in}
-.visual figcaption{font-size:.85rem;color:var(--muted);padding:8px 4px 2px;display:flex;justify-content:space-between;gap:10px}
-.visual figcaption i{color:var(--accent)}
+/* ---------- skills ---------- */
+.fam{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.fam button{font:500 13px var(--sans);padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .25s}
+.fam button i{width:9px;height:9px;border-radius:2px}
+.fam button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.ptable{display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start}
+.grid-el{display:grid;grid-template-columns:repeat(8,1fr);gap:8px}
+.el{aspect-ratio:1;border-radius:10px;padding:8px 9px;position:relative;cursor:pointer;background:var(--card);border:1px solid var(--line);transition:transform .25s,opacity .35s,background .35s,color .35s,box-shadow .25s;display:flex;flex-direction:column;justify-content:space-between}
+.el .n{font-family:var(--mono);font-size:9.5px;color:var(--mute)}
+.el .s{font-size:clamp(18px,2vw,26px);font-weight:700;letter-spacing:-.03em;line-height:1}
+.el .nm{font-size:9.5px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.el:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.el.lit{color:#fff;border-color:transparent}
+.el.lit .n,.el.lit .nm{color:rgba(255,255,255,.7)}
+.el.dim{opacity:.28}
+.detail{position:sticky;top:110px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;min-height:330px;box-shadow:var(--shadow);text-align:center}
+.detail .logo{width:110px;height:110px;margin:8px auto 14px;display:grid;place-items:center}
+.detail .logo img{width:96px;height:96px;object-fit:contain}
+.detail .logo .sym{font-size:54px;font-weight:800;letter-spacing:-.04em;color:var(--navy)}
+.detail h4{font-size:22px;letter-spacing:-.02em}
+.detail .fm{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--mute);margin-top:4px;text-transform:uppercase}
+.detail p{color:var(--ink2);font-size:14.5px;margin-top:14px}
 
-/* experience */
-.exp{display:grid;grid-template-columns:260px 1fr;gap:40px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:32px;box-shadow:var(--shadow)}
-.exp .when{color:var(--muted)}
-.exp .when b{display:block;color:var(--text);font-size:1.1rem;font-family:"Plus Jakarta Sans",sans-serif}
-.exp ul{display:grid;gap:10px;padding-left:18px}
-.exp li::marker{color:var(--accent)}
+/* ---------- work ---------- */
+.acc{display:flex;gap:12px;height:620px}
+.panel{flex:0 0 66px;min-width:66px;border-radius:20px;background:var(--card);border:1px solid var(--line);position:relative;overflow:hidden;cursor:pointer;transition:flex-grow .7s cubic-bezier(.3,.7,.2,1),box-shadow .4s;box-shadow:var(--shadow)}
+.panel.open{flex:1 1 auto;cursor:default}
+.panel .vt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:22px 0;transition:opacity .3s}
+.panel .vt .no{font-family:var(--mono);font-size:12px;color:var(--mute)}
+.panel .vt h3{writing-mode:vertical-rl;transform:rotate(180deg);font-size:19px;font-weight:600;letter-spacing:-.01em;white-space:nowrap}
+.panel .vt .plus{width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:18px}
+.panel.open .vt{opacity:0;pointer-events:none}
+.pc{position:absolute;inset:0;padding:34px;display:grid;grid-template-columns:1fr 1fr;gap:30px;opacity:0;transition:opacity .35s;pointer-events:none;min-width:760px}
+.panel.open .pc{opacity:1;pointer-events:auto;transition-delay:.3s}
+.pc .cat{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--mute);text-transform:uppercase}
+.pc h3{font-size:28px;line-height:1.02;letter-spacing:-.03em;margin:12px 0 14px}
+.pc p.lead{color:var(--ink2);font-size:15.5px}
+.pc ul{list-style:none;margin-top:16px;display:grid;gap:9px}
+.pc li{font-size:14.5px;padding-left:18px;position:relative;color:var(--ink)}
+.pc li:before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:2px;background:var(--navy2)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.chips span{font-size:12px;padding:4px 10px;border-radius:999px;background:var(--bg2);color:var(--ink2);display:flex;align-items:center;gap:6px}
+.chips span i{width:7px;height:7px;border-radius:50%;background:var(--ok)}
+.vis{border-radius:14px;overflow:hidden;background:var(--bg2);border:1px solid var(--line);align-self:center;cursor:zoom-in}
+.vis img{width:100%;height:auto}
+.vis.pad{padding:0}
+.cluster{background:#1b1c33;border-radius:14px;padding:20px;color:#d8daf0;font-family:var(--mono);font-size:11.5px;align-self:center}
+.cluster .hd{display:flex;justify-content:space-between;margin-bottom:14px;color:#9a9dc6}
+.cluster .hd b{color:#7ee2a8;font-weight:500}
+.node{margin-bottom:12px}
+.node .t{display:flex;justify-content:space-between;margin-bottom:6px}
+.pods{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px}
+.pods i{width:14px;height:14px;border-radius:3px;background:#3d5af1;animation:pod 3.2s ease-in-out infinite}
+.pods i.w{background:#e6b54a}
+@keyframes pod{0%,100%{opacity:1}50%{opacity:.55}}
+.bar{height:7px;border-radius:4px;background:#2c2e52;position:relative;overflow:hidden}
+.bar b{position:absolute;inset:0 auto 0 0;border-radius:4px;background:linear-gradient(90deg,#3d5af1,#7ee2a8);transition:width 1.6s cubic-bezier(.3,.7,.2,1)}
+.th{position:relative;height:16px;margin-top:4px;color:#7d80ad;font-size:9.5px}
+.th span{position:absolute;transform:translateX(-50%)}
+.alert{margin-top:12px;border:1px dashed #e6b54a;border-radius:8px;padding:9px 10px;color:#f1d9a0;display:flex;gap:8px;align-items:center}
 
-/* skills */
-.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.skill{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
-.skill h3{font-size:1.02rem;margin-bottom:12px;display:flex;gap:10px;align-items:center}
-.skill h3 i{color:var(--accent)}
-.skill.main{border:2px solid var(--accent)}
+/* ---------- certs ---------- */
+.certs{display:grid;grid-template-columns:.9fr 1.3fr;gap:56px;align-items:start}
+.certs .l p{color:var(--ink2);margin-top:18px;max-width:330px;font-size:15px}
+.clist{list-style:none;border-top:1px solid var(--line)}
+.clist li{display:grid;grid-template-columns:50px 1fr auto;align-items:center;gap:12px;padding:22px 18px;border-bottom:1px solid var(--line);transition:background .35s,color .35s,padding .35s;border-radius:4px}
+.clist li .i{font-family:var(--mono);font-size:12px;color:var(--mute)}
+.clist li b{font-size:19px;font-weight:600;letter-spacing:-.01em;display:block}
+.clist li small{color:var(--mute);font-size:13px}
+.clist li .ar{opacity:0;transition:opacity .3s,transform .3s;transform:translateX(-8px)}
+.clist li:hover{background:var(--navy);color:#fff;padding-left:26px}
+.clist li:hover small,.clist li:hover .i{color:rgba(255,255,255,.65)}
+.clist li:hover .ar{opacity:1;transform:none}
 
-/* certs + contact */
-.certs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.cert{display:flex;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
-.cert img{width:64px;height:64px;object-fit:contain}
-.cert i{font-size:1.8rem;color:var(--accent);width:64px;text-align:center}
-.cert b{display:block}
-.cert span{color:var(--muted);font-size:.9rem}
-.contact{text-align:center;background:linear-gradient(135deg,#1e3a8a,#2563eb 55%,#0ea5e9);color:#fff;border-radius:24px;padding:56px 24px}
-.contact h2{font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:10px}
-.contact p{opacity:.9;margin-bottom:26px}
-.contact .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.contact .btn{background:#fff;color:#1e3a8a}
-.contact .btn.o{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
-footer{padding:28px 0;color:var(--muted);font-size:.9rem;text-align:center}
+/* ---------- timeline ---------- */
+.tl{position:relative;max-width:980px;margin:0 auto}
+.tl .rail{position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--line);transform:translateX(-50%)}
+.tl .fill{position:absolute;left:0;top:0;width:100%;background:var(--navy);height:0;transition:height .15s linear}
+.step{display:grid;grid-template-columns:1fr 80px 1fr;align-items:center;margin-bottom:70px}
+.step .yr{font-size:clamp(46px,5.4vw,78px);font-weight:700;letter-spacing:-.05em;color:var(--line);transition:color .6s}
+.step.in .yr{color:var(--ink)}
+.step .pin{width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--line);justify-self:center;transition:all .6s;position:relative;z-index:1}
+.step.in .pin{border-color:var(--navy);background:var(--navy);box-shadow:0 0 0 6px rgba(36,38,74,.12)}
+.step .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow)}
+.step .card .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--mute);text-transform:uppercase}
+.step .card h4{font-size:20px;letter-spacing:-.02em;margin:6px 0 2px}
+.step .card .w{color:var(--mute);font-size:13.5px}
+.step .card p{color:var(--ink2);font-size:14.5px;margin-top:10px}
+.step .card .pill{display:inline-block;margin-top:12px;font-size:12px;padding:4px 10px;border-radius:999px;background:var(--bg2);color:var(--ink2)}
+.step:nth-child(odd) .yr{order:3;text-align:left}
+.step:nth-child(odd) .card{order:1}
+.step:nth-child(odd) .pin{order:2}
+.step:nth-child(even) .yr{order:1;text-align:right}.step:nth-child(even) .pin{order:2}.step:nth-child(even) .card{order:3}
 
-.kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.kcard{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:24px;box-shadow:var(--shadow)}
-.khead{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.khead i{font-size:1.15rem;color:var(--accent);background:var(--accent-soft);width:42px;height:42px;display:grid;place-items:center;border-radius:10px}
-.khead h3{font-size:1.12rem}
-.kcard ul{display:grid;gap:8px;padding-left:18px;font-size:.96rem}
-.kcard li::marker{color:var(--accent)}
-.subhead{font-size:1.25rem;margin:8px 0 18px}
-.devgrid{margin-bottom:40px}
-.journey{list-style:none;display:grid;gap:16px;position:relative;margin-bottom:32px}
-.journey:before{content:"";position:absolute;left:23px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--accent),var(--accent-2))}
-.journey li{display:grid;grid-template-columns:48px 1fr;gap:18px;align-items:start;position:relative}
-.journey .step{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:1.1rem;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 0 0 6px var(--bg-soft)}
-.journey li>div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;box-shadow:var(--shadow)}
-.journey h3{font-size:1.12rem;margin-bottom:6px}
-.journey p{color:var(--muted)}
-.journey p b{color:var(--text)}
-.rstats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.rstats div{text-align:center;padding:20px 10px;border-radius:16px;background:linear-gradient(145deg,#0f1b33,#0b1222);border:1px solid rgba(56,189,248,.22)}
-.rstats b{display:block;font-family:"Plus Jakarta Sans",sans-serif;font-size:1.6rem;font-weight:800;background:linear-gradient(90deg,#38bdf8,#64ffda);-webkit-background-clip:text;background-clip:text;color:transparent}
-.rstats span{color:#9fb3cc;font-size:.88rem}
-/* lightbox */
-.lightbox{position:fixed;inset:0;background:rgba(2,6,23,.92);display:flex;align-items:center;justify-content:center;z-index:200;padding:2vh 2vw;cursor:zoom-out}
-.lightbox img{max-width:96vw;max-height:94vh;border-radius:10px;background:#fff}
+/* ---------- moments ---------- */
+.moments{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.mo{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;min-height:250px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow);transition:transform .35s}
+.mo:hover{transform:translateY(-6px)}
+.mo .top{display:flex;justify-content:space-between;align-items:flex-start}
+.mo .ic{width:46px;height:46px;border-radius:12px;background:var(--bg2);display:grid;place-items:center}
+.mo .ic svg{width:22px;height:22px;stroke:var(--navy);fill:none;stroke-width:1.8}
+.mo .ix{font-family:var(--mono);font-size:11px;color:var(--mute)}
+.mo .big{font-size:52px;font-weight:700;letter-spacing:-.05em;line-height:1}
+.mo .big small{font-size:.5em;color:var(--mute);font-weight:600}
+.mo h4{font-size:16px;margin-top:10px;letter-spacing:-.01em}
+.mo .k{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--mute);text-transform:uppercase;margin-top:3px}
+.mo p{font-size:13.5px;color:var(--ink2);margin-top:8px}
 
-@media (max-width:900px){
-  .kgrid{grid-template-columns:1fr}
-  .rstats{grid-template-columns:repeat(2,1fr)}
-  .pillars.four{grid-template-columns:1fr}
-  .case.wide .text{grid-template-columns:1fr}
-  .case.wide .text .pbr{grid-column:1;grid-row:auto}
-  .links a.hide-m{display:none}
-  .hero .wrap,.case,.exp{grid-template-columns:1fr}
-  .case.flip .text{order:0}
-  .metrics{grid-template-columns:repeat(2,1fr)}
-  .pillars,.skills,.certs{grid-template-columns:1fr}
-  .f1{left:-6px}.f2{right:-6px}
-  section{padding:60px 0}
+/* ---------- contact ---------- */
+.contact{background:var(--navy);color:#fff;border-radius:32px;margin:0 20px 20px;padding:110px 0 40px}
+.contact .eyebrow{color:#b6b8dc}.contact .eyebrow:before{background:#b6b8dc}
+.contact h2.big .serif{color:#c9cbf0}
+.contact p{color:#c6c8e6;max-width:520px;margin-top:20px}
+.crow{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+.contact .btn.ghostb{background:transparent;border-color:rgba(255,255,255,.3);color:#fff}
+.contact .btn.light{background:#fff;color:var(--navy)}
+.foot{display:flex;justify-content:space-between;margin-top:90px;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);font-size:13px;color:#a9abd2;flex-wrap:wrap;gap:10px}
+.lightbox{position:fixed;inset:0;background:rgba(15,15,28,.88);z-index:100;display:grid;place-items:center;padding:24px;cursor:zoom-out}
+.lightbox img{max-width:100%;max-height:100%;border-radius:10px}
+
+/* ---------- responsive ---------- */
+@media (max-width:1080px){
+  .about-grid{grid-template-columns:1fr 1fr}.lanyard{grid-row:span 2;margin-top:0}
+  .ptable{grid-template-columns:1fr}.detail{position:static;min-height:0}
+  .moments{grid-template-columns:repeat(2,1fr)}.pipe{grid-template-columns:repeat(3,1fr)}.pipe li:nth-child(3):after{display:none}
+  .acc{flex-direction:column;height:auto}.panel{flex:none;min-height:64px}
+  .panel .vt{flex-direction:row;padding:0 22px}.panel .vt h3{writing-mode:horizontal-tb;transform:none;font-size:17px}
+  .panel.open .vt{display:none}.pc{position:relative;min-width:0;grid-template-columns:1fr;display:none;padding:26px}.panel.open .pc{display:grid}
 }
-@media (max-width:560px){ .links{gap:14px} .links a.hide-s{display:none} }
+@media (max-width:820px){
+  .nav{top:auto;bottom:14px;max-width:calc(100vw - 24px);overflow-x:auto}.nav a{padding:8px 12px;font-size:13px}
+  .brand{top:18px;left:16px}
+  .wrap{padding:0 16px}
+  section{padding:84px 0}
+  .hero,.hero .wrap{min-height:0}.hero{margin-bottom:0}.hero .wrap{grid-template-columns:1fr;align-items:start;padding-top:70px;padding-bottom:40px;gap:10px}.cue{display:none}
+  .figbox{grid-row:1;justify-self:center}.figure{width:min(320px,74vw)}.chip{font-size:11.5px;padding:6px 10px 6px 7px}.chip.c1{left:-14px}.chip.c2{right:-14px}.chip.c3{left:-10px}
+  .hero-r{align-items:flex-start;text-align:left;justify-self:start}.hero-r .tags{display:none}
+  .about-grid,.certs{grid-template-columns:1fr}.lanyard{grid-row:auto}
+  .grid-el{grid-template-columns:repeat(4,1fr)}
+  .tl .rail{left:12px}.step{grid-template-columns:28px 1fr;gap:10px 14px;margin-bottom:40px}
+  .step .pin{order:1!important;justify-self:start;margin-left:4px}.step .yr{order:2!important;text-align:left!important;font-size:42px}
+  .step .card{order:3!important;grid-column:2}
+  .moments{grid-template-columns:1fr}.split{grid-template-columns:1fr}.half{padding:26px}.half .pct{font-size:64px}.pipe{grid-template-columns:1fr 1fr}.pipe li:after{display:none}
+  .contact{margin:0 8px 8px;border-radius:22px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="wrap">
-    <a class="logo" href="#top">Rajeshkumar<span>.</span>K</a>
-    <div class="links">
-      <a class="hide-m" href="#kubernetes">Kubernetes</a>
-      <a class="hide-m" href="#rnd">OpenObserve</a>
-      <a class="hide-s" href="#cases">Case studies</a>
-      <a class="hide-m" href="#skills">Skills</a>
-      <a class="hide-m" href="#contact">Contact</a>
-      <a class="btn btn-primary btn-sm" href="Rajeshkumar-K-Resume.pdf" download><i class="fa-solid fa-download"></i> Resume</a>
-      <button class="theme" id="theme" title="Light / dark" aria-label="Toggle light or dark theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
-    </div>
-  </div>
+<a class="brand" href="#top">Rajeshkumar <i>K.</i></a>
+<nav class="nav" id="nav">
+  <a href="#about">About</a><a href="#how">Role</a><a href="#skills">Skills</a><a href="#work">Work</a><a href="#experience">Experience</a><a href="#moments">Highlights</a><a href="#contact">Contact</a>
 </nav>
 
+<!-- HERO -->
 <header class="hero" id="top">
   <div class="wrap">
-    <div>
-      <span class="eyebrow">Associate DevOps Engineer · Kubernetes · Observability</span>
-      <h1>I make production problems <em>visible before users feel them.</em></h1>
-      <p class="lead">I run and monitor <b>Kubernetes-based production platforms</b> every day for <b>20+ live smart-city and IoT projects</b> at Trinity Mobility: deploying and validating releases, resolving client issues end to end, closing security gaps, and building observability with <b>OpenObserve</b> and <b>OpenTelemetry</b> so problems are caught early.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="#cases"><i class="fa-solid fa-layer-group"></i> See my work</a>
-        <a class="btn btn-ghost" href="Rajeshkumar-K-Resume.pdf" download><i class="fa-solid fa-file-arrow-down"></i> Download resume</a>
+    <div class="ghost">RAJESH</div>
+    <div class="hero-l reveal">
+      <div class="who">Rajeshkumar K</div>
+      <h1>DevOps<br>Engineer.<span class="serif">Observability &amp; production</span></h1>
+      <p class="sub">Half my work is leading observability R&amp;D on OpenObserve. The other half is keeping 20+ live smart-city and IoT projects inside their SLA.</p>
+    </div>
+    <div class="figbox">
+      <div class="figure" id="fig">
+        <div class="halo"></div>
+        <div class="pfx" id="pfx"><img id="heroImg" src="photo.jpg" alt="Rajeshkumar K"></div>
+        <div class="sheen"></div>
+        <div class="live"><span class="dot"></span> Open to DevOps &amp; SRE roles</div>
       </div>
-      <div class="chips">
-        <span class="chip">Kubernetes</span><span class="chip">OpenObserve</span><span class="chip">OpenTelemetry</span><span class="chip">ArgoCD</span><span class="chip">Helm</span><span class="chip">Prometheus</span><span class="chip">Grafana</span><span class="chip">ELK</span>
-      </div>
+      <div class="chip c1"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/kubernetes/kubernetes-original.svg" alt="">Kubernetes</div>
+      <div class="chip c2"><span class="dot"></span>OpenObserve</div>
+      <div class="chip c3"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/argocd/argocd-original.svg" alt="">ArgoCD</div>
     </div>
-    <div class="photo">
-      <img src="photo.jpg" alt="Rajeshkumar K">
+    <div class="hero-r reveal">
+      <div class="tags"><span>50% OpenObserve R&amp;D</span><span>50% Production · SLA</span><span>Bengaluru, India</span></div>
+      <a class="btn dark" href="#work">Explore my work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <a class="btn ghostb" href="Rajeshkumar-K-Resume.pdf" target="_blank">Résumé <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2v9M4 7l4 4 4-4M3 14h10"/></svg></a>
     </div>
-  </div>
-  <div class="wrap mrow">
-    <div class="metrics">
-      <div class="metric"><b class="count" data-to="20" data-suffix="+">0</b><span>live projects monitored and troubleshot on Kubernetes</span></div>
-      <div class="metric"><b class="word">R&amp;D Lead</b><span>OpenObserve &amp; OpenTelemetry platform development</span></div>
-      <div class="metric"><b class="word">DLH</b><span>Data Lake House monitoring improved end to end</span></div>
-      <div class="metric"><b class="count" data-to="1.5" data-suffix="+ yrs">0</b><span>production Kubernetes &amp; observability</span></div>
-    </div>
+    <div class="cue">SCROLL ↓</div>
   </div>
 </header>
 
-<section class="alt" id="work">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">What I do</span>
-      <h2>What I am good at</h2>
-      <p>Two core skills, Kubernetes and OpenObserve + OpenTelemetry, backed by hands-on client support and security work.</p>
+<!-- REEL -->
+<section id="reel" class="reelsec">
+  <div class="wrap reel-grid">
+    <div class="reel-l reveal">
+      <div class="eyebrow"><b>00</b> The reel</div>
+      <h2 class="big">My work in <span class="serif">30 seconds.</span></h2>
+      <p>Two jobs, one engineer: observability R&amp;D on OpenObserve, and production that stays inside its SLA. Tap the reel to pause; tap its edges to skip.</p>
+      <div class="row"><a class="btn dark" href="reel.html" target="_blank">Watch full screen ↗</a></div>
     </div>
-    <div class="pillars four">
-          <div class="pillar main">
-            <i class="fa-solid fa-dharmachakra"></i>
-            <h3>Kubernetes in production</h3>
-            <p>My core skill: from cluster build to SLA after go-live.</p>
-            <ul><li>Cluster installation and GitOps releases (GitLab CI/CD, ArgoCD, Helm)</li><li>End-to-end application-flow validation after every release or server change</li><li>Proactive monitoring that stops SLA breaches before they happen</li></ul>
-          </div>
-          <div class="pillar main">
-            <i class="fa-solid fa-diagram-project"></i>
-            <h3>OpenObserve &amp; OpenTelemetry</h3>
-            <p>Where most of my development work happens today.</p>
-            <ul><li>Pipelines, VRL functions, alerts and dashboards built in OpenObserve</li><li>OpenTelemetry agent + gateway collectors, tracing and OTLP logs</li><li>Automation through the OpenObserve API</li></ul>
-          </div>
-          <div class="pillar">
-            <i class="fa-solid fa-headset"></i>
-            <h3>Client issues, solved for good</h3>
-            <p>Technical Assistance Center (TAC) for go-live projects.</p>
-            <ul><li>Restore first, then find every root cause</li><li>Enhance: self-healing, automation, early warnings</li><li>Clear updates that build client trust</li></ul>
-          </div>
-          <div class="pillar">
-            <i class="fa-solid fa-shield-halved"></i>
-            <h3>Security fixes</h3>
-            <p>Closing exposures before they become incidents.</p>
-            <ul><li>Exposed domains and services secured</li><li>Nginx and server hardening</li><li>Certificate expiry automation</li></ul>
-          </div>
-        </div>
+    <div class="phone reveal"><iframe src="reel.html" title="Rajeshkumar K reel" loading="lazy"></iframe></div>
   </div>
 </section>
 
-<section id="kubernetes">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Kubernetes · hands-on</span>
-      <h2>Kubernetes in production</h2>
-      <p>My main skill. I own the full lifecycle for 20+ live projects: build the cluster, release through GitOps, prove the whole application works, then keep it inside its SLA after go-live.</p>
-    </div>
-    <div class="kgrid">
-      <div class="kcard">
-        <div class="khead"><i class="fa-solid fa-server"></i><h3>Cluster build to go-live</h3></div>
-        <ul>
-          <li>Install and configure on-prem <b>Kubernetes clusters</b>: control plane, worker nodes, networking, ingress and storage</li>
-          <li>Production, integration and R&amp;D environments set up for new projects</li>
-          <li>Go-live readiness checks before a project is handed to the client</li>
-        </ul>
-      </div>
-      <div class="kcard">
-        <div class="khead"><i class="fa-solid fa-code-branch"></i><h3>GitOps release engineering</h3></div>
-        <ul>
-          <li>Builds through <b>GitLab CI/CD</b>, deployments through <b>ArgoCD</b> and <b>Helm</b> charts</li>
-          <li>One values file per environment with shared defaults, so every release is repeatable</li>
-          <li>Each change compared against live state before it is synced</li>
-        </ul>
-      </div>
-      <div class="kcard">
-        <div class="khead"><i class="fa-solid fa-route"></i><h3>End-to-end flow validation</h3></div>
-        <ul>
-          <li>After every release or server change, the <b>full application flow</b> is tested: device, ingestion, processing, APIs and dashboard</li>
-          <li>Pods, probes, services and ingress verified on the real request path</li>
-          <li>Client sign-off only after the whole flow works, not just "pods running"</li>
-        </ul>
-      </div>
-      <div class="kcard">
-        <div class="khead"><i class="fa-solid fa-stethoscope"></i><h3>Post go-live server ownership</h3></div>
-        <ul>
-          <li>Node, storage and workload failures taken to the <b>root cause</b>: NFS volume hangs, DiskPressure, clock drift</li>
-          <li>Right-sized <b>requests and limits</b> to end OOMKilled and CrashLoopBackOff loops</li>
-          <li>Helm chart bugs (scheduling, Service ports, GitOps drift) fixed at the source</li>
-        </ul>
-      </div>
-      <div class="kcard">
-        <div class="khead"><i class="fa-solid fa-gauge-high"></i><h3>SLA-driven proactive monitoring</h3></div>
-        <ul>
-          <li>Node, pod, volume and capacity health watched across every cluster</li>
-          <li>Early-warning alerts at <b>70 / 80 / 90%</b> raise Jira tickets <b>before</b> an SLA breach</li>
-          <li>Result: production red alerts and emergency firefighting <b>sharply reduced</b></li>
-        </ul>
-      </div>
-      <div class="kcard">
-        <div class="khead"><i class="fa-solid fa-user-shield"></i><h3>Cluster security</h3></div>
-        <ul>
-          <li>Least-privilege <b>service accounts</b> and rotated secrets and tokens</li>
-          <li>Exposed services closed, <b>Nginx ingress</b> hardened</li>
-          <li>Certificate expiry tracked and automated</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="alt" id="rnd">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">OpenObserve &amp; OpenTelemetry · core skill</span>
-      <h2>Building a unified observability platform</h2>
-      <p>I own the R&amp;D to move the company's logs, metrics and traces into OpenObserve with OpenTelemetry. Most of my development work now happens inside OpenObserve.</p>
-    </div>
-    <h3 class="subhead">What I build in OpenObserve</h3>
-    <div class="kgrid devgrid">
-      <div class="kcard"><div class="khead"><i class="fa-solid fa-code-branch"></i><h3>Pipelines &amp; VRL functions</h3></div><ul><li>Real-time and scheduled pipelines that filter, enrich and route data</li><li>VRL functions to clean and standardise fields across services</li></ul></div>
-      <div class="kcard"><div class="khead"><i class="fa-solid fa-bell"></i><h3>Alerts</h3></div><ul><li>Real-time and scheduled alert rules with stable keys and de-duplication</li><li>Routed to Telegram, email and incident management</li></ul></div>
-      <div class="kcard"><div class="khead"><i class="fa-solid fa-chart-column"></i><h3>Dashboards</h3></div><ul><li>Service, trace-level and platform dashboards with SQL and PromQL</li><li>Drill-down from a panel to the trace and its logs</li></ul></div>
-      <div class="kcard"><div class="khead"><i class="fa-solid fa-database"></i><h3>Streams &amp; ingestion</h3></div><ul><li>Stream schemas, retention and ingestion tuning</li><li>Noisy and duplicate data dropped at the collector gateway</li></ul></div>
-      <div class="kcard"><div class="khead"><i class="fa-solid fa-route"></i><h3>Traces &amp; logs</h3></div><ul><li>trace_id in every log line, one OTLP logging standard</li><li>Span metrics for rate, errors and latency per service</li></ul></div>
-      <div class="kcard"><div class="khead"><i class="fa-solid fa-robot"></i><h3>Automation via API</h3></div><ul><li>Scripts that create and update dashboards, alerts and pipelines through the OpenObserve API</li><li>Backups and repeatable rollouts across environments</li></ul></div>
-    </div>
-    <h3 class="subhead">How the platform was built</h3>
-    <ol class="journey">
-      <li><span class="step">1</span><div><h3>Install &amp; run OpenObserve on Kubernetes</h3><p>Deployed and hardened OpenObserve on the cluster, fixed boot hangs on NFS storage, tuned memory to stop OOM restarts, and kept it stable through a major release change.</p></div></li>
-      <li><span class="step">2</span><div><h3>Design the collection layer</h3><p>OpenTelemetry <b>agent + gateway</b> collectors with a clear split: applications <b>push</b> telemetry, the gateway <b>pulls</b> all scrape targets. Removed duplicate ingestion and noisy data.</p></div></li>
-      <li><span class="step">3</span><div><h3>Onboard services</h3><p>Java microservices, WSO2 ESB / API Manager, NiFi, CEP, LDAP, IDAM and 13 data-lake engines (Kafka, Trino, Spark, Airflow, Druid and more), including rebuilt images where instrumentation was missing.</p></div></li>
-      <li><span class="step">4</span><div><h3>Traces + logs together</h3><p>Distributed tracing with <b>trace_id in every log line</b> (log4j MDC) and a single OTLP logging standard, so one click goes from a slow request to its logs, making root-cause analysis much faster.</p></div></li>
-      <li><span class="step">5</span><div><h3>Alerting that people trust</h3><p>Rebuilt alerting as <b>real-time and scheduled pipelines</b> over every service and resource health metric, with stable alert keys, clear categories and routing to Telegram, email and incident management.</p></div></li>
-      <li><span class="step">6</span><div><h3>Dashboards &amp; hand-over</h3><p>Trace-level dashboards, the DLH service overview, and OpenObserve dashboards migrated to Grafana; plus study guides and runbooks so the team can run it independently.</p></div></li>
-    </ol>
-    <div class="rstats">
-      <div><b>Unified</b><span>logs, metrics and traces in one platform</span></div>
-      <div><b>End-to-end</b><span>tracing with trace&ndash;log correlation</span></div>
-      <div><b>Proactive</b><span>alerting before clients are affected</span></div>
-      <div><b>DLH</b><span>data-lake engines onboarded and monitored</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="cases">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Case studies</span>
-      <h2>Real problems, what I built, and what changed</h2>
-      <p>Click any image to see it full size. Dashboards are real; server names and addresses are removed.</p>
-    </div>
-
-    <article class="case">
-      <div class="text">
-        <span class="tag">Kubernetes · Deployments</span>
-        <h3>Production Kubernetes &amp; release validation</h3>
-        <p class="strength">Every release and every incident ends with the whole application flow verified.</p>
-        <div class="pbr">
-          <div><b>Problem</b><p>After a build, a server change or an outage, "pods are running" did not always mean the application actually worked end to end.</p></div>
-          <div><b>What I do</b><p>Build with GitLab CI/CD, deploy with ArgoCD and Helm, then validate the full flow: pods and probes, services, ingress and the real request path. Root-cause OOMKilled and CrashLoopBackOff workloads, scheduling and storage issues, and right-size requests and limits.</p></div>
-          <div class="r"><b>Result</b><p>Releases and recoveries are confirmed working for users, not just started, and repeat issues are fixed once for the whole team.</p></div>
-        </div>
-        <div class="chips"><span class="chip plain">Kubernetes</span><span class="chip plain">ArgoCD</span><span class="chip plain">Helm</span><span class="chip plain">GitLab CI/CD</span><span class="chip plain">Nginx ingress</span></div>
-      </div>
-      <div class="visual">
-        <figure><img class="zoom" src="img/d-k8s.svg" alt="Build, deploy, validate, watch"><figcaption><span>Release and recovery flow</span><i class="fa-solid fa-magnifying-glass-plus"></i></figcaption></figure>
-      </div>
-    </article>
-
-    <article class="case flip">
-      <div class="text">
-        <span class="tag">Client issues · Security</span>
-        <h3>Client issues resolved and improved</h3>
-        <p class="strength">Fix it, find why, and make sure it does not come back.</p>
-        <div class="pbr">
-          <div><b>Problem</b><p>Production issues on client platforms (security exposures, storage filling up, services dropping) affect the SLO and client trust.</p></div>
-          <div><b>What I do</b><p>Restore service first with clear client updates, trace every root cause, then enhance: secured exposed domains, caught storage risks early, made services auto-recover, automated certificate-expiry and log-retention tasks, and added vendor endpoint checks.</p></div>
-          <div class="r"><b>Result</b><p>Fewer escalations, critical security gaps closed, and a trusted-advisor relationship with clients.</p></div>
-        </div>
-        <div class="chips"><span class="chip plain">RCA</span><span class="chip plain">Security hardening</span><span class="chip plain">Automation</span><span class="chip plain">Self-healing</span><span class="chip plain">Client communication</span></div>
-      </div>
-      <div class="visual">
-        <figure><img class="zoom" src="img/d-client.svg" alt="Client issue handling"><figcaption><span>How I handle a client issue</span><i class="fa-solid fa-magnifying-glass-plus"></i></figcaption></figure>
-      </div>
-    </article>
-
-    <article class="case">
-      <div class="text">
-        <span class="tag">R&amp;D · OpenObserve</span>
-        <h3>Unified observability platform</h3>
-        <p class="strength">Built from zero: one screen to go from an alert to its root cause.</p>
-        <div class="pbr">
-          <div><b>Problem</b><p>Logs, metrics and traces lived in different tools, so finding the cause of an issue meant jumping between them.</p></div>
-          <div><b>What I built</b><p>OpenObserve on Kubernetes with OpenTelemetry agent and gateway collectors; trace_id in every log line across Java services, WSO2 ESB/APIM, NiFi and data-lake engines; trace dashboards; real-time alerting pipelines that catch issues before clients do.</p></div>
-          <div class="r"><b>Result</b><p>All 50 of 50 end-to-end trace checks passed, and one place to investigate any production issue.</p></div>
-        </div>
-        <div class="chips"><span class="chip plain">OpenObserve</span><span class="chip plain">OpenTelemetry</span><span class="chip plain">Kubernetes</span><span class="chip plain">Distributed tracing</span></div>
-      </div>
-      <div class="visual">
-        <figure><img class="zoom" src="img/d-openobserve.svg" alt="OpenObserve architecture"><figcaption><span>Architecture</span><i class="fa-solid fa-magnifying-glass-plus"></i></figcaption></figure>
-      </div>
-    </article>
-
-    <article class="case wide">
-      <div class="text">
-        <div class="head">
-        <span class="tag">Grafana · Data Lake House</span>
-        <h3>DLH service overview dashboards</h3>
-        <p class="strength">The health of a 13-service data platform, with live alerts, on a single screen.</p>
-        </div>
-        <div class="pbr">
-          <div><b>Problem</b><p>Airflow, Trino, Spark, Kafka, Druid, MinIO and the rest had no shared health view, and some dashboards had no data at all.</p></div>
-          <div><b>What I built</b><p>An engine overview plus per-service health dashboards showing UP / DOWN / UNREACHABLE, latency, JVM and pod health, a service-health table and a live alerts panel filtered by severity; added the missing scrape jobs and fixed broken exporters (Kafka, Solr).</p></div>
-          <div class="r"><b>Result</b><p>Every service's state is visible at a glance, from ingestion through storage and processing to query.</p></div>
-        </div>
-        <div class="chips"><span class="chip plain">Grafana</span><span class="chip plain">Prometheus</span><span class="chip plain">Kafka</span><span class="chip plain">Trino</span><span class="chip plain">Airflow</span></div>
-      </div>
-      <div class="visual">
-        <figure><img class="zoom" src="img/hd-dlh.jpg" alt="OSS Engine Overview dashboard: topology, service health and alerts"><figcaption><span>OSS Engine Overview: topology, service health table and live alerts</span><i class="fa-solid fa-magnifying-glass-plus"></i></figcaption></figure>
-      </div>
-    </article>
-
-    <article class="case">
-      <div class="text">
-        <span class="tag">Distributed tracing · Vendor API</span>
-        <h3>I999 emergency call, end to end</h3>
-        <p class="strength">Followed one emergency call across six systems in a single trace.</p>
-        <div class="pbr">
-          <div><b>Problem</b><p>An incident call from the I999 vendor passed through the API gateway, ESB, Vault, IoT services and the command centre, and delays between them were invisible.</p></div>
-          <div><b>What I built</b><p>One trace covering every hop, including the background fire-station recommendation, plus a step-by-step guide so the team can read any call in OpenObserve.</p></div>
-          <div class="r"><b>Result</b><p>Per-hop timings showed where time went, and confirmed the impact of replying to the caller earlier.</p></div>
-        </div>
-        <div class="chips"><span class="chip plain">OpenTelemetry</span><span class="chip plain">WSO2 ESB</span><span class="chip plain">API gateway</span><span class="chip plain">Redis</span></div>
-      </div>
-      <div class="visual">
-        <figure><img class="zoom" src="img/d-i999.svg" alt="I999 trace timeline"><figcaption><span>Trace timeline</span><i class="fa-solid fa-magnifying-glass-plus"></i></figcaption></figure>
-      </div>
-    </article>
-
-    <article class="case wide">
-      <div class="text">
-        <div class="head">
-        <span class="tag">Gen AI observability · early work</span>
-        <h3>Getting started with Gen AI monitoring</h3>
-        <p class="strength">First steps in bringing voice AI and GPU servers under the same monitoring.</p>
-        </div>
-        <div class="pbr">
-          <div><b>Problem</b><p>The new Gen AI stack (voice AI, LLM gateway, agent workflows, GPU servers) had no monitoring.</p></div>
-          <div><b>What I built</b><p>A LiveKit voice-AI dashboard (rooms, SIP calls, call-setup latency, jitter, packet loss, RTT) and NVIDIA GPU monitoring (utilisation, memory, temperature, power, throttling).</p></div>
-          <div class="r"><b>Result</b><p>Call quality, GPU health and LLM cost visible next to the rest of the platform.</p></div>
-        </div>
-        <div class="chips"><span class="chip plain">LiveKit</span><span class="chip plain">NVIDIA</span></div>
-      </div>
-      <div class="visual">
-        <figure><img class="zoom" src="img/hd-livekit.jpg" alt="LiveKit voice AI dashboard"><figcaption><span>LiveKit voice AI: rooms, SIP calls, media quality, call-setup latency and jitter</span><i class="fa-solid fa-magnifying-glass-plus"></i></figcaption></figure>
-        <figure><img class="zoom" src="img/hd-gpu.jpg" alt="NVIDIA GPU monitoring dashboard"><figcaption><span>NVIDIA GPU monitoring: GenAI server, GPU gauges and power history</span><i class="fa-solid fa-magnifying-glass-plus"></i></figcaption></figure>
-      </div>
-    </article>
-
-    <article class="case">
-      <div class="text">
-        <span class="tag">Production support · TAC</span>
-        <h3>Logging &amp; monitoring for 20+ live projects</h3>
-        <p class="strength">Problems fixed at the warning stage, before they reach users.</p>
-        <div class="pbr">
-          <div><b>Problem</b><p>Many go-live projects, each with its own servers, databases and services, and a company SLO to protect.</p></div>
-          <div><b>What I built</b><p>A clear severity model (70 / 80 / 90%) on Prometheus, VictoriaMetrics, Grafana, ELK, InfluxDB, Alertmanager and Uptime Kuma, with every alert raising a Jira ticket. Root-caused issues such as a Kafka exporter failing on 4,900+ topics and an SSL failure after a partner changed certificate authority.</p></div>
-          <div class="r"><b>Result</b><p>Disk, memory, CPU and service problems caught early and closed with an owner.</p></div>
-        </div>
-        <div class="chips"><span class="chip plain">Prometheus</span><span class="chip plain">Grafana</span><span class="chip plain">ELK</span><span class="chip plain">Alertmanager</span><span class="chip plain">Jira</span></div>
-      </div>
-      <div class="visual">
-        <figure><img class="zoom" src="img/d-lnm.svg" alt="Alert flow"><figcaption><span>Alert flow</span><i class="fa-solid fa-magnifying-glass-plus"></i></figcaption></figure>
-      </div>
-    </article>
-  </div>
-</section>
-
-<section class="alt" id="experience">
-  <div class="wrap">
-    <div class="sec-head"><span class="eyebrow">Experience</span><h2>Where I do this work</h2></div>
-    <div class="exp">
-      <div class="when"><b>Trinity Mobility Pvt Ltd</b>Associate DevOps Engineer<br>Mar 2025 – Present · Bengaluru</div>
-      <ul>
-        <li>Operate multi-cluster Kubernetes production platforms for 20+ live smart-city and IoT projects in the Technical Assistance Center.</li>
-        <li>Deploy releases with ArgoCD and Helm and validate the full application flow after every build, server or deployment change.</li>
-        <li>Own client issues end to end: restore, root-cause, then enhance with automation and self-healing; closed critical security exposures.</li>
-        <li>Lead R&amp;D on a unified observability platform with OpenObserve and OpenTelemetry.</li>
-        <li>Improved Data Lake House monitoring: health, performance and alerting for every data-lake engine.</li>
-        <li>Started Gen AI observability work (LiveKit, GPU monitoring).</li>
-        <li>Wrote study guides and runbooks the team uses for training and incidents.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section id="skills">
-  <div class="wrap">
-    <div class="sec-head"><span class="eyebrow">Skills</span><h2>Tools I use every day</h2></div>
-    <div class="skills">
-      <div class="skill main"><h3><i class="fa-solid fa-dharmachakra"></i>Kubernetes &amp; delivery</h3><div class="chips"><span class="chip">Kubernetes</span><span class="chip">ArgoCD</span><span class="chip">GitLab CI/CD</span><span class="chip">Helm</span><span class="chip">Docker</span><span class="chip">Nginx</span><span class="chip">Linux</span></div></div>
-      <div class="skill main"><h3><i class="fa-solid fa-diagram-project"></i>OpenObserve &amp; OpenTelemetry</h3><div class="chips"><span class="chip">OpenObserve</span><span class="chip">OpenTelemetry</span><span class="chip">OTel Collector</span><span class="chip">OTel Operator</span><span class="chip">Pipelines</span><span class="chip">VRL functions</span><span class="chip">OpenObserve API</span></div></div>
-      <div class="skill"><h3><i class="fa-solid fa-chart-line"></i>Monitoring</h3><div class="chips"><span class="chip plain">Prometheus</span><span class="chip plain">Grafana</span><span class="chip plain">VictoriaMetrics</span><span class="chip plain">InfluxDB</span><span class="chip plain">Uptime Kuma</span><span class="chip plain">kube-state-metrics</span></div></div>
-      <div class="skill"><h3><i class="fa-solid fa-file-lines"></i>Logs &amp; alerting</h3><div class="chips"><span class="chip plain">ELK Stack</span><span class="chip plain">Alertmanager</span><span class="chip plain">Telegram / email</span><span class="chip plain">Jira</span><span class="chip plain">SLO-based alerting</span></div></div>
-      <div class="skill"><h3><i class="fa-solid fa-route"></i>Tracing</h3><div class="chips"><span class="chip plain">Distributed tracing</span><span class="chip plain">trace–log correlation</span><span class="chip plain">OTLP</span><span class="chip plain">JMX / Actuator</span></div></div>
-      <div class="skill"><h3><i class="fa-solid fa-shield-halved"></i>Security &amp; support</h3><div class="chips"><span class="chip plain">Server hardening</span><span class="chip plain">Certificate automation</span><span class="chip plain">RCA</span><span class="chip plain">Jira</span><span class="chip plain">Gen AI monitoring (beginner)</span></div></div>
-      <div class="skill"><h3><i class="fa-solid fa-terminal"></i>Scripting &amp; query</h3><div class="chips"><span class="chip plain">Bash</span><span class="chip plain">PowerShell</span><span class="chip plain">Python</span><span class="chip plain">SQL</span><span class="chip plain">PromQL</span></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="alt" id="certs">
-  <div class="wrap">
-    <div class="sec-head"><span class="eyebrow">Education &amp; certifications</span><h2>Learning that backs the work</h2></div>
-    <div class="certs">
-      <a class="cert" href="https://learn.microsoft.com/api/credentials/share/en-gb/RajeshKumarK-3290/5E8E02F430E698BE?sharingId=9D1D9ACCF6BE6917" target="_blank" rel="noopener">
-        <img src="https://images.credly.com/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/linkedin_thumb_image.png" alt="AZ-900">
-        <div><b>Azure Fundamentals (AZ-900)</b><span>Microsoft · verify credential</span></div>
-      </a>
-      <div class="cert"><i class="fa-solid fa-certificate"></i><div><b>DevOps Engineer Internship</b><span>IBM with StarAgile · 2024</span></div></div>
-      <div class="cert"><i class="fa-solid fa-graduation-cap"></i><div><b>B.E. Mechanical Engineering</b><span>Kongu Engineering College · CGPA 9.01</span></div></div>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="wrap">
-    <div class="contact">
-      <h2>Let's talk observability</h2>
-      <p>Open to DevOps, Kubernetes, SRE and observability roles across India.</p>
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-l reveal">
+      <div class="eyebrow"><b>01</b> About</div>
+      <h2 class="big">Hi, I'm <span class="serif">Rajesh.</span></h2>
+      <p>DevOps engineer at Trinity Mobility. My role is split evenly between two jobs.</p>
+      <p><b>50% R&amp;D lead:</b> I lead the company's move to <b>OpenObserve</b> and <b>OpenTelemetry</b>, bringing every service's logs, traces and metrics into one platform.</p>
+      <p><b>50% production:</b> I own daily production issues for 20+ live projects through LnM monitoring and Jira tickets, keep every platform inside its SLA, and install new clusters when a project needs one.</p>
       <div class="row">
-        <a class="btn" href="mailto:rajeshkumar.k5445@gmail.com"><i class="fa-solid fa-envelope"></i> rajeshkumar.k5445@gmail.com</a>
-        <a class="btn o" href="https://www.linkedin.com/in/rajeshkumark65" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-        <a class="btn o" href="tel:+919894648632"><i class="fa-solid fa-phone"></i> +91 98946 48632</a>
+        <a class="btn dark" href="Rajeshkumar-K-Resume.pdf" target="_blank">Résumé ↓</a>
+        <a class="btn ghostb" href="https://www.linkedin.com/in/rajeshkumark65/" target="_blank">LinkedIn ↗</a>
+        <a class="btn ghostb" href="https://github.com/rajeshkumark65" target="_blank">GitHub ↗</a>
       </div>
+    </div>
+    <div class="lanyard reveal">
+      <div class="swing">
+        <div style="display:flex;flex-direction:column;align-items:center"><div class="strap"></div><div class="clip"></div></div>
+        <div class="idcard" id="idcard" title="Click to flip">
+          <div class="face front">
+            <div class="band"><div class="lg">RK</div><div><b>DEVELOPER ID</b><span>PORTFOLIO · 2026</span></div></div>
+            <div class="ph"><img src="photo.jpg" alt=""></div>
+            <h4>RAJESHKUMAR K</h4>
+            <div class="rl">DevOps Engineer</div>
+            <div class="meta"><div><i>ID</i>RK-0065</div><div><i>FOCUS</i>Observability</div><div><i>SINCE</i>2025</div></div>
+            <div class="barcode"></div>
+          </div>
+          <div class="face back">
+            <h4>What I am</h4>
+            <ul>
+              <li><div>Observability R&amp;D lead<small>OpenObserve · logs, traces, metrics</small></div></li>
+              <li><div>Production SLA owner<small>LnM alerts · Jira · root cause</small></div></li>
+              <li><div>Release engineer<small>GitLab · Jenkins · Nexus · ArgoCD</small></div></li>
+              <li><div>Cluster installer<small>New Kubernetes clusters on demand</small></div></li>
+              <li><div>Security fixer<small>Exposures closed, Nginx hardened</small></div></li>
+            </ul>
+            <div class="sig">Rajeshkumar</div>
+          </div>
+        </div>
+      </div>
+      <div class="flip-hint">CLICK THE CARD TO FLIP</div>
+    </div>
+    <div class="facts reveal">
+      <h5>QUICK FACTS</h5>
+      <dl>
+        <dt>Based in</dt><dd>Bengaluru, India</dd>
+        <dt>Role</dt><dd>Associate DevOps Engineer</dd>
+        <dt>Company</dt><dd>Trinity Mobility</dd>
+        <dt>Since</dt><dd>March 2025</dd>
+        <dt>Split</dt><dd>50% R&amp;D · 50% Production</dd>
+        <dt>Languages</dt><dd>English, Tamil</dd>
+      </dl>
+      <blockquote>“From the cluster to the last log line.”</blockquote>
     </div>
   </div>
 </section>
 
-<footer>© 2026 Rajeshkumar K · DevOps &amp; Observability Engineer</footer>
+<!-- HOW I WORK -->
+<section id="how" style="padding-top:40px">
+  <div class="wrap">
+    <div class="sec-top reveal">
+      <div><div class="eyebrow"><b>02</b> How I work</div><h2 class="big">Two jobs, <span class="serif">one engineer.</span></h2></div>
+      <p>My week is split evenly: building the observability platform, and keeping production healthy today.</p>
+    </div>
+    <div class="split reveal">
+      <div class="half">
+        <div class="pct"><span>50</span>%</div>
+        <div class="k">R&amp;D lead</div>
+        <h3>OpenObserve &amp; OpenTelemetry</h3>
+        <p>I lead the work to bring every service's <b>logs, traces and metrics</b> into one platform.</p>
+        <ul><li>Onboard services with OpenTelemetry collectors</li><li>Pipelines, VRL functions, alerts and dashboards</li><li>End-to-end tracing with trace&ndash;log correlation</li></ul>
+        <div class="meter"><b style="width:50%"></b></div>
+      </div>
+      <div class="half dark">
+        <div class="pct"><span>50</span>%</div>
+        <div class="k">Production owner</div>
+        <h3>Daily issues &amp; SLA</h3>
+        <p>I own production issues for <b>20+ live projects</b> and keep each one inside its SLA.</p>
+        <ul><li>LnM monitoring alerts tracked as Jira tickets to closure</li><li>Root cause found and fixed so issues do not repeat</li><li>New Kubernetes clusters installed when a project needs one</li></ul>
+        <div class="meter"><b style="width:50%"></b></div>
+      </div>
+    </div>
+    <h3 class="subhead reveal">How a change reaches production</h3>
+    <ol class="pipe reveal">
+      <li><span class="ic">01</span><b>Develop</b><small>OpenObserve config &amp; code in Git</small></li>
+      <li><span class="ic">02</span><b>GitLab</b><small>git push, reviewed history</small></li>
+      <li><span class="ic">03</span><b>Jenkins</b><small>builds the latest version</small></li>
+      <li><span class="ic">04</span><b>Nexus</b><small>stores the build artifact</small></li>
+      <li><span class="ic">05</span><b>ArgoCD</b><small>syncs it to the cluster</small></li>
+      <li class="ok"><span class="ic">06</span><b>Validate</b><small>full app flow checked end to end</small></li>
+    </ol>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-top reveal">
+      <div><div class="eyebrow"><b>03</b> Skills</div><h2 class="big">The periodic table <span class="serif">of my stack.</span></h2></div>
+      <p>Elements in five families. Hover a tile to see how I use it, or pick a family to light it up.</p>
+    </div>
+    <div class="fam reveal" id="fam"></div>
+    <div class="ptable reveal">
+      <div class="grid-el" id="grid"></div>
+      <aside class="detail" id="detail"></aside>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-top reveal">
+      <div><div class="eyebrow"><b>04</b> Selected work</div><h2 class="big">Things I've <span class="serif">built.</span></h2></div>
+      <p>Production platforms and observability systems running today. Hover or tap a panel to open it. Click any image to see it full size.</p>
+    </div>
+    <div class="acc reveal" id="acc">
+
+      <div class="panel open">
+        <div class="vt"><span class="no">01</span><h3>Production &amp; SLA</h3><span class="plus">+</span></div>
+        <div class="pc">
+          <div>
+            <div class="cat">01 · 50% of my role · Production</div>
+            <h3>Daily production issues, kept inside SLA</h3>
+            <p class="lead">I own production issues for 20+ live smart-city and IoT projects running on Kubernetes, from the first alert to the permanent fix.</p>
+            <ul>
+              <li><b>LnM monitoring to Jira:</b> every alert becomes a ticket that is fixed or assigned, followed up and closed</li>
+              <li><b>SLA-driven early warnings:</b> 70 / 80 / 90% thresholds flag problems before a breach</li>
+              <li><b>Root cause, not just restart:</b> node, storage and workload failures fixed so they do not repeat</li>
+              <li><b>Cluster installation:</b> new on-prem Kubernetes clusters set up when a project needs one</li>
+            </ul>
+            <div class="chips"><span><i></i>Kubernetes</span><span>Prometheus</span><span>Grafana</span><span>ELK</span><span>Jira</span></div>
+          </div>
+          <div class="cluster" id="cluster">
+            <div class="hd"><span>cluster · production</span><b>● all nodes ready</b></div>
+            <div class="node"><div class="t"><span>worker-01</span><span>cpu</span></div><div class="pods"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="bar"><b data-w="58%"></b></div></div>
+            <div class="node"><div class="t"><span>worker-02</span><span>memory</span></div><div class="pods"><i></i><i></i><i></i><i></i><i></i><i></i><i class="w"></i><i></i></div><div class="bar"><b data-w="74%"></b></div></div>
+            <div class="node"><div class="t"><span>worker-03</span><span>disk</span></div><div class="pods"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="bar"><b data-w="46%"></b></div></div>
+            <div class="th"><span style="left:70%">70%</span><span style="left:80%">80%</span><span style="left:90%">90%</span></div>
+            <div class="alert">⚠ worker-02 memory above 70%: Jira ticket raised before SLA impact</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="vt"><span class="no">02</span><h3>OpenObserve Platform</h3><span class="plus">+</span></div>
+        <div class="pc">
+          <div>
+            <div class="cat">02 · 50% of my role · R&amp;D lead</div>
+            <h3>Unified observability on OpenObserve</h3>
+            <p class="lead">I lead the R&amp;D that brings every service's logs, traces and metrics into one platform on Kubernetes.</p>
+            <ul>
+              <li>OpenObserve installed, hardened and tuned on Kubernetes</li>
+              <li>OpenTelemetry agent + gateway collectors: apps push, the gateway pulls</li>
+              <li>Real-time and scheduled pipelines, VRL functions and alerts</li>
+              <li>Automation of dashboards, alerts and pipelines through the API</li>
+            </ul>
+            <div class="chips"><span><i></i>OpenObserve</span><span>OpenTelemetry</span><span>VRL</span><span>SQL</span><span>PromQL</span></div>
+          </div>
+          <div class="vis"><img class="zoom" src="img/d-openobserve.svg" alt="OpenObserve platform architecture"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="vt"><span class="no">03</span><h3>Data Lake House Monitoring</h3><span class="plus">+</span></div>
+        <div class="pc">
+          <div>
+            <div class="cat">03 · Data platform</div>
+            <h3>Data Lake House service health</h3>
+            <p class="lead">Health, performance and alerting for the data-lake engines in one overview, from service status down to each engine.</p>
+            <ul>
+              <li>Service health tree across ingestion, processing and storage</li>
+              <li>Per-engine dashboards for Spark, Trino, Airflow, Kafka and MinIO</li>
+              <li>Alerts that separate real outages from noise</li>
+            </ul>
+            <div class="chips"><span><i></i>Grafana</span><span>Kafka</span><span>Spark</span><span>Trino</span><span>Airflow</span><span>MinIO</span></div>
+          </div>
+          <div class="vis"><img class="zoom" src="img/hd-dlh.jpg" alt="Data Lake House overview dashboard"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="vt"><span class="no">04</span><h3>Release Pipeline</h3><span class="plus">+</span></div>
+        <div class="pc">
+          <div>
+            <div class="cat">04 · CI/CD · GitOps</div>
+            <h3>From git push to a validated release</h3>
+            <p class="lead">Every OpenObserve and observability change follows the same repeatable path to production.</p>
+            <ul>
+              <li>Work developed in Git and pushed to <b>GitLab</b></li>
+              <li><b>Jenkins</b> builds the latest version and stores the artifact in <b>Nexus</b></li>
+              <li><b>ArgoCD</b> syncs the new build to the cluster with Helm</li>
+              <li>The full application flow is validated before sign-off</li>
+            </ul>
+            <div class="chips"><span><i></i>GitLab</span><span>Jenkins</span><span>Nexus</span><span>ArgoCD</span><span>Helm</span></div>
+          </div>
+          <div class="cluster">
+            <div class="hd"><span>release · openobserve-config</span><b>● synced &amp; healthy</b></div>
+            <div style="display:grid;gap:9px;line-height:1.5">
+              <div><span style="color:#7d80ad">$</span> git push origin main <span style="color:#7ee2a8">→ GitLab</span></div>
+              <div><span style="color:#7d80ad">jenkins</span> build #latest ......... <span style="color:#7ee2a8">SUCCESS</span></div>
+              <div><span style="color:#7d80ad">nexus</span> artifact stored ........ <span style="color:#7ee2a8">OK</span></div>
+              <div><span style="color:#7d80ad">argocd</span> app sync .............. <span style="color:#7ee2a8">Synced</span></div>
+              <div><span style="color:#7d80ad">argocd</span> health ................ <span style="color:#7ee2a8">Healthy</span></div>
+              <div><span style="color:#7d80ad">validate</span> logs · traces · metrics <span style="color:#7ee2a8">✓ flowing</span></div>
+            </div>
+            <div class="alert" style="border-color:#7ee2a8;color:#c9f3da">✓ Release verified end to end: data flowing, dashboards live</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="vt"><span class="no">05</span><h3>End-to-end Tracing</h3><span class="plus">+</span></div>
+        <div class="pc">
+          <div>
+            <div class="cat">05 · Distributed tracing</div>
+            <h3>Vendor API: one request, end to end</h3>
+            <p class="lead">A single trace across every hop of a critical incident workflow, with its logs one click away.</p>
+            <ul>
+              <li>trace_id in every log line with one OTLP logging standard</li>
+              <li>Automatic vs manual dispatch paths shown step by step</li>
+              <li>Root-cause analysis from a slow request straight to its logs</li>
+            </ul>
+            <div class="chips"><span><i></i>OpenTelemetry</span><span>Traces</span><span>OTLP logs</span><span>Java</span></div>
+          </div>
+          <div class="vis"><img class="zoom" src="img/d-i999.svg" alt="End-to-end trace flow"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="vt"><span class="no">06</span><h3>Gen AI Monitoring</h3><span class="plus">+</span></div>
+        <div class="pc">
+          <div>
+            <div class="cat">06 · Beginner · learning</div>
+            <h3>Gen AI platform monitoring</h3>
+            <p class="lead">Early hands-on work: extending production monitoring to the company's voice-AI and GPU servers.</p>
+            <ul>
+              <li>Voice-AI production dashboard: call quality, latency, packet loss, SIP trunk health</li>
+              <li>NVIDIA GPU monitoring with Prometheus: utilisation, memory, temperature, power</li>
+            </ul>
+            <div class="chips"><span><i></i>Prometheus</span><span>Grafana</span><span>NVIDIA GPU</span></div>
+          </div>
+          <div class="vis"><img class="zoom" src="img/hd-livekit.jpg" alt="Voice AI monitoring dashboard"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs" style="padding-top:40px">
+  <div class="wrap certs">
+    <div class="l reveal">
+      <div class="eyebrow"><b>05</b> Certifications</div>
+      <h2 class="big">Always <span class="serif">learning.</span></h2>
+      <p>Cloud and DevOps foundations, backed every day by production work.</p>
+    </div>
+    <ul class="clist reveal">
+      <li><span class="i">01</span><div><b>Microsoft Azure Fundamentals (AZ-900)</b><small>Microsoft</small></div><span class="ar">↗</span></li>
+      <li><span class="i">02</span><div><b>DevOps Fundamentals</b><small>IBM</small></div><span class="ar">↗</span></li>
+      <li><span class="i">03</span><div><b>DevOps Engineer Internship</b><small>StarAgile, with IBM</small></div><span class="ar">↗</span></li>
+      <li><span class="i">04</span><div><b>NCC "C" Certificate</b><small>National Cadet Corps</small></div><span class="ar">↗</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-top reveal">
+      <div><div class="eyebrow"><b>06</b> Experience</div><h2 class="big">Education &amp; <span class="serif">experience.</span></h2></div>
+      <p>From mechanical engineering to running production Kubernetes. Scroll to follow the path.</p>
+    </div>
+    <div class="tl" id="tl">
+      <div class="rail"><div class="fill" id="fill"></div></div>
+      <div class="step"><div class="card"><div class="k">Education</div><h4>B.E. Mechanical Engineering</h4><div class="w">Kongu Engineering College</div><p>Graduated with a strong academic record, then moved into IT systems and DevOps.</p><span class="pill">CGPA 9.01 / 10</span></div><div class="pin"></div><div class="yr">2019</div></div>
+      <div class="step"><div class="card"><div class="k">Internship</div><h4>DevOps Engineer Intern</h4><div class="w">StarAgile, with IBM · Apr – Aug 2024</div><p>CI/CD with Jenkins, AWS with Terraform, containers with Docker and Kubernetes.</p><span class="pill">Foundations</span></div><div class="pin"></div><div class="yr">2024</div></div>
+      <div class="step"><div class="card"><div class="k">Full-time</div><h4>Associate DevOps Engineer</h4><div class="w">Trinity Mobility · Technical Assistance Center</div><p>Daily production issues for 20+ live smart-city and IoT projects through LnM and Jira, SLA ownership, releases via GitLab, Jenkins, Nexus and ArgoCD, and cluster installation when needed.</p><span class="pill">Mar 2025 – Present</span></div><div class="pin"></div><div class="yr">2025</div></div>
+      <div class="step"><div class="card"><div class="k">Lead role · 50% of my work</div><h4>Observability R&amp;D Lead</h4><div class="w">OpenObserve &amp; OpenTelemetry</div><p>Leading the work to bring logs, traces and metrics into OpenObserve with OpenTelemetry, with end-to-end tracing and trusted alerting.</p><span class="pill">2026 – Present</span></div><div class="pin"></div><div class="yr">2026</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MOMENTS -->
+<section id="moments">
+  <div class="wrap">
+    <div class="sec-top reveal">
+      <div><div class="eyebrow"><b>07</b> Highlights</div><h2 class="big">Proud <span class="serif">moments.</span></h2></div>
+      <p>What changed because of the work, <span class="serif" style="font-size:20px">and counting.</span></p>
+    </div>
+    <div class="moments reveal">
+      <div class="mo"><div class="top"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2l8.5 5v10L12 22 3.5 17V7z"/><path d="M12 22V12M20.5 7 12 12 3.5 7"/></svg></div><span class="ix">01 / 04</span></div><div><div class="big">20<small>+</small></div><h4>Live projects in production</h4><div class="k">Kubernetes · daily ops</div><p>Monitored and troubleshot every day.</p></div></div>
+      <div class="mo"><div class="top"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><span class="ix">02 / 04</span></div><div><div class="big">SLA</div><h4>Red alerts sharply reduced</h4><div class="k">Proactive monitoring</div><p>Early warnings raise tickets before a breach.</p></div></div>
+      <div class="mo"><div class="top"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 19h16M6 15l4-4 3 3 5-6"/></svg></div><span class="ix">03 / 04</span></div><div><div class="big">50<small>/50</small></div><h4>R&amp;D lead and production owner</h4><div class="k">OpenObserve · SLA</div><p>Building the platform while keeping production healthy.</p></div></div>
+      <div class="mo"><div class="top"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg></div><span class="ix">04 / 04</span></div><div><div class="big">E2E</div><h4>Tracing with log correlation</h4><div class="k">Faster root cause</div><p>From a slow request to its logs in one click.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="eyebrow"><b style="color:#fff">08</b> Contact</div>
+    <h2 class="big">Let's <span class="serif">talk.</span></h2>
+    <p>Open to DevOps, Kubernetes, SRE and observability roles across India.</p>
+    <div class="crow">
+      <a class="btn light" href="mailto:rajeshkumar.k5445@gmail.com">rajeshkumar.k5445@gmail.com</a>
+      <a class="btn ghostb" href="https://www.linkedin.com/in/rajeshkumark65/" target="_blank">LinkedIn ↗</a>
+      <a class="btn ghostb" href="tel:+919894648632">+91 98946 48632</a>
+      <a class="btn ghostb" href="Rajeshkumar-K-Resume.pdf" target="_blank">Résumé ↓</a>
+    </div>
+    <div class="foot"><span>© 2026 Rajeshkumar K · DevOps Engineer</span><span>Kubernetes · OpenObserve · OpenTelemetry</span></div>
+  </div>
+</section>
 
 <script>
 (function(){
-  const root = document.documentElement, key = "theme";
-  try { const t = localStorage.getItem(key); if (t) root.dataset.theme = t; } catch (e) {}
-  document.getElementById("theme").addEventListener("click", function(){
-    const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-    root.dataset.theme = dark ? "light" : "dark";
-    try { localStorage.setItem(key, root.dataset.theme); } catch (e) {}
+  /* talking intro video: drop intro.mp4 next to this page and it replaces the photo */
+  var v=document.createElement('video'); v.src='intro.mp4'; v.muted=true; v.autoplay=true; v.loop=true; v.playsInline=true; v.setAttribute('playsinline','');
+  v.addEventListener('loadeddata',function(){var im=document.getElementById('heroImg'); im.replaceWith(v); v.play().catch(function(){});});
+
+  /* hero photo motion: tilt toward the cursor, photo shifts the other way (depth) */
+  var fig=document.getElementById('fig'), pfx=document.getElementById('pfx'), hero=document.getElementById('top');
+  if(fig && window.matchMedia('(hover:hover) and (prefers-reduced-motion:no-preference)').matches){
+    hero.addEventListener('mousemove',function(e){
+      var r=fig.getBoundingClientRect(), x=(e.clientX-(r.left+r.width/2))/window.innerWidth, y=(e.clientY-(r.top+r.height/2))/window.innerHeight;
+      fig.style.transform='rotateY('+(x*14).toFixed(2)+'deg) rotateX('+(-y*10).toFixed(2)+'deg)';
+      pfx.style.transform='translate('+(-x*22).toFixed(1)+'px,'+(-y*16).toFixed(1)+'px)';
+    });
+    hero.addEventListener('mouseleave',function(){fig.style.transform='';pfx.style.transform='';});
+  }
+
+  /* reveal on scroll */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+  /* nav active section */
+  var links=[].slice.call(document.querySelectorAll('#nav a'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  function onScroll(){
+    var y=window.scrollY+window.innerHeight*.35, cur=-1;
+    secs.forEach(function(s,i){if(s&&s.offsetTop<=y)cur=i});
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur)});
+    /* timeline fill */
+    var tl=document.getElementById('tl'), r=tl.getBoundingClientRect(), h=window.innerHeight;
+    var p=Math.min(1,Math.max(0,(h*.6-r.top)/r.height)); document.getElementById('fill').style.height=(p*100)+'%';
+    document.querySelectorAll('.step').forEach(function(s){ if(s.getBoundingClientRect().top<h*.62) s.classList.add('in'); });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  /* ID card flip + pointer tilt */
+  var card=document.getElementById('idcard');
+  card.addEventListener('click',function(){card.classList.toggle('flip')});
+
+  /* periodic table */
+  var D='https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/';
+  var fams=[['k8s','Delivery & Kubernetes','#24264a'],['obs','Observability','#2f6f73'],['mon','Monitoring & logs','#8a5a2b'],['data','Data platform','#5b4b8a'],['code','Scripting & OS','#3f6b3a']];
+  var E=[
+   ['Ks','Kubernetes','k8s','kubernetes/kubernetes-original','Production clusters for 20+ live projects: operate, troubleshoot, install new ones.'],
+   ['Hm','Helm','k8s','helm/helm-original','Charts and per-environment values; chart bugs fixed at the source.'],
+   ['Ac','ArgoCD','k8s','argocd/argocd-original','Syncs each new build from Nexus to the cluster, then I validate.'],
+   ['Gl','GitLab','k8s','gitlab/gitlab-original','Source of truth: every OpenObserve and config change is pushed here.'],
+   ['Jk','Jenkins','k8s','jenkins/jenkins-original','Builds the latest version of every change.'],
+   ['Nx','Nexus','k8s','','Artifact repository where each build is stored before release.'],
+   ['Dk','Docker','k8s','docker/docker-original','Images built, rebuilt and instrumented for production.'],
+   ['Ng','Nginx','k8s','nginx/nginx-original','Ingress and reverse proxy, hardened against exposure.'],
+   ['Oo','OpenObserve','obs','','The unified platform I lead: pipelines, VRL, alerts, dashboards.'],
+   ['Ot','OpenTelemetry','obs','opentelemetry/opentelemetry-original','Agent + gateway collectors, traces and OTLP logs.'],
+   ['Tr','Tracing','obs','','End-to-end traces with trace_id in every log line.'],
+   ['Vr','VRL','obs','','Functions that clean, enrich and standardise data in flight.'],
+   ['Pr','Prometheus','mon','prometheus/prometheus-original','Metrics, exporters and severity-based alert rules.'],
+   ['Gf','Grafana','mon','grafana/grafana-original','Service, platform and data-lake dashboards.'],
+   ['Vm','VictoriaMetrics','mon','','Long-term metrics storage for live projects.'],
+   ['Es','Elasticsearch','mon','elasticsearch/elasticsearch-original','ELK stack for production logs.'],
+   ['Kb','Kibana','mon','kibana/kibana-original','Log search and investigation for client issues.'],
+   ['Ls','Logstash','mon','logstash/logstash-original','Log parsing and pipelines.'],
+   ['Am','Alertmanager','mon','','Routing alerts to email and Telegram by severity.'],
+   ['Ji','Jira','mon','jira/jira-original','Every alert becomes a ticket that is followed up and closed.'],
+   ['Kf','Kafka','data','apachekafka/apachekafka-original','Broker and topic health for the data platform.'],
+   ['Sp','Spark','data','apachespark/apachespark-original','Job and executor monitoring in the data lake house.'],
+   ['Af','Airflow','data','apacheairflow/apacheairflow-original','DAG and task health with clear failure signals.'],
+   ['Tn','Trino','data','','Query engine health and performance.'],
+   ['Pg','PostgreSQL','data','postgresql/postgresql-original','Database exporters and health checks.'],
+   ['If','InfluxDB','data','influxdb/influxdb-original','Time-series storage for application metrics.'],
+   ['Lx','Linux','code','linux/linux-original','Daily server work: storage, clock drift, disk pressure.'],
+   ['Sh','Bash','code','bash/bash-original','Automation and operational scripts.'],
+   ['Py','Python','code','python/python-original','Exporters and API automation.'],
+   ['Sq','SQL','code','','Observability queries, dashboards and alert logic.'],
+   ['Pq','PromQL','code','','Metric queries and alert expressions.'],
+   ['Gt','Git','code','git/git-original','Version control for charts, values and configuration.']
+  ];
+  var fc={}; fams.forEach(function(f){fc[f[0]]=f});
+  var grid=document.getElementById('grid'), det=document.getElementById('detail'), fam=document.getElementById('fam');
+  function show(e){
+    det.innerHTML='<div class="logo">'+(e[3]?'<img src="'+D+e[3]+'.svg" alt="" onerror="this.outerHTML=\'<span class=sym>'+e[0]+'</span>\'">':'<span class="sym">'+e[0]+'</span>')+'</div><h4>'+e[1]+'</h4><div class="fm" style="color:'+fc[e[2]][2]+'">'+fc[e[2]][1]+'</div><p>'+e[4]+'</p>';
+  }
+  E.forEach(function(e,i){
+    var d=document.createElement('div'); d.className='el'; d.dataset.f=e[2];
+    d.innerHTML='<span class="n">'+String(i+1).padStart(2,'0')+'</span><span class="s">'+e[0]+'</span><span class="nm">'+e[1]+'</span>';
+    d.addEventListener('mouseenter',function(){show(e)}); d.addEventListener('click',function(){show(e)});
+    grid.appendChild(d);
   });
-  document.addEventListener("click", function(e){
-    const t = e.target.closest("img.zoom");
-    if (!t) return;
-    const box = document.createElement("div"); box.className = "lightbox";
-    const im = document.createElement("img"); im.src = t.src; im.alt = t.alt;
-    box.appendChild(im); box.onclick = function(){ box.remove(); };
-    document.body.appendChild(box);
+  var active=null;
+  function light(f){
+    active=(active===f)?null:f;
+    [].forEach.call(fam.children,function(b){b.classList.toggle('on',b.dataset.f===active)});
+    [].forEach.call(grid.children,function(el){
+      var on=active&&el.dataset.f===active;
+      el.classList.toggle('lit',!!on); el.classList.toggle('dim',!!active&&!on);
+      el.style.background=on?fc[el.dataset.f][2]:'';
+    });
+    if(active){var first=E.filter(function(e){return e[2]===active})[0]; show(first);}
+  }
+  fams.forEach(function(f){var b=document.createElement('button'); b.dataset.f=f[0]; b.innerHTML='<i style="background:'+f[2]+'"></i>'+f[1]; b.onclick=function(){light(f[0])}; fam.appendChild(b);});
+  show(E[0]); light('k8s');
+
+  /* work accordion */
+  var panels=[].slice.call(document.querySelectorAll('.panel'));
+  function open(p){panels.forEach(function(x){x.classList.toggle('open',x===p)}); if(p.querySelector('#cluster'))bars();}
+  panels.forEach(function(p){
+    p.addEventListener('mouseenter',function(){if(matchMedia('(min-width:1081px)').matches)open(p)});
+    p.addEventListener('click',function(){open(p)});
   });
-  document.addEventListener("keydown", function(e){ if (e.key === "Escape") document.querySelectorAll(".lightbox").forEach(function(b){ b.remove(); }); });
-})();
-(function(){
-  const els=document.querySelectorAll(".count"); const run=el=>{ const to=parseFloat(el.dataset.to), suf=el.dataset.suffix||"", dec=to%1?1:0, t0=performance.now(), d=1400; const step=n=>{ const p=Math.min((n-t0)/d,1), v=to*(1-Math.pow(1-p,3)); el.textContent=v.toFixed(dec)+(p===1?suf:""); if(p<1) requestAnimationFrame(step); }; requestAnimationFrame(step); };
-  if("IntersectionObserver" in window){ const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ run(e.target); io.unobserve(e.target); } }),{threshold:.4}); els.forEach(e=>io.observe(e)); } else els.forEach(run);
+  function bars(){document.querySelectorAll('#cluster .bar b').forEach(function(b){b.style.width='0';setTimeout(function(){b.style.width=b.dataset.w},60)})}
+  new IntersectionObserver(function(es,o){if(es[0].isIntersecting){bars();o.disconnect()}}).observe(document.getElementById('cluster'));
+
+  /* lightbox */
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('img.zoom'); if(!t)return;
+    var box=document.createElement('div'); box.className='lightbox'; var im=document.createElement('img'); im.src=t.src; im.alt=t.alt;
+    box.appendChild(im); box.onclick=function(){box.remove()}; document.body.appendChild(box);
+  });
 })();
 </script>
 </body>
