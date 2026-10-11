@@ -85,7 +85,22 @@ section{padding:120px 0;position:relative}
 .figure .pfx{inset:0;transform:none!important}
 .figure .pfx img{position:absolute;inset:auto;top:0;left:0;width:100%;height:auto;object-fit:initial;animation:none}
 .figure .hv{left:0;top:0;width:100%;-webkit-mask-image:radial-gradient(ellipse 44% 50% at 51% 50%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 44% 50% at 51% 50%,#000 58%,transparent 100%);-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
-.figure .keyed{position:absolute;left:0;top:0;width:100%;height:auto;z-index:0}
+html.intro-lock,html.intro-lock body{overflow:hidden;overscroll-behavior:none}
+.figbox{position:relative}
+.hear-again,.snd{position:absolute;left:50%;bottom:-54px;z-index:5;width:42px;height:42px;margin-left:-21px;display:grid;place-items:center;border:1px solid rgba(36,38,74,.14);border-radius:50%;cursor:pointer;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:rgba(36,38,74,.62);box-shadow:0 6px 18px -10px rgba(36,38,74,.35);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .5s,transform .5s,color .2s,background .2s}
+.hear-again svg,.snd svg{width:16px;height:16px}
+.hear-again svg{margin-left:2px}
+.hear-again.on,.snd.on{opacity:1;transform:none;pointer-events:auto}
+.hear-again:hover,.snd:hover{color:var(--navy);background:rgba(255,255,255,.85)}
+.snd.on{animation:sndpulse 2.2s ease-in-out infinite}
+@keyframes sndpulse{0%,100%{box-shadow:0 0 0 0 rgba(36,38,74,.12)}50%{box-shadow:0 0 0 9px rgba(36,38,74,0)}}
+@media (max-width:820px){.hear-again,.snd{bottom:-48px}}
+.hear-again{position:fixed;left:auto;bottom:auto;top:88px;right:34px;margin:0;width:44px;height:44px;border:0;background:#2b2f6b;color:#fff;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 10px 24px -10px rgba(43,47,107,.75);z-index:60;transform:scale(.6)}
+.hear-again.on{transform:none}
+.hear-again:hover{background:#3a3f8f;color:#fff}
+@media (max-width:820px){.hear-again{top:auto;bottom:86px;right:16px}}
+.figure .keyed{position:absolute;left:0;top:0;width:100%;height:auto;z-index:0;clip-path:inset(0 0 4px 0)}
+.figure.own .fade{display:none}
 .figure .fade{position:absolute;left:-2px;right:-2px;bottom:-2px;height:15%;background:linear-gradient(180deg,rgba(243,239,228,0),var(--bg) 55%);pointer-events:none;z-index:1}
 .figbox:after{content:"";position:absolute;left:50%;bottom:1.5%;width:46%;height:22px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(40,34,20,.22),rgba(40,34,20,0));z-index:0}
 .figure .live{bottom:14px;z-index:3}.figure .playb{bottom:58px;z-index:3}
@@ -404,8 +419,6 @@ section{padding:120px 0;position:relative}
         <iframe class="hv" src="https://app.heygen.com/embeds/bf6ed3416c444ce3b577a8c430e1ad5e?autoplay=1&amp;muted=1&amp;loop=1&amp;controls=0" title="Rajeshkumar K intro" allow="autoplay; encrypted-media" tabindex="-1" aria-hidden="true"></iframe>
         <div class="fade"></div>
         <div class="sheen"></div>
-        <button class="playb" id="playIntro" type="button"><span class="pi"><svg viewBox="0 0 16 16"><path d="M5 3.2v9.6L13 8z" fill="currentColor"/></svg></span>Hear me speak</button>
-        <div class="live"><span class="dot"></span> Open to DevOps &amp; SRE roles</div>
       </div>
     </div>
     <div class="hero-r reveal">
@@ -784,18 +797,39 @@ section{padding:120px 0;position:relative}
       gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
       function draw(){ if(v.readyState>=2){ gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,v); gl.drawArrays(gl.TRIANGLE_STRIP,0,4); }
         (v.requestVideoFrameCallback?v.requestVideoFrameCallback.bind(v):requestAnimationFrame)(draw); }
+      figK.style.aspectRatio=v.videoWidth+'/'+v.videoHeight;
       figK.appendChild(c); figK.classList.add('own','vid');
       var ifr=figK.querySelector('.hv'); if(ifr){ifr.remove();}
-      v.play().catch(function(){}); draw();
-      /* "Hear me speak": same file, so audio is always in sync */
-      var btn=document.getElementById('playIntro');
-      if(btn){ var nb=btn.cloneNode(true); btn.replaceWith(nb); var lb=nb.lastChild;
-        nb.addEventListener('click',function(e){ e.stopPropagation();
-          var on=v.muted; v.muted=!on; if(on){v.currentTime=0;v.loop=false;}else{v.loop=true;}
-          v.play().catch(function(){}); nb.classList.toggle('on',on); lb.textContent=on?'Mute':'Hear me speak';
-        });
-        v.addEventListener('ended',function(){ v.muted=true; v.loop=true; v.currentTime=0; v.play(); nb.classList.remove('on'); lb.textContent='Hear me speak'; });
+      draw();
+      /* intro flow: the presenter speaks first and the page cannot scroll until the speech ends.
+         He stands still until the visitor clicks or taps anywhere, then speaks with sound. When it ends, scrolling unlocks and a small
+         navy replay button appears fixed at the top right, under the menu. */
+      var html=document.documentElement, locked=true, heard=false;
+      var hint=document.createElement('button'); hint.type='button'; hint.className='snd'; hint.setAttribute('aria-label','Play intro with sound'); hint.innerHTML='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6v4h2.5l3.5 3V3L5 6z" fill="currentColor"/><path d="M11 5.5a3.5 3.5 0 0 1 0 5M12.8 3.8a6 6 0 0 1 0 8.4"/></svg>';
+      var again=document.createElement('button'); again.type='button'; again.className='hear-again'; again.setAttribute('aria-label','Play intro again'); again.innerHTML='<svg viewBox="0 0 16 16" fill="currentColor"><path d="M4 2.5v11l9.5-5.5z"/></svg>';
+      (figK.parentNode||document.body).appendChild(hint); document.body.appendChild(again);
+      var KEYS={32:1,33:1,34:1,35:1,36:1,37:1,38:1,39:1,40:1};
+      function block(e){ if(locked){ e.preventDefault(); } }
+      window.addEventListener('wheel',block,{passive:false});
+      window.addEventListener('touchmove',block,{passive:false});
+      window.addEventListener('keydown',function(e){ if(locked&&KEYS[e.keyCode]) e.preventDefault(); });
+      document.addEventListener('click',function(e){ if(locked&&e.target.closest('a[href^="#"]')){ e.preventDefault(); } },true);
+      function lock(){ locked=true; html.classList.add('intro-lock'); window.scrollTo(0,0); }
+      function unlock(){ locked=false; html.classList.remove('intro-lock'); hint.classList.remove('on'); }
+      function speak(withSound){
+        again.classList.remove('on'); v.loop=false; v.currentTime=0; v.muted=!withSound;
+        v.play().catch(function(){ v.muted=true; v.play(); });
+        heard=heard||withSound; hint.classList.toggle('on',!withSound);
       }
+      v.addEventListener('ended',function(){
+        unlock(); v.muted=true; again.classList.add('on');
+        v.currentTime=Math.max(0,v.duration-0.05);   /* hold the last frame: he stays standing */
+      });
+      v.addEventListener('error',unlock);   /* never trap the visitor if the video fails */
+      lock(); v.pause(); hint.classList.add('on');   /* stands still until the first click */
+      function firstTap(e){ if(!heard && locked && !e.target.closest('.hear-again')){ lock(); speak(true); } }
+      ['pointerdown','keydown','touchstart'].forEach(function(t){ window.addEventListener(t,firstTap,{once:true,passive:true}); });
+      again.addEventListener('click',function(e){ e.stopPropagation(); speak(true); });
     },{once:true});
     v.load();
   })();
