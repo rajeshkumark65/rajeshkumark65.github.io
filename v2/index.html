@@ -404,7 +404,7 @@ section{padding:120px 0;position:relative}
         <iframe class="hv" src="https://app.heygen.com/embeds/bf6ed3416c444ce3b577a8c430e1ad5e?autoplay=1&amp;muted=1&amp;loop=1&amp;controls=0" title="Rajeshkumar K intro" allow="autoplay; encrypted-media" tabindex="-1" aria-hidden="true"></iframe>
         <div class="fade"></div>
         <div class="sheen"></div>
-        <button class="playb" id="playIntro" type="button"><span class="pi"><svg viewBox="0 0 16 16"><path d="M5 3.2v9.6L13 8z" fill="currentColor"/></svg></span>Hear me speak · 13s</button>
+        <button class="playb" id="playIntro" type="button"><span class="pi"><svg viewBox="0 0 16 16"><path d="M5 3.2v9.6L13 8z" fill="currentColor"/></svg></span>Hear me speak</button>
         <div class="live"><span class="dot"></span> Open to DevOps &amp; SRE roles</div>
       </div>
     </div>
@@ -769,8 +769,8 @@ section{padding:120px 0;position:relative}
         /* distance from pure green in Cb/Cr space; soft edge; green spill removed */
         'float cb=-.169*c.r-.331*c.g+.5*c.b, cr=.5*c.r-.419*c.g-.081*c.b;'+
         'float d=distance(vec2(cb,cr),k);'+
-        'float al=smoothstep(.07,.17,d);'+
-        'c.g=min(c.g,max(c.r,c.b)*1.05);'+
+        'float al=smoothstep(.11,.22,d);'+
+        'c.g=min(c.g,max(c.r,c.b));'+
         'gl_FragColor=vec4(c.rgb,al);}'));
       gl.linkProgram(p); gl.useProgram(p);
       /* key colour = the video's own background, sampled from the top-left corner of the first frame */
@@ -933,7 +933,7 @@ section{padding:120px 0;position:relative}
   var talking=false, hvT=null, talkT=null, lbl=pb?pb.lastChild:null, SOUND=HG+"?autoplay=1&muted=0&loop=0&controls=0";
   function swapVideo(src){ clearTimeout(hvT); hv.classList.remove("on"); figEl.classList.remove("vid"); hv.src=src; }
   function setTalking(on){
-    talking=on; pb.classList.toggle("on",on); lbl.textContent=on?"Stop":"Hear me speak · 13s";
+    talking=on; pb.classList.toggle("on",on); lbl.textContent=on?"Stop":"Hear me speak";
     clearTimeout(talkT); if(on) talkT=setTimeout(function(){setTalking(false)},16500);
     swapVideo(on?SOUND:LOOP);
   }
