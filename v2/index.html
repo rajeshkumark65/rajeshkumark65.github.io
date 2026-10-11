@@ -44,6 +44,12 @@ section{padding:120px 0;position:relative}
 .nav a.on{background:var(--navy);color:#fff}
 .brand{position:fixed;top:30px;left:32px;z-index:49;font-weight:700;font-size:15px;letter-spacing:-.01em}
 .brand i{font-family:var(--serif);font-weight:400;font-size:19px}
+.brand{display:flex;align-items:center;gap:12px;top:20px}
+.mono-rk{width:46px;height:46px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;white-space:nowrap;padding-right:2px;font:400 26px/1 var(--serif);font-style:italic;letter-spacing:-.04em;box-shadow:0 0 0 4px rgba(201,162,75,.35),0 10px 24px -10px rgba(36,38,74,.7);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.mono-rk em{color:var(--gold);font-style:italic;margin-left:-1px}
+.brand:hover .mono-rk{transform:rotate(-12deg) scale(1.08)}
+.brand .bn{font-weight:700;font-size:15px}
+@media (max-width:820px){.brand .bn{display:none}.mono-rk{width:40px;height:40px;font-size:22px}}
 
 /* ---------- hero ---------- */
 .hero{min-height:min(100vh,880px);margin-bottom:60px;padding:0;display:flex;align-items:stretch;overflow:hidden}
@@ -69,16 +75,17 @@ section{padding:120px 0;position:relative}
 @keyframes tick{to{transform:translateX(-50%)}}
 .ticker:hover .tk{animation-play-state:paused}
 .figure .hv{position:absolute;left:-50%;top:-13.9%;width:200%;aspect-ratio:9/16;height:auto;border:0;pointer-events:none;z-index:0;opacity:0;transition:opacity .8s}.figure .hv.on{opacity:1}
-/* full-body presenter card (reference-reel style) */
+/* frameless standing presenter: talking video clipped to a silhouette mask cut from the source photo */
 .figbox{z-index:auto;perspective:none}
-.figure{height:min(72vh,700px);width:auto;aspect-ratio:9/14.8;border-radius:30px;overflow:hidden;background:#e9e8e4;box-shadow:0 0 0 10px rgba(251,249,243,.75),0 50px 90px -35px rgba(40,34,20,.5);transform:none!important;will-change:auto;z-index:auto;animation:fadein 1.4s ease .2s backwards}
+.figure{height:min(80vh,780px);width:auto;aspect-ratio:9/15;border-radius:0;overflow:hidden;background:none;box-shadow:none;transform:none!important;will-change:auto;z-index:auto;animation:fadein 1.4s ease .2s backwards}
 @keyframes fadein{from{opacity:0}}
 .figure .halo,.figure .sheen{display:none}
 .figure .pfx{inset:0;transform:none!important}
 .figure .pfx img{position:absolute;inset:auto;top:0;left:0;width:100%;height:auto;object-fit:initial;animation:none}
-.figure .hv{left:0;top:0;width:100%}
-.figure .fade{display:none}
-.figure .live{bottom:14px}.figure .playb{bottom:58px}
+.figure .hv{left:0;top:0;width:100%;-webkit-mask-image:url(../img/hero-mask.png);mask-image:url(../img/hero-mask.png);-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.figure .fade{position:absolute;left:0;right:0;bottom:0;height:9%;background:linear-gradient(180deg,rgba(243,239,228,0),var(--bg) 70%);pointer-events:none;z-index:1}
+.figbox:after{content:"";position:absolute;left:50%;bottom:1.5%;width:46%;height:22px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(40,34,20,.22),rgba(40,34,20,0));z-index:0}
+.figure .live{bottom:14px;z-index:3}.figure .playb{bottom:58px;z-index:3}
 .figure .pfx{position:absolute;inset:-3%;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .figure .sheen{position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.38) 50%,transparent 65%);background-size:250% 100%;mix-blend-mode:soft-light;animation:sheen 7s ease-in-out 1.6s infinite}
 @keyframes sheen{0%{background-position:130% 0}45%,100%{background-position:-30% 0}}
@@ -185,10 +192,10 @@ section{padding:120px 0;position:relative}
 /* ---------- skills ---------- */
 .fam{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
 .fam button{font:500 13px var(--sans);padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .25s}
-.fam button i{width:9px;height:9px;border-radius:2px}
-.fam button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.fam button i{width:9px;height:9px;border-radius:2px;background:var(--c)}
+.fam button.on{background:var(--c);color:#fff;border-color:var(--c)}.fam button.on i{background:#fff}
 .ptable{display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start}
-.grid-el{display:grid;grid-template-columns:repeat(8,1fr);gap:8px}
+.grid-el{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:7px;min-width:0}.grid-el .el{min-width:0}
 .el{aspect-ratio:1;border-radius:10px;padding:8px 9px;position:relative;cursor:pointer;background:var(--card);border:1px solid var(--line);transition:transform .25s,opacity .35s,background .35s,color .35s,box-shadow .25s;display:flex;flex-direction:column;justify-content:space-between}
 .el .n{font-family:var(--mono);font-size:11px;color:var(--mute)}
 .el .s{font-size:clamp(18px,2vw,26px);font-weight:700;letter-spacing:-.03em;line-height:1}
@@ -196,7 +203,15 @@ section{padding:120px 0;position:relative}
 .el:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
 .el.lit{color:#fff;border-color:transparent}
 .el.lit .n,.el.lit .nm{color:rgba(255,255,255,.7)}
-.el.dim{opacity:.4}
+.el{background:color-mix(in srgb,var(--c) 9%,var(--card));border:1px solid color-mix(in srgb,var(--c) 22%,var(--line));border-top:3px solid var(--c)}
+.el .s{color:var(--c);font-size:clamp(15px,1.55vw,22px)}
+.el:hover{transform:translateY(-6px) scale(1.07);box-shadow:0 16px 30px -12px color-mix(in srgb,var(--c) 75%,transparent);z-index:2}
+.el.lit{background:var(--c);border-color:var(--c);color:#fff;box-shadow:0 10px 22px -12px var(--c)}.el.lit .s{color:#fff}
+.el.dim{opacity:.72}
+.grid-el:not(.go) .el{opacity:0}
+.grid-el.go .el{animation:elpop .55s cubic-bezier(.2,.9,.3,1.3) calc(var(--i) * 22ms) backwards}
+@keyframes elpop{from{opacity:0;transform:translateY(14px) scale(.6) rotate(-6deg)}}
+.detail{border-top:4px solid var(--c,var(--navy))}.detail .logo .sym{color:var(--c,var(--navy))}.detail .fm{color:var(--c,var(--navy))!important}
 .detail{position:sticky;top:110px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;min-height:330px;box-shadow:var(--shadow);text-align:center}
 .detail .logo{width:110px;height:110px;margin:8px auto 14px;display:grid;place-items:center}
 .detail .logo img{width:96px;height:96px;object-fit:contain}
@@ -242,6 +257,32 @@ section{padding:120px 0;position:relative}
 .th{position:relative;height:16px;margin-top:4px;color:#a9abd2;font-size:11px}
 .th span{position:absolute;transform:translateX(-50%)}
 .alert{margin-top:12px;border:1px dashed #e6b54a;border-radius:8px;padding:9px 10px;color:#f1d9a0;display:flex;gap:8px;align-items:center}
+
+/* work widgets: data lake house + gen ai */
+.layer{display:grid;grid-template-columns:86px 1fr;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed #2c2e52}
+.layer .ln{color:#a9abd2;text-transform:uppercase;font-size:11px;letter-spacing:.1em}
+.svc{display:flex;flex-wrap:wrap;gap:6px}
+.svc i{font-style:normal;display:flex;align-items:center;gap:6px;background:#24264a;border:1px solid #34366a;border-radius:6px;padding:4px 8px;color:#d8daf0}
+.svc i:before{content:"";width:7px;height:7px;border-radius:50%;background:#7ee2a8;animation:svcping 2.4s infinite}
+.svc i:nth-child(2):before{animation-delay:.4s}.svc i:nth-child(3):before{animation-delay:.8s}.svc i:nth-child(4):before{animation-delay:1.2s}
+.svc i.w{border-color:#6b5a2a}.svc i.w:before{background:#e6b54a;animation-name:svcpingw}
+@keyframes svcping{0%{box-shadow:0 0 0 0 rgba(126,226,168,.6)}80%,100%{box-shadow:0 0 0 7px rgba(126,226,168,0)}}
+@keyframes svcpingw{0%{box-shadow:0 0 0 0 rgba(230,181,74,.7)}80%,100%{box-shadow:0 0 0 7px rgba(230,181,74,0)}}
+.gr{display:grid;grid-template-columns:168px 1fr;align-items:center;gap:12px;padding:10px 0;border-bottom:1px dashed #2c2e52}
+.gr .gn{color:#c6c8e6}
+.spark{width:100%;height:26px;display:block}
+.spark polyline{fill:none;stroke:#7ee2a8;stroke-width:1.6;stroke-linejoin:round;stroke-dasharray:300;animation:draw 3.6s ease-in-out infinite;vector-effect:non-scaling-stroke}
+.spark.s2 polyline{stroke:#8f9bff;animation-delay:.8s}
+@keyframes draw{0%{stroke-dashoffset:300}60%,100%{stroke-dashoffset:0}}
+.bar b.gpu{width:50%;animation:gpu 4s ease-in-out infinite}
+@keyframes gpu{0%,100%{width:46%}50%{width:79%}}
+.runs{display:flex;gap:4px;flex-wrap:wrap}
+.runs i{width:12px;height:12px;border-radius:3px;background:#3d5af1;animation:pod 3s ease-in-out infinite}
+.runs i:nth-child(odd){animation-delay:.5s}.runs i.f{background:#e5484d}
+.trc{display:flex;align-items:center;gap:5px;color:#6f72a8;flex-wrap:wrap}
+.trc span{padding:3px 8px;border-radius:5px;background:#24264a;color:#d8daf0;animation:trl 4s infinite}
+.trc span:nth-of-type(2){animation-delay:.7s}.trc span:nth-of-type(3){animation-delay:1.4s}.trc span:nth-of-type(4){animation-delay:2.1s}
+@keyframes trl{0%,18%{background:#3d5af1}30%,100%{background:#24264a}}
 
 /* ---------- certs ---------- */
 .certs{display:grid;grid-template-columns:.9fr 1.3fr;gap:56px;align-items:start}
@@ -322,7 +363,7 @@ section{padding:120px 0;position:relative}
   .figbox{grid-row:1;justify-self:center}.figure{width:min(320px,74vw);height:auto}.chip{font-size:11.5px;padding:6px 10px 6px 7px}.chip.c1{left:-14px}.chip.c2{right:-14px}.chip.c3{left:-10px;top:52%}.ghost{display:none}.hero-l{margin-top:16px}
   .hero-r{align-items:flex-start;text-align:left;justify-self:start}.hero-r .tags{display:none}
   .about-grid,.certs{grid-template-columns:1fr}.lanyard{grid-row:auto}
-  .grid-el{grid-template-columns:repeat(4,1fr)}
+  .grid-el{grid-template-columns:repeat(5,minmax(0,1fr))}
   .tl .rail{left:12px}.step{grid-template-columns:28px 1fr;gap:10px 14px;margin-bottom:40px}
   .step .pin{order:1!important;justify-self:start;margin-left:4px}.step .yr{order:2!important;text-align:left!important;font-size:42px}
   .step .card{order:3!important;grid-column:2}
@@ -334,7 +375,7 @@ section{padding:120px 0;position:relative}
 </head>
 <body>
 
-<a class="brand" href="#top">Rajeshkumar <i>K.</i></a>
+<a class="brand" href="#top" aria-label="Rajeshkumar K, back to top"><span class="mono-rk">R<em>k</em></span><span class="bn">Rajeshkumar <i>K.</i></span></a>
 <nav class="nav" id="nav">
   <a href="#about">About</a><a href="#how">Role</a><a href="#skills">Skills</a><a href="#work">Work</a><a href="#experience">Experience</a><a href="#moments">Highlights</a><a href="#contact">Contact</a>
 </nav>
@@ -351,7 +392,7 @@ section{padding:120px 0;position:relative}
     <div class="figbox">
       <div class="figure" id="fig">
         <div class="halo"></div>
-        <div class="pfx" id="pfx"><img id="heroImg" src="../img/fullbody.jpg" alt="Rajeshkumar K"></div>
+        <div class="pfx" id="pfx"><img id="heroImg" src="../img/hero-cutout.png" alt="Rajeshkumar K"></div>
         <iframe class="hv" src="https://app.heygen.com/embeds/bf6ed3416c444ce3b577a8c430e1ad5e?autoplay=1&amp;muted=1&amp;loop=1&amp;controls=0" title="Rajeshkumar K intro" allow="autoplay; encrypted-media" tabindex="-1" aria-hidden="true"></iframe>
         <div class="fade"></div>
         <div class="sheen"></div>
@@ -470,7 +511,7 @@ section{padding:120px 0;position:relative}
   <div class="wrap">
     <div class="sec-top reveal">
       <div><div class="eyebrow"><b>03</b> Skills</div><h2 class="big">The periodic table <span class="serif">of my stack.</span></h2></div>
-      <p>Elements in five families. Hover a tile to see how I use it, or pick a family to light it up.</p>
+      <p>Fifty elements in six families. Hover a tile to see how I use it, or pick a family to light it up.</p>
     </div>
     <div class="fam reveal" id="fam"></div>
     <div class="ptable reveal">
@@ -543,12 +584,19 @@ section{padding:120px 0;position:relative}
             <p class="lead">Health, performance and alerting for the data-lake engines in one overview, from service status down to each engine.</p>
             <ul>
               <li>Service health tree across ingestion, processing and storage</li>
-              <li>Per-engine dashboards for Spark, Trino, Airflow, Kafka and MinIO</li>
+              <li>Per-engine dashboards for Kafka, Kafka Connect, Spark, Livy, Trino, Airflow, MinIO, Druid, InfluxDB, Ranger, OpenMetadata and Hasura</li>
               <li>Alerts that separate real outages from noise</li>
             </ul>
-            <div class="chips"><span><i></i>Grafana</span><span>Kafka</span><span>Spark</span><span>Trino</span><span>Airflow</span><span>MinIO</span></div>
+            <div class="chips"><span><i></i>OpenObserve</span><span>Grafana</span><span>Kafka</span><span>Spark</span><span>Trino</span><span>Airflow</span><span>MinIO</span><span>Druid</span></div>
           </div>
-          <div class="vis"><img class="zoom" src="../img/hd-dlh.jpg" alt="Data Lake House overview dashboard"></div>
+          <div class="cluster dlh">
+            <div class="hd"><span>data lake house · service health</span><b>● all layers up</b></div>
+            <div class="layer"><span class="ln">ingest</span><div class="svc"><i>Kafka</i><i>Kafka Connect</i></div></div>
+            <div class="layer"><span class="ln">process</span><div class="svc"><i>Spark</i><i>Livy</i><i>Trino</i><i>Airflow</i></div></div>
+            <div class="layer"><span class="ln">store</span><div class="svc"><i>MinIO</i><i>Druid</i><i>InfluxDB</i></div></div>
+            <div class="layer"><span class="ln">govern · api</span><div class="svc"><i>Ranger</i><i>OpenMetadata</i><i class="w">Hasura</i></div></div>
+            <div class="alert">⚠ hasura latency rising: alert raised before users notice</div>
+          </div>
         </div>
       </div>
 
@@ -605,15 +653,23 @@ section{padding:120px 0;position:relative}
         <div class="pc">
           <div>
             <div class="cat">06 · Beginner · learning</div>
-            <h3>Gen AI platform monitoring</h3>
-            <p class="lead">Early hands-on work: extending production monitoring to the company's voice-AI and GPU servers.</p>
+            <h3>Gen AI stack, monitored in OpenObserve</h3>
+            <p class="lead">Learning by doing: bringing the company's Gen AI services into OpenObserve, next to everything else I monitor.</p>
             <ul>
-              <li>Voice-AI production dashboard: call quality, latency, packet loss, SIP trunk health</li>
-              <li>NVIDIA GPU monitoring with Prometheus: utilisation, memory, temperature, power</li>
+              <li>Voice AI rooms (LiveKit) and NVIDIA GPU health: utilisation, memory, temperature</li>
+              <li>LLM gateway (LiteLLM) and automation workflows (n8n): requests, latency, failures</li>
+              <li>LLM traces from Langfuse brought into OpenObserve beside the rest of the stack</li>
             </ul>
-            <div class="chips"><span><i></i>Prometheus</span><span>Grafana</span><span>NVIDIA GPU</span></div>
+            <div class="chips"><span><i></i>OpenObserve</span><span>LiveKit</span><span>NVIDIA GPU</span><span>LiteLLM</span><span>n8n</span><span>Langfuse</span></div>
           </div>
-          <div class="vis"><img class="zoom" src="../img/hd-livekit.jpg" alt="Voice AI monitoring dashboard"></div>
+          <div class="cluster gai">
+            <div class="hd"><span>gen ai stack · in openobserve</span><b>● traced</b></div>
+            <div class="gr"><span class="gn">LiveKit · voice rooms</span><svg class="spark" viewBox="0 0 120 24" preserveAspectRatio="none"><polyline points="0,18 10,15 20,16 30,9 40,12 50,7 60,10 70,5 80,9 90,6 100,11 110,7 120,8"/></svg></div>
+            <div class="gr"><span class="gn">NVIDIA GPU · utilisation</span><div class="bar"><b class="gpu"></b></div></div>
+            <div class="gr"><span class="gn">LiteLLM · gateway latency</span><svg class="spark s2" viewBox="0 0 120 24" preserveAspectRatio="none"><polyline points="0,12 10,13 20,11 30,14 40,12 50,16 60,13 70,12 80,10 90,12 100,11 110,13 120,12"/></svg></div>
+            <div class="gr"><span class="gn">n8n · workflow runs</span><div class="runs"><i></i><i></i><i></i><i></i><i></i><i class="f"></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="gr"><span class="gn">Langfuse · LLM traces</span><div class="trc"><span>prompt</span>›<span>llm</span>›<span>tool</span>›<span>reply</span></div></div>
+          </div>
         </div>
       </div>
 
@@ -740,7 +796,7 @@ section{padding:120px 0;position:relative}
 
   /* periodic table */
   var D='https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/';
-  var fams=[['k8s','Delivery & Kubernetes','#24264a'],['obs','Observability','#2f6f73'],['mon','Monitoring & logs','#8a5a2b'],['data','Data platform','#5b4b8a'],['code','Scripting & OS','#3f6b3a']];
+  var fams=[['k8s','Delivery & Kubernetes','#24264a'],['obs','OpenObserve','#1d6b67'],['ai','Gen AI monitoring','#8a3a78'],['mon','Logging & Monitoring','#94561a'],['dlh','Data Lake House','#4a4a9c'],['code','Scripting & OS','#3c6a37']];
   var E=[
    ['Ks','Kubernetes','k8s','kubernetes/kubernetes-original','Production clusters for 20+ live projects: operate, troubleshoot, install new ones.'],
    ['Hm','Helm','k8s','helm/helm-original','Charts and per-environment values; chart bugs fixed at the source.'],
@@ -749,11 +805,25 @@ section{padding:120px 0;position:relative}
    ['Jk','Jenkins','k8s','jenkins/jenkins-original','Builds the latest version of every change.'],
    ['Nx','Nexus','k8s','','Artifact repository where each build is stored before release.'],
    ['Dk','Docker','k8s','docker/docker-original','Images built, rebuilt and instrumented for production.'],
-   ['Ng','Nginx','k8s','nginx/nginx-original','Ingress and reverse proxy, hardened against exposure.'],
-   ['Oo','OpenObserve','obs','','The unified platform I lead: pipelines, VRL, alerts, dashboards.'],
-   ['Ot','OpenTelemetry','obs','opentelemetry/opentelemetry-original','Agent + gateway collectors, traces and OTLP logs.'],
+   ['In','Ingress','k8s','','Ingress rules, TLS and routing for every service on the cluster.'],
+   ['Ng','Nginx','k8s','nginx/nginx-original','Ingress controller and reverse proxy, hardened against exposure.'],
+   ['Gt','Git','k8s','git/git-original','Version control for charts, values and configuration.'],
+   ['Oo','OpenObserve','obs','','The unified platform I lead for logs, metrics and traces.'],
+   ['Ot','OpenTelemetry','obs','opentelemetry/opentelemetry-original','Agent + gateway collectors feeding every signal into OpenObserve.'],
+   ['Lg','Logs','obs','','OTLP logs from every traced service, searchable by trace_id.'],
+   ['Mt','Metrics','obs','','Service, JVM and node metrics collected into one platform.'],
    ['Tr','Tracing','obs','','End-to-end traces with trace_id in every log line.'],
+   ['Pl','Pipelines','obs','','Realtime and scheduled pipelines that turn raw signals into alert events.'],
    ['Vr','VRL','obs','','Functions that clean, enrich and standardise data in flight.'],
+   ['Al','Alerts','obs','','Realtime alerts routed by severity to email, Telegram and incidents.'],
+   ['Ic','Incidents','obs','','Related alerts grouped into one incident, so one problem raises one ticket.'],
+   ['Ru','RUM','obs','','Real user monitoring: page loads, errors and sessions from the browser.'],
+   ['Db','Database monitoring','obs','','Database health: connections, slow queries and storage.'],
+   ['Lk','LiveKit','ai','','Voice AI rooms and session health, monitored in OpenObserve.'],
+   ['Gp','NVIDIA GPU','ai','nvidia/nvidia-original','GPU utilisation, memory and temperature for AI workloads.'],
+   ['N8','n8n','ai','','Workflow runs and failures from the automation platform.'],
+   ['Ll','LiteLLM','ai','','LLM gateway requests, latency and errors in one view.'],
+   ['Lf','Langfuse','ai','','LLM traces brought into OpenObserve next to the rest of the stack.'],
    ['Pr','Prometheus','mon','prometheus/prometheus-original','Metrics, exporters and severity-based alert rules.'],
    ['Gf','Grafana','mon','grafana/grafana-original','Service, platform and data-lake dashboards.'],
    ['Vm','VictoriaMetrics','mon','','Long-term metrics storage for live projects.'],
@@ -761,44 +831,53 @@ section{padding:120px 0;position:relative}
    ['Kb','Kibana','mon','kibana/kibana-original','Log search and investigation for client issues.'],
    ['Ls','Logstash','mon','logstash/logstash-original','Log parsing and pipelines.'],
    ['Am','Alertmanager','mon','','Routing alerts to email and Telegram by severity.'],
-   ['Ji','Jira','mon','jira/jira-original','Every alert becomes a ticket that is followed up and closed.'],
-   ['Kf','Kafka','data','apachekafka/apachekafka-original','Broker and topic health for the data platform.'],
-   ['Sp','Spark','data','apachespark/apachespark-original','Job and executor monitoring in the data lake house.'],
-   ['Af','Airflow','data','apacheairflow/apacheairflow-original','DAG and task health with clear failure signals.'],
-   ['Tn','Trino','data','','Query engine health and performance.'],
-   ['Pg','PostgreSQL','data','postgresql/postgresql-original','Database exporters and health checks.'],
-   ['If','InfluxDB','data','influxdb/influxdb-original','Time-series storage for application metrics.'],
+   ['Sp','Spark','dlh','apachespark/apachespark-original','Job, executor and streaming health.'],
+   ['Tn','Trino','dlh','','Query engine health and performance.'],
+   ['Af','Airflow','dlh','apacheairflow/apacheairflow-original','DAG and task health with clear failure signals.'],
+   ['Kf','Kafka','dlh','apachekafka/apachekafka-original','Broker, topic and consumer-lag health.'],
+   ['Kc','Kafka Connect','dlh','','Connector and task status.'],
+   ['Mn','MinIO','dlh','','Object storage capacity and request health.'],
+   ['Dr','Druid','dlh','','Ingestion, segment and storage health.'],
+   ['Lv','Livy','dlh','','Spark session and batch submission health.'],
+   ['Rg','Ranger','dlh','','Access-policy service and audit health.'],
+   ['Om','OpenMetadata','dlh','','Metadata service availability.'],
+   ['Hs','Hasura','dlh','','GraphQL API latency and errors.'],
+   ['If','InfluxDB','dlh','influxdb/influxdb-original','Time-series storage health.'],
    ['Lx','Linux','code','linux/linux-original','Daily server work: storage, clock drift, disk pressure.'],
    ['Sh','Bash','code','bash/bash-original','Automation and operational scripts.'],
    ['Py','Python','code','python/python-original','Exporters and API automation.'],
    ['Sq','SQL','code','','Observability queries, dashboards and alert logic.'],
-   ['Pq','PromQL','code','','Metric queries and alert expressions.'],
-   ['Gt','Git','code','git/git-original','Version control for charts, values and configuration.']
+   ['Pq','PromQL','code','','Metric queries and alert expressions.']
   ];
   var fc={}; fams.forEach(function(f){fc[f[0]]=f});
   var grid=document.getElementById('grid'), det=document.getElementById('detail'), fam=document.getElementById('fam');
   function show(e){
-    det.innerHTML='<div class="logo">'+(e[3]?'<img src="'+D+e[3]+'.svg" alt="" onerror="this.outerHTML=\'<span class=sym>'+e[0]+'</span>\'">':'<span class="sym">'+e[0]+'</span>')+'</div><h4>'+e[1]+'</h4><div class="fm" style="color:'+fc[e[2]][2]+'">'+fc[e[2]][1]+'</div><p>'+e[4]+'</p>';
+    det.style.setProperty('--c',fc[e[2]][2]);
+    det.innerHTML='<div class="logo">'+(e[3]?'<img src="'+D+e[3]+'.svg" alt="" onerror="this.outerHTML=\'<span class=sym>'+e[0]+'</span>\'">':'<span class="sym">'+e[0]+'</span>')+'</div><h4>'+e[1]+'</h4><div class="fm">'+fc[e[2]][1]+'</div><p>'+e[4]+'</p>';
   }
   E.forEach(function(e,i){
-    var d=document.createElement('div'); d.className='el'; d.dataset.f=e[2];
+    var d=document.createElement('div'); d.className='el'; d.dataset.f=e[2]; d.style.setProperty('--c',fc[e[2]][2]); d.style.setProperty('--i',i);
     d.innerHTML='<span class="n">'+String(i+1).padStart(2,'0')+'</span><span class="s">'+e[0]+'</span><span class="nm">'+e[1]+'</span>';
-    d.addEventListener('mouseenter',function(){show(e)}); d.addEventListener('click',function(){show(e)});
+    d.addEventListener('mouseenter',function(){stopAuto();show(e)}); d.addEventListener('click',function(){stopAuto();show(e)});
     grid.appendChild(d);
   });
   var active=null;
-  function light(f){
-    active=(active===f)?null:f;
+  function light(f,keep){
+    active=(active===f&&!keep)?null:f;
     [].forEach.call(fam.children,function(b){b.classList.toggle('on',b.dataset.f===active)});
     [].forEach.call(grid.children,function(el){
       var on=active&&el.dataset.f===active;
       el.classList.toggle('lit',!!on); el.classList.toggle('dim',!!active&&!on);
-      el.style.background=on?fc[el.dataset.f][2]:'';
     });
     if(active){var first=E.filter(function(e){return e[2]===active})[0]; show(first);}
   }
-  fams.forEach(function(f){var b=document.createElement('button'); b.dataset.f=f[0]; b.innerHTML='<i style="background:'+f[2]+'"></i>'+f[1]; b.onclick=function(){light(f[0])}; fam.appendChild(b);});
-  show(E[0]); light('k8s');
+  /* families light up in turn until the visitor takes over */
+  var auto=null,ai=0;
+  function stopAuto(){if(auto){clearInterval(auto);auto=null;}}
+  fams.forEach(function(f){var b=document.createElement('button'); b.dataset.f=f[0]; b.style.setProperty('--c',f[2]); b.innerHTML='<i></i>'+f[1]; b.onclick=function(){stopAuto();light(f[0])}; fam.appendChild(b);});
+  show(E[0]); light('k8s',true);
+  new IntersectionObserver(function(es,o){es.forEach(function(x){if(x.isIntersecting){grid.classList.add('go');o.disconnect();
+    auto=setInterval(function(){ai=(ai+1)%fams.length;light(fams[ai][0],true)},2600);}})},{threshold:.25}).observe(grid);
 
   /* work accordion */
   var panels=[].slice.call(document.querySelectorAll('.panel'));
@@ -809,9 +888,7 @@ section{padding:120px 0;position:relative}
   });
   function bars(){document.querySelectorAll('#cluster .bar b').forEach(function(b){b.style.width='0';setTimeout(function(){b.style.width=b.dataset.w},60)})}
   new IntersectionObserver(function(es,o){if(es[0].isIntersecting){bars();o.disconnect()}}).observe(document.getElementById('cluster'));
-
-  /* ticker: duplicate the line so the loop is seamless */
-  var tk=document.querySelector(".ticker .tk"); if(tk) tk.innerHTML+=tk.innerHTML;
+  var wm=location.hash.match(/^#work-([1-6])$/); if(wm) open(panels[wm[1]-1]);
 
   /* certifications: dark highlight walks down the list (pauses on hover) */
   var cl=document.getElementById("clist");
