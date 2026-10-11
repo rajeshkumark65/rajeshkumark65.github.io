@@ -69,6 +69,16 @@ section{padding:120px 0;position:relative}
 @keyframes tick{to{transform:translateX(-50%)}}
 .ticker:hover .tk{animation-play-state:paused}
 .figure .hv{position:absolute;left:-50%;top:-13.9%;width:200%;aspect-ratio:9/16;height:auto;border:0;pointer-events:none;z-index:0;opacity:0;transition:opacity .8s}.figure .hv.on{opacity:1}
+/* full-body presenter card (reference-reel style) */
+.figbox{z-index:auto;perspective:none}
+.figure{height:min(72vh,700px);width:auto;aspect-ratio:9/14.8;border-radius:30px;overflow:hidden;background:#e9e8e4;box-shadow:0 0 0 10px rgba(251,249,243,.75),0 50px 90px -35px rgba(40,34,20,.5);transform:none!important;will-change:auto;z-index:auto;animation:fadein 1.4s ease .2s backwards}
+@keyframes fadein{from{opacity:0}}
+.figure .halo,.figure .sheen{display:none}
+.figure .pfx{inset:0;transform:none!important}
+.figure .pfx img{position:absolute;inset:auto;top:0;left:0;width:100%;height:auto;object-fit:initial;animation:none}
+.figure .hv{left:0;top:0;width:100%}
+.figure .fade{display:none}
+.figure .live{bottom:14px}.figure .playb{bottom:58px}
 .figure .pfx{position:absolute;inset:-3%;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .figure .sheen{position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.38) 50%,transparent 65%);background-size:250% 100%;mix-blend-mode:soft-light;animation:sheen 7s ease-in-out 1.6s infinite}
 @keyframes sheen{0%{background-position:130% 0}45%,100%{background-position:-30% 0}}
@@ -78,7 +88,7 @@ section{padding:120px 0;position:relative}
 .chip img{width:18px;height:18px}
 .chip.c1{top:18%;left:-58px;animation-delay:0s,1.2s}
 .chip.c2{top:44%;right:-66px;animation-delay:-1.7s,1.45s}
-.chip.c3{top:70%;left:-44px;animation-delay:-3.3s,1.7s}
+.chip.c3{top:72%;left:6px;animation-delay:-3.3s,1.7s}
 @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -10px}}
 @keyframes pop{from{opacity:0;scale:.6}to{opacity:1;scale:1}}
 .live{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:500;box-shadow:var(--shadow);white-space:nowrap}
@@ -307,7 +317,7 @@ section{padding:120px 0;position:relative}
   .wrap{padding:0 16px}
   section{padding:84px 0}
   .hero,.hero .wrap{min-height:0}.hero{margin-bottom:0}.hero .wrap{grid-template-columns:1fr;align-items:start;padding-top:70px;padding-bottom:40px;gap:10px}.cue{display:none}
-  .figbox{grid-row:1;justify-self:center}.figure{width:min(320px,74vw)}.chip{font-size:11.5px;padding:6px 10px 6px 7px}.chip.c1{left:-14px}.chip.c2{right:-14px}.chip.c3{left:-10px;top:52%}.ghost{display:none}
+  .figbox{grid-row:1;justify-self:center}.figure{width:min(320px,74vw);height:auto}.chip{font-size:11.5px;padding:6px 10px 6px 7px}.chip.c1{left:-14px}.chip.c2{right:-14px}.chip.c3{left:-10px;top:52%}.ghost{display:none}.hero-l{margin-top:16px}
   .hero-r{align-items:flex-start;text-align:left;justify-self:start}.hero-r .tags{display:none}
   .about-grid,.certs{grid-template-columns:1fr}.lanyard{grid-row:auto}
   .grid-el{grid-template-columns:repeat(4,1fr)}
@@ -339,8 +349,9 @@ section{padding:120px 0;position:relative}
     <div class="figbox">
       <div class="figure" id="fig">
         <div class="halo"></div>
-        <div class="pfx" id="pfx"><img id="heroImg" src="../photo.jpg" alt="Rajeshkumar K"></div>
+        <div class="pfx" id="pfx"><img id="heroImg" src="../img/fullbody.jpg" alt="Rajeshkumar K"></div>
         <iframe class="hv" src="https://app.heygen.com/embeds/bf6ed3416c444ce3b577a8c430e1ad5e?autoplay=1&amp;muted=1&amp;loop=1&amp;controls=0" title="Rajeshkumar K intro" allow="autoplay; encrypted-media" tabindex="-1" aria-hidden="true"></iframe>
+        <div class="fade"></div>
         <div class="sheen"></div>
         <button class="playb" id="playIntro" type="button"><span class="pi"><svg viewBox="0 0 16 16"><path d="M5 3.2v9.6L13 8z" fill="currentColor"/></svg></span>Watch with sound · 13s</button>
         <div class="live"><span class="dot"></span> Open to DevOps &amp; SRE roles</div>
