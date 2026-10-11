@@ -85,6 +85,7 @@ section{padding:120px 0;position:relative}
 .figure .pfx{inset:0;transform:none!important}
 .figure .pfx img{position:absolute;inset:auto;top:0;left:0;width:100%;height:auto;object-fit:initial;animation:none}
 .figure .hv{left:0;top:0;width:100%;-webkit-mask-image:radial-gradient(ellipse 44% 50% at 51% 50%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 44% 50% at 51% 50%,#000 58%,transparent 100%);-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.figure .keyed{position:absolute;left:0;top:0;width:100%;height:auto;z-index:0}
 .figure .fade{position:absolute;left:-2px;right:-2px;bottom:-2px;height:15%;background:linear-gradient(180deg,rgba(243,239,228,0),var(--bg) 55%);pointer-events:none;z-index:1}
 .figbox:after{content:"";position:absolute;left:50%;bottom:1.5%;width:46%;height:22px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(40,34,20,.22),rgba(40,34,20,0));z-index:0}
 .figure .live{bottom:14px;z-index:3}.figure .playb{bottom:58px;z-index:3}
@@ -751,9 +752,53 @@ section{padding:120px 0;position:relative}
 
 <script>
 (function(){
-  /* talking intro video: drop intro.mp4 next to this page and it replaces the photo */
-  var v=document.createElement('video'); v.src='intro.mp4'; v.muted=true; v.autoplay=true; v.loop=true; v.playsInline=true; v.setAttribute('playsinline','');
-  v.addEventListener('loadeddata',function(){var im=document.getElementById('heroImg'); im.replaceWith(v); v.play().catch(function(){});});
+  /* own intro video: if intro.mp4 (recorded on a plain GREEN background) sits next to this page, it replaces the
+     HeyGen embed and the green is keyed out live with WebGL, so the presenter stands frameless with lip-synced audio. */
+  (function(){
+    var figK=document.getElementById('fig'); if(!figK) return;
+    var v=document.createElement('video');
+    v.src=window.INTRO_SRC||'intro.mp4'; v.muted=true; v.loop=true; v.playsInline=true; v.setAttribute('playsinline',''); v.preload='auto';
+    v.addEventListener('loadeddata',function(){
+      var c=document.createElement('canvas'); c.className='keyed'; c.width=v.videoWidth; c.height=v.videoHeight;
+      var gl=c.getContext('webgl',{premultipliedAlpha:false,alpha:true}); if(!gl) return;
+      function sh(t,s){var o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o}
+      var p=gl.createProgram();
+      gl.attachShader(p,sh(gl.VERTEX_SHADER,'attribute vec2 a;varying vec2 u;void main(){u=vec2(a.x*.5+.5,.5-a.y*.5);gl_Position=vec4(a,0.,1.);}'));
+      gl.attachShader(p,sh(gl.FRAGMENT_SHADER,'precision mediump float;varying vec2 u;uniform sampler2D t;uniform vec2 k;'+
+        'void main(){vec4 c=texture2D(t,u);'+
+        /* distance from pure green in Cb/Cr space; soft edge; green spill removed */
+        'float cb=-.169*c.r-.331*c.g+.5*c.b, cr=.5*c.r-.419*c.g-.081*c.b;'+
+        'float d=distance(vec2(cb,cr),k);'+
+        'float al=smoothstep(.07,.17,d);'+
+        'c.g=min(c.g,max(c.r,c.b)*1.05);'+
+        'gl_FragColor=vec4(c.rgb,al);}'));
+      gl.linkProgram(p); gl.useProgram(p);
+      /* key colour = the video's own background, sampled from the top-left corner of the first frame */
+      var sc=document.createElement('canvas'); sc.width=8; sc.height=8; var sx=sc.getContext('2d'); sx.drawImage(v,0,0,v.videoWidth*.04,v.videoHeight*.04,0,0,8,8);
+      var px=sx.getImageData(0,0,8,8).data, R=0,G=0,B=0; for(var q=0;q<px.length;q+=4){R+=px[q];G+=px[q+1];B+=px[q+2];} R/=64*255; G/=64*255; B/=64*255;
+      gl.uniform2f(gl.getUniformLocation(p,'k'),-.169*R-.331*G+.5*B,.5*R-.419*G-.081*B);
+      var b=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,b); gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+      var loc=gl.getAttribLocation(p,'a'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+      var tex=gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D,tex);
+      [gl.TEXTURE_WRAP_S,gl.TEXTURE_WRAP_T].forEach(function(k){gl.texParameteri(gl.TEXTURE_2D,k,gl.CLAMP_TO_EDGE)});
+      gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+      function draw(){ if(v.readyState>=2){ gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,v); gl.drawArrays(gl.TRIANGLE_STRIP,0,4); }
+        (v.requestVideoFrameCallback?v.requestVideoFrameCallback.bind(v):requestAnimationFrame)(draw); }
+      figK.appendChild(c); figK.classList.add('own','vid');
+      var ifr=figK.querySelector('.hv'); if(ifr){ifr.remove();}
+      v.play().catch(function(){}); draw();
+      /* "Hear me speak": same file, so audio is always in sync */
+      var btn=document.getElementById('playIntro');
+      if(btn){ var nb=btn.cloneNode(true); btn.replaceWith(nb); var lb=nb.lastChild;
+        nb.addEventListener('click',function(e){ e.stopPropagation();
+          var on=v.muted; v.muted=!on; if(on){v.currentTime=0;v.loop=false;}else{v.loop=true;}
+          v.play().catch(function(){}); nb.classList.toggle('on',on); lb.textContent=on?'Mute':'Hear me speak';
+        });
+        v.addEventListener('ended',function(){ v.muted=true; v.loop=true; v.currentTime=0; v.play(); nb.classList.remove('on'); lb.textContent='Hear me speak'; });
+      }
+    },{once:true});
+    v.load();
+  })();
 
 
   /* reveal on scroll */
@@ -882,29 +927,24 @@ section{padding:120px 0;position:relative}
     cl.addEventListener("mouseleave",function(){cset(cn);crun()});}
 
   /* hero video: show it only once the HeyGen player has started; the still cut-out and the video never overlap.
-     "Hear me speak" restarts the (silent) video and plays our own voice track with it, so the voice can be
-     changed without regenerating the video: replace img/intro-voice.wav. */
+     "Hear me speak" reloads the player unmuted (muted=0 is required) so the voice stays lip-synced. */
   var hv=document.querySelector(".figure .hv"), figEl=document.getElementById("fig"), pb=document.getElementById("playIntro");
   var HG="https://app.heygen.com/embeds/bf6ed3416c444ce3b577a8c430e1ad5e", LOOP=HG+"?autoplay=1&muted=1&loop=1&controls=0", ONCE=HG+"?autoplay=1&muted=1&loop=0&controls=0";
-  var voice=new Audio("img/intro-voice.wav"), talking=false, hvT=null, lbl=pb?pb.lastChild:null;
-  voice.preload="auto";
+  var talking=false, hvT=null, talkT=null, lbl=pb?pb.lastChild:null, SOUND=HG+"?autoplay=1&muted=0&loop=0&controls=0";
   function swapVideo(src){ clearTimeout(hvT); hv.classList.remove("on"); figEl.classList.remove("vid"); hv.src=src; }
   function setTalking(on){
     talking=on; pb.classList.toggle("on",on); lbl.textContent=on?"Stop":"Hear me speak · 13s";
-    if(!on){ voice.pause(); voice.currentTime=0; }
-    swapVideo(on?ONCE:LOOP);
+    clearTimeout(talkT); if(on) talkT=setTimeout(function(){setTalking(false)},16500);
+    swapVideo(on?SOUND:LOOP);
   }
   if(hv) hv.addEventListener("load",function(){
     clearTimeout(hvT);
     hvT=setTimeout(function(){
       hv.classList.add("on"); figEl.classList.add("vid");
-      if(talking){ voice.currentTime=0; voice.play().catch(function(){}); }
-    },talking?900:1300);
+    },1300);
   });
-  voice.addEventListener("ended",function(){ if(talking) setTimeout(function(){setTalking(false)},400); });
   if(pb) pb.addEventListener("click",function(e){
     e.stopPropagation();
-    if(!talking){ voice.play().then(function(){voice.pause();voice.currentTime=0;}).catch(function(){}); }  /* unlock audio inside the click */
     setTalking(!talking);
   });
 
