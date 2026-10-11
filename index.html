@@ -76,7 +76,7 @@ section{padding:120px 0;position:relative}
 .ticker i{font-family:var(--serif);font-weight:400;font-size:1.15em;color:#f1d9a0}
 @keyframes tick{to{transform:translateX(-50%)}}
 .ticker:hover .tk{animation-play-state:paused}
-.figure .hv{position:absolute;left:-50%;top:-13.9%;width:200%;aspect-ratio:9/16;height:auto;border:0;pointer-events:none;z-index:0;opacity:0;transition:opacity .8s}.figure .hv.on{opacity:1}
+.figure .hv{position:absolute;left:-50%;top:-13.9%;width:200%;aspect-ratio:9/16;height:auto;border:0;pointer-events:none;z-index:0;opacity:0}.figure.vid .pfx{visibility:hidden}.figure .hv.on{opacity:1}
 /* frameless standing presenter: talking video clipped to a silhouette mask cut from the source photo */
 .figbox{z-index:auto;perspective:1100px}
 .figure{height:min(80vh,780px);width:auto;aspect-ratio:9/15;border-radius:0;overflow:hidden;background:none;box-shadow:none;transition:none;transform-origin:50% 80%;will-change:auto;z-index:auto;animation:fadein 1.4s ease .2s backwards}
@@ -84,7 +84,7 @@ section{padding:120px 0;position:relative}
 .figure .halo,.figure .sheen{display:none}
 .figure .pfx{inset:0;transform:none!important}
 .figure .pfx img{position:absolute;inset:auto;top:0;left:0;width:100%;height:auto;object-fit:initial;animation:none}
-.figure .hv{left:0;top:0;width:100%;-webkit-mask-image:url(img/hero-mask.png);mask-image:url(img/hero-mask.png);-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.figure .hv{left:0;top:0;width:100%;-webkit-mask-image:radial-gradient(ellipse 44% 50% at 51% 50%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 44% 50% at 51% 50%,#000 58%,transparent 100%);-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
 .figure .fade{position:absolute;left:-2px;right:-2px;bottom:-2px;height:15%;background:linear-gradient(180deg,rgba(243,239,228,0),var(--bg) 55%);pointer-events:none;z-index:1}
 .figbox:after{content:"";position:absolute;left:50%;bottom:1.5%;width:46%;height:22px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(40,34,20,.22),rgba(40,34,20,0));z-index:0}
 .figure .live{bottom:14px;z-index:3}.figure .playb{bottom:58px;z-index:3}
@@ -406,9 +406,6 @@ section{padding:120px 0;position:relative}
         <button class="playb" id="playIntro" type="button"><span class="pi"><svg viewBox="0 0 16 16"><path d="M5 3.2v9.6L13 8z" fill="currentColor"/></svg></span>Hear me speak · 13s</button>
         <div class="live"><span class="dot"></span> Open to DevOps &amp; SRE roles</div>
       </div>
-      <div class="chip c1"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/kubernetes/kubernetes-original.svg" alt="">Kubernetes</div>
-      <div class="chip c2"><span class="dot"></span>OpenObserve</div>
-      <div class="chip c3"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/argocd/argocd-original.svg" alt="">ArgoCD</div>
     </div>
     <div class="hero-r reveal">
       <div class="tags"><span>50% OpenObserve R&amp;D</span><span>50% Production · SLA</span><span>Bengaluru, India</span></div>
@@ -758,21 +755,6 @@ section{padding:120px 0;position:relative}
   var v=document.createElement('video'); v.src='intro.mp4'; v.muted=true; v.autoplay=true; v.loop=true; v.playsInline=true; v.setAttribute('playsinline','');
   v.addEventListener('loadeddata',function(){var im=document.getElementById('heroImg'); im.replaceWith(v); v.play().catch(function(){});});
 
-  /* hero 3D motion: the presenter turns toward the cursor, layers sit at different depths; slow sway when idle */
-  var fig=document.getElementById('fig'), hero=document.getElementById('top'), ghost=document.querySelector('.ghost'), chips=[].slice.call(document.querySelectorAll('.chip'));
-  if(fig && window.matchMedia('(prefers-reduced-motion:no-preference)').matches){
-    var tx=0,ty=0,cx=0,cy=0,last=0;
-    hero.addEventListener('mousemove',function(e){var r=hero.getBoundingClientRect(); tx=(e.clientX-r.left)/r.width-.5; ty=(e.clientY-r.top)/r.height-.5; last=performance.now();});
-    hero.addEventListener('mouseleave',function(){tx=0;ty=0;});
-    (function loop(t){
-      var idle=performance.now()-last>2500, sx=idle?Math.sin(t/2200)*.22:0, sy=idle?Math.sin(t/3100)*.08:0;
-      cx+=((tx+sx)-cx)*.06; cy+=((ty+sy)-cy)*.06;
-      fig.style.transform='rotateY('+(cx*22).toFixed(2)+'deg) rotateX('+(-cy*10).toFixed(2)+'deg) translateZ(0)';
-      if(ghost) ghost.style.translate=(-cx*70).toFixed(1)+'px '+(-cy*24).toFixed(1)+'px';
-      chips.forEach(function(c,i){var d=[46,62,38][i]||40; c.style.transform='translate3d('+(cx*d).toFixed(1)+'px,'+(cy*d*.6).toFixed(1)+'px,0)';});
-      requestAnimationFrame(loop);
-    })(0);
-  }
 
   /* reveal on scroll */
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
@@ -899,20 +881,32 @@ section{padding:120px 0;position:relative}
     cl.addEventListener("mouseenter",function(){clearInterval(ct);cset(-1)});
     cl.addEventListener("mouseleave",function(){cset(cn);crun()});}
 
-  /* hero video: fade in once the HeyGen player has had time to start */
-  var hv=document.querySelector(".figure .hv"); if(hv) hv.addEventListener("load",function(){setTimeout(function(){hv.classList.add("on")},1200)});
-
-  /* intro: the hero avatar speaks in place (browsers allow sound only after a click) */
-  var pb=document.getElementById("playIntro"), hvf=document.querySelector(".figure .hv");
-  if(pb && hvf){
-    var HG="https://app.heygen.com/embeds/bf6ed3416c444ce3b577a8c430e1ad5e", talking=false, lbl=pb.lastChild;
-    pb.addEventListener("click",function(e){
-      e.stopPropagation(); talking=!talking;
-      hvf.src=HG+(talking?"?autoplay=1&loop=0&controls=0":"?autoplay=1&muted=1&loop=1&controls=0");
-      pb.classList.toggle("on",talking);
-      lbl.textContent=talking?"Mute":"Hear me speak · 13s";
-    });
+  /* hero video: show it only once the HeyGen player has started; the still cut-out and the video never overlap.
+     "Hear me speak" restarts the (silent) video and plays our own voice track with it, so the voice can be
+     changed without regenerating the video: replace img/intro-voice.wav. */
+  var hv=document.querySelector(".figure .hv"), figEl=document.getElementById("fig"), pb=document.getElementById("playIntro");
+  var HG="https://app.heygen.com/embeds/bf6ed3416c444ce3b577a8c430e1ad5e", LOOP=HG+"?autoplay=1&muted=1&loop=1&controls=0", ONCE=HG+"?autoplay=1&muted=1&loop=0&controls=0";
+  var voice=new Audio("img/intro-voice.wav"), talking=false, hvT=null, lbl=pb?pb.lastChild:null;
+  voice.preload="auto";
+  function swapVideo(src){ clearTimeout(hvT); hv.classList.remove("on"); figEl.classList.remove("vid"); hv.src=src; }
+  function setTalking(on){
+    talking=on; pb.classList.toggle("on",on); lbl.textContent=on?"Stop":"Hear me speak · 13s";
+    if(!on){ voice.pause(); voice.currentTime=0; }
+    swapVideo(on?ONCE:LOOP);
   }
+  if(hv) hv.addEventListener("load",function(){
+    clearTimeout(hvT);
+    hvT=setTimeout(function(){
+      hv.classList.add("on"); figEl.classList.add("vid");
+      if(talking){ voice.currentTime=0; voice.play().catch(function(){}); }
+    },talking?900:1300);
+  });
+  voice.addEventListener("ended",function(){ if(talking) setTimeout(function(){setTalking(false)},400); });
+  if(pb) pb.addEventListener("click",function(e){
+    e.stopPropagation();
+    if(!talking){ voice.play().then(function(){voice.pause();voice.currentTime=0;}).catch(function(){}); }  /* unlock audio inside the click */
+    setTalking(!talking);
+  });
 
   /* lightbox */
   document.addEventListener('click',function(e){
