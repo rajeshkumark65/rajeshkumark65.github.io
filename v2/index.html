@@ -11,7 +11,7 @@
 <meta property="og:image" content="https://rajeshkumark65.github.io/og-card.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600;1,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#f3efe4; --bg2:#ebe5d6; --card:#fbf9f3; --ink:#15151c; --ink2:#4a4a55; --mute:#625e51;
@@ -45,10 +45,12 @@ section{padding:120px 0;position:relative}
 .brand{position:fixed;top:30px;left:32px;z-index:49;font-weight:700;font-size:15px;letter-spacing:-.01em}
 .brand i{font-family:var(--serif);font-weight:400;font-size:19px}
 .brand{display:flex;align-items:center;gap:12px;top:20px}
-.mono-rk{width:46px;height:46px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;white-space:nowrap;padding-right:2px;font:400 26px/1 var(--serif);font-style:italic;letter-spacing:-.04em;box-shadow:0 0 0 4px rgba(201,162,75,.35),0 10px 24px -10px rgba(36,38,74,.7);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.mono-rk{width:46px;height:46px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;white-space:nowrap;padding-right:2px;font:700 22px/1 "Playfair Display",Georgia,serif;font-style:italic;letter-spacing:-.02em;box-shadow:0 0 0 4px rgba(201,162,75,.35),0 10px 24px -10px rgba(36,38,74,.7);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .mono-rk em{color:var(--gold);font-style:italic;margin-left:-1px}
 .brand:hover .mono-rk{transform:rotate(-12deg) scale(1.08)}
-.brand .bn{font-weight:700;font-size:15px}
+.brand .bn{display:flex;align-items:baseline;gap:6px;line-height:1}
+.brand .bn b{font:700 21px/1 "Playfair Display",Georgia,serif;font-style:italic;letter-spacing:-.01em;color:var(--ink)}
+.brand .bn i{font:800 19px/1 var(--sans);font-style:normal;color:var(--navy);background:linear-gradient(transparent 62%,rgba(201,162,75,.55) 62%);padding:0 2px}
 @media (max-width:820px){.brand .bn{display:none}.mono-rk{width:40px;height:40px;font-size:22px}}
 
 /* ---------- hero ---------- */
@@ -76,14 +78,14 @@ section{padding:120px 0;position:relative}
 .ticker:hover .tk{animation-play-state:paused}
 .figure .hv{position:absolute;left:-50%;top:-13.9%;width:200%;aspect-ratio:9/16;height:auto;border:0;pointer-events:none;z-index:0;opacity:0;transition:opacity .8s}.figure .hv.on{opacity:1}
 /* frameless standing presenter: talking video clipped to a silhouette mask cut from the source photo */
-.figbox{z-index:auto;perspective:none}
-.figure{height:min(80vh,780px);width:auto;aspect-ratio:9/15;border-radius:0;overflow:hidden;background:none;box-shadow:none;transform:none!important;will-change:auto;z-index:auto;animation:fadein 1.4s ease .2s backwards}
+.figbox{z-index:auto;perspective:1100px}
+.figure{height:min(80vh,780px);width:auto;aspect-ratio:9/15;border-radius:0;overflow:hidden;background:none;box-shadow:none;transition:none;transform-origin:50% 80%;will-change:auto;z-index:auto;animation:fadein 1.4s ease .2s backwards}
 @keyframes fadein{from{opacity:0}}
 .figure .halo,.figure .sheen{display:none}
 .figure .pfx{inset:0;transform:none!important}
 .figure .pfx img{position:absolute;inset:auto;top:0;left:0;width:100%;height:auto;object-fit:initial;animation:none}
 .figure .hv{left:0;top:0;width:100%;-webkit-mask-image:url(../img/hero-mask.png);mask-image:url(../img/hero-mask.png);-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
-.figure .fade{position:absolute;left:0;right:0;bottom:0;height:9%;background:linear-gradient(180deg,rgba(243,239,228,0),var(--bg) 70%);pointer-events:none;z-index:1}
+.figure .fade{position:absolute;left:-2px;right:-2px;bottom:-2px;height:15%;background:linear-gradient(180deg,rgba(243,239,228,0),var(--bg) 55%);pointer-events:none;z-index:1}
 .figbox:after{content:"";position:absolute;left:50%;bottom:1.5%;width:46%;height:22px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(40,34,20,.22),rgba(40,34,20,0));z-index:0}
 .figure .live{bottom:14px;z-index:3}.figure .playb{bottom:58px;z-index:3}
 .figure .pfx{position:absolute;inset:-3%;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
@@ -375,7 +377,7 @@ section{padding:120px 0;position:relative}
 </head>
 <body>
 
-<a class="brand" href="#top" aria-label="Rajeshkumar K, back to top"><span class="mono-rk">R<em>k</em></span><span class="bn">Rajeshkumar <i>K.</i></span></a>
+<a class="brand" href="#top" aria-label="Rajeshkumar K, back to top"><span class="mono-rk">R<em>K</em></span><span class="bn"><b>Rajeshkumar</b><i>K.</i></span></a>
 <nav class="nav" id="nav">
   <a href="#about">About</a><a href="#how">Role</a><a href="#skills">Skills</a><a href="#work">Work</a><a href="#experience">Experience</a><a href="#moments">Highlights</a><a href="#contact">Contact</a>
 </nav>
@@ -750,15 +752,20 @@ section{padding:120px 0;position:relative}
   var v=document.createElement('video'); v.src='intro.mp4'; v.muted=true; v.autoplay=true; v.loop=true; v.playsInline=true; v.setAttribute('playsinline','');
   v.addEventListener('loadeddata',function(){var im=document.getElementById('heroImg'); im.replaceWith(v); v.play().catch(function(){});});
 
-  /* hero photo motion: tilt toward the cursor, photo shifts the other way (depth) */
-  var fig=document.getElementById('fig'), pfx=document.getElementById('pfx'), hero=document.getElementById('top');
-  if(fig && window.matchMedia('(hover:hover) and (prefers-reduced-motion:no-preference)').matches){
-    hero.addEventListener('mousemove',function(e){
-      var r=fig.getBoundingClientRect(), x=(e.clientX-(r.left+r.width/2))/window.innerWidth, y=(e.clientY-(r.top+r.height/2))/window.innerHeight;
-      fig.style.transform='rotateY('+(x*14).toFixed(2)+'deg) rotateX('+(-y*10).toFixed(2)+'deg)';
-      pfx.style.transform='translate('+(-x*22).toFixed(1)+'px,'+(-y*16).toFixed(1)+'px)';
-    });
-    hero.addEventListener('mouseleave',function(){fig.style.transform='';pfx.style.transform='';});
+  /* hero 3D motion: the presenter turns toward the cursor, layers sit at different depths; slow sway when idle */
+  var fig=document.getElementById('fig'), hero=document.getElementById('top'), ghost=document.querySelector('.ghost'), chips=[].slice.call(document.querySelectorAll('.chip'));
+  if(fig && window.matchMedia('(prefers-reduced-motion:no-preference)').matches){
+    var tx=0,ty=0,cx=0,cy=0,last=0;
+    hero.addEventListener('mousemove',function(e){var r=hero.getBoundingClientRect(); tx=(e.clientX-r.left)/r.width-.5; ty=(e.clientY-r.top)/r.height-.5; last=performance.now();});
+    hero.addEventListener('mouseleave',function(){tx=0;ty=0;});
+    (function loop(t){
+      var idle=performance.now()-last>2500, sx=idle?Math.sin(t/2200)*.22:0, sy=idle?Math.sin(t/3100)*.08:0;
+      cx+=((tx+sx)-cx)*.06; cy+=((ty+sy)-cy)*.06;
+      fig.style.transform='rotateY('+(cx*22).toFixed(2)+'deg) rotateX('+(-cy*10).toFixed(2)+'deg) translateZ(0)';
+      if(ghost) ghost.style.translate=(-cx*70).toFixed(1)+'px '+(-cy*24).toFixed(1)+'px';
+      chips.forEach(function(c,i){var d=[46,62,38][i]||40; c.style.transform='translate3d('+(cx*d).toFixed(1)+'px,'+(cy*d*.6).toFixed(1)+'px,0)';});
+      requestAnimationFrame(loop);
+    })(0);
   }
 
   /* reveal on scroll */
