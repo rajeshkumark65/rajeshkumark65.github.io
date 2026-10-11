@@ -97,6 +97,14 @@ html.intro-lock,html.intro-lock body{overflow:hidden;overscroll-behavior:none}
 @media (max-width:820px){.hear-again,.snd{bottom:-48px}}
 .hear-again{position:absolute;left:50%;bottom:-58px;top:auto;right:auto;margin-left:-22px;width:44px;height:44px;border:0;background:#2b2f6b;color:#fff;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 10px 24px -10px rgba(43,47,107,.75);z-index:60;transform:scale(.6)}
 .hear-again.on{transform:none}
+.hero .cue{display:none}
+.scroll-cue{position:absolute;right:30px;bottom:14px;z-index:70;display:flex;flex-direction:column;align-items:center;gap:2px;transform:translateY(12px);opacity:0;pointer-events:none;color:#2b2f6b;font:700 11px var(--sans);letter-spacing:.22em;text-transform:uppercase;transition:opacity .6s,transform .6s}
+.scroll-cue.on{opacity:1;transform:none}
+.scroll-cue span{animation:cueflash 1.6s ease-in-out infinite}
+.scroll-cue svg{width:22px;height:22px;animation:cuebounce 1.6s ease-in-out infinite}
+@keyframes cueflash{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes cuebounce{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(6px);opacity:1}}
+@media (max-width:820px){.scroll-cue{position:fixed;right:16px;bottom:96px}}
 .snd{width:auto;height:40px;margin-left:0;padding:0 18px 0 14px;gap:8px;display:flex;align-items:center;white-space:nowrap;border-radius:999px;background:#2b2f6b;border:0;color:#fff;font:600 13.5px var(--sans);letter-spacing:.01em;box-shadow:0 12px 26px -12px rgba(43,47,107,.8);transform:translate(-50%,8px)}
 .snd.on{transform:translate(-50%,0)}
 .snd:hover{background:#3a3f8f;color:#fff}
@@ -812,6 +820,13 @@ html.intro-lock,html.intro-lock body{overflow:hidden;overscroll-behavior:none}
       if(window.matchMedia&&matchMedia('(hover:none)').matches){ hint.querySelector('span').textContent='Tap anywhere to hear my intro'; }
       var again=document.createElement('button'); again.type='button'; again.className='hear-again'; again.setAttribute('aria-label','Play intro again'); again.innerHTML='<svg viewBox="0 0 16 16" fill="currentColor"><path d="M4 2.5v11l9.5-5.5z"/></svg>';
       (figK.parentNode||document.body).appendChild(hint); (figK.parentNode||document.body).appendChild(again);
+      /* after the intro: a softly flashing "Scroll down" cue, shown only until the visitor scrolls once (remembered) */
+      var cue=document.createElement('div'); cue.className='scroll-cue'; cue.setAttribute('aria-hidden','true');
+      cue.innerHTML='<span>Scroll down</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+      (document.querySelector('.hero .wrap')||document.body).appendChild(cue);
+      var scrolledOnce=false; try{ scrolledOnce=localStorage.getItem('rk_scrolled')==='1'; }catch(_){}
+      function showCue(){ if(!scrolledOnce && window.scrollY<40) cue.classList.add('on'); }
+      window.addEventListener('scroll',function(){ if(!locked && window.scrollY>40 && !scrolledOnce){ scrolledOnce=true; cue.classList.remove('on'); try{ localStorage.setItem('rk_scrolled','1'); }catch(_){} } },{passive:true});
       var KEYS={32:1,33:1,34:1,35:1,36:1,37:1,38:1,39:1,40:1};
       function block(e){ if(locked){ e.preventDefault(); } }
       window.addEventListener('wheel',block,{passive:false});
@@ -821,12 +836,12 @@ html.intro-lock,html.intro-lock body{overflow:hidden;overscroll-behavior:none}
       function lock(){ locked=true; html.classList.add('intro-lock'); window.scrollTo(0,0); }
       function unlock(){ locked=false; html.classList.remove('intro-lock'); hint.classList.remove('on'); }
       function speak(withSound){
-        again.classList.remove('on'); v.loop=false; v.currentTime=0; v.muted=!withSound;
+        again.classList.remove('on'); cue.classList.remove('on'); v.loop=false; v.currentTime=0; v.muted=!withSound;
         v.play().catch(function(){ v.muted=true; v.play(); });
         heard=heard||withSound; hint.classList.toggle('on',!withSound);
       }
       v.addEventListener('ended',function(){
-        unlock(); v.muted=true; again.classList.add('on');
+        unlock(); v.muted=true; again.classList.add('on'); showCue();
         v.currentTime=Math.max(0,v.duration-0.05);   /* hold the last frame: he stays standing */
       });
       v.addEventListener('error',unlock);   /* never trap the visitor if the video fails */
