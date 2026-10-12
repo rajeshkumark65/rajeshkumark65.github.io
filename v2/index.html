@@ -818,7 +818,7 @@ if(location.hash){history.replaceState(null,'',location.pathname+location.search
       /* intro flow: the presenter speaks first and the page cannot scroll until the speech ends.
          He stands still until the visitor clicks or taps anywhere, then speaks with sound. When it ends, scrolling unlocks and a small
          navy replay button appears under his feet (it stays in the hero, never follows the scroll). */
-      var html=document.documentElement, locked=true, heard=false;
+      var html=document.documentElement, locked=true, heard=false, starting=false;
       var hint=document.createElement('button'); hint.type='button'; hint.className='snd'; hint.setAttribute('aria-label','Play intro with sound'); hint.innerHTML='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6v4h2.5l3.5 3V3L5 6z" fill="currentColor"/><path d="M11 5.5a3.5 3.5 0 0 1 0 5M12.8 3.8a6 6 0 0 1 0 8.4"/></svg><span>Click anywhere to hear my intro</span>';
       if(window.matchMedia&&matchMedia('(hover:none)').matches){ hint.querySelector('span').textContent='Tap anywhere to hear my intro'; }
       var again=document.createElement('button'); again.type='button'; again.className='hear-again'; again.setAttribute('aria-label','Play intro again'); again.innerHTML='<svg viewBox="0 0 16 16" fill="currentColor"><path d="M4 2.5v11l9.5-5.5z"/></svg>';
@@ -839,9 +839,14 @@ if(location.hash){history.replaceState(null,'',location.pathname+location.search
       function lock(){ locked=true; window.scrollTo({top:0,left:0,behavior:'instant'}); html.classList.add('intro-lock'); }
       function unlock(){ locked=false; html.classList.remove('intro-lock'); hint.classList.remove('on'); }
       function speak(withSound){
-        again.classList.remove('on'); cue.classList.remove('on'); v.loop=false; v.currentTime=0; v.muted=!withSound;
-        v.play().catch(function(){ v.muted=true; v.play(); });
-        heard=heard||withSound; hint.classList.toggle('on',!withSound);
+        again.classList.remove('on'); cue.classList.remove('on'); v.loop=false; v.currentTime=0; starting=true;
+        if(withSound){ v.muted=false; v.removeAttribute('muted'); v.volume=1; }
+        var pr=v.play();
+        if(pr&&pr.then){
+          pr.then(function(){ starting=false; if(withSound){ heard=true; hint.classList.remove('on'); } })
+            /* sound blocked (phones allow it only from a finished tap): stay still and keep the hint for the next tap */
+            .catch(function(){ starting=false; v.muted=true; v.pause(); v.currentTime=0; hint.classList.add('on'); });
+        } else { starting=false; heard=heard||withSound; hint.classList.remove('on'); }
       }
       v.addEventListener('ended',function(){
         unlock(); v.muted=true; again.classList.add('on'); showCue();
@@ -849,8 +854,9 @@ if(location.hash){history.replaceState(null,'',location.pathname+location.search
       });
       v.addEventListener('error',unlock);   /* never trap the visitor if the video fails */
       lock(); v.pause(); v.currentTime=0; hint.classList.add('on');   /* stands still until the first click */
-      function firstTap(e){ if(!heard && locked && !e.target.closest('.hear-again')){ lock(); speak(true); } }
-      ['pointerdown','keydown','touchstart'].forEach(function(t){ window.addEventListener(t,firstTap,{once:true,passive:true}); });
+      /* phones count only a finished tap (touchend / click) as permission for sound, not touchstart / pointerdown */
+      function firstTap(e){ if(!heard && !starting && locked && !(e.target.closest&&e.target.closest('.hear-again'))){ lock(); speak(true); } }
+      ['click','touchend','keydown'].forEach(function(t){ window.addEventListener(t,firstTap,{passive:true}); });
       again.addEventListener('click',function(e){ e.stopPropagation(); speak(true); });
     },{once:true});
     /* some phones (iOS) only decode the first frame once playback starts: start muted, the loadeddata handler pauses it */
