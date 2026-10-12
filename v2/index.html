@@ -20,7 +20,7 @@
   --sans:"Inter Tight",system-ui,"Segoe UI",Arial,sans-serif; --serif:"Instrument Serif",Georgia,serif; --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scrollbar-gutter:stable}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
@@ -788,26 +788,22 @@ if(location.hash){history.replaceState(null,'',location.pathname+location.search
   (function(){
     var figK=document.getElementById('fig'); if(!figK) return;
     var v=document.createElement('video');
-    v.src=window.INTRO_SRC||'intro.mp4'; v.muted=true; v.loop=true; v.playsInline=true; v.setAttribute('playsinline',''); v.preload='auto';
+    v.src=window.INTRO_SRC||'intro.mp4'; v.muted=true; v.loop=true; v.playsInline=true; v.setAttribute('playsinline',''); v.setAttribute('webkit-playsinline',''); v.setAttribute('muted',''); v.preload='auto';
     v.addEventListener('loadeddata',function(){
       var c=document.createElement('canvas'); c.className='keyed'; c.width=v.videoWidth; c.height=v.videoHeight;
-      var gl=c.getContext('webgl',{premultipliedAlpha:false,alpha:true}); if(!gl) return;
+      var gl=c.getContext('webgl',{premultipliedAlpha:true,alpha:true}); if(!gl) return;
       function sh(t,s){var o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o}
       var p=gl.createProgram();
       gl.attachShader(p,sh(gl.VERTEX_SHADER,'attribute vec2 a;varying vec2 u;void main(){u=vec2(a.x*.5+.5,.5-a.y*.5);gl_Position=vec4(a,0.,1.);}'));
-      gl.attachShader(p,sh(gl.FRAGMENT_SHADER,'precision mediump float;varying vec2 u;uniform sampler2D t;uniform vec2 k;'+
+      gl.attachShader(p,sh(gl.FRAGMENT_SHADER,'precision mediump float;varying vec2 u;uniform sampler2D t;'+
         'void main(){vec4 c=texture2D(t,u);'+
-        /* distance from pure green in Cb/Cr space; soft edge; green spill removed */
-        'float cb=-.169*c.r-.331*c.g+.5*c.b, cr=.5*c.r-.419*c.g-.081*c.b;'+
-        'float d=distance(vec2(cb,cr),k);'+
-        'float al=smoothstep(.11,.22,d);'+
-        'c.g=min(c.g,max(c.r,c.b));'+
-        'gl_FragColor=vec4(c.rgb,al);}'));
+        /* fixed green-screen rule (no colour sampling, so it behaves the same on every phone and browser):
+           how much greener a pixel is than its red/blue; background green ~.36, skin/clothes ~0; soft edge, spill removed */
+        'float s=c.g-max(c.r,c.b);'+
+        'float al=1.-smoothstep(.09,.22,s);'+
+        'c.g=min(c.g,max(c.r,c.b)+.02);'+
+        'gl_FragColor=vec4(c.rgb*al,al);}'));
       gl.linkProgram(p); gl.useProgram(p);
-      /* key colour = the video's own background, sampled from the top-left corner of the first frame */
-      var sc=document.createElement('canvas'); sc.width=8; sc.height=8; var sx=sc.getContext('2d'); sx.drawImage(v,0,0,v.videoWidth*.04,v.videoHeight*.04,0,0,8,8);
-      var px=sx.getImageData(0,0,8,8).data, R=0,G=0,B=0; for(var q=0;q<px.length;q+=4){R+=px[q];G+=px[q+1];B+=px[q+2];} R/=64*255; G/=64*255; B/=64*255;
-      gl.uniform2f(gl.getUniformLocation(p,'k'),-.169*R-.331*G+.5*B,.5*R-.419*G-.081*B);
       var b=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,b); gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
       var loc=gl.getAttribLocation(p,'a'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
       var tex=gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D,tex);
@@ -849,14 +845,16 @@ if(location.hash){history.replaceState(null,'',location.pathname+location.search
       }
       v.addEventListener('ended',function(){
         unlock(); v.muted=true; again.classList.add('on'); showCue();
-        v.currentTime=Math.max(0,v.duration-0.05);   /* hold the last frame: he stays standing */
+        /* no seek here: the clip already ends on a calm, eyes-open frame, so it simply stays on it */
       });
       v.addEventListener('error',unlock);   /* never trap the visitor if the video fails */
-      lock(); v.pause(); hint.classList.add('on');   /* stands still until the first click */
+      lock(); v.pause(); v.currentTime=0; hint.classList.add('on');   /* stands still until the first click */
       function firstTap(e){ if(!heard && locked && !e.target.closest('.hear-again')){ lock(); speak(true); } }
       ['pointerdown','keydown','touchstart'].forEach(function(t){ window.addEventListener(t,firstTap,{once:true,passive:true}); });
       again.addEventListener('click',function(e){ e.stopPropagation(); speak(true); });
     },{once:true});
+    /* some phones (iOS) only decode the first frame once playback starts: start muted, the loadeddata handler pauses it */
+    v.addEventListener('loadedmetadata',function(){ if(v.readyState<2){ var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){}); } },{once:true});
     v.load();
   })();
 
