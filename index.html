@@ -457,7 +457,7 @@ if(location.hash){history.replaceState(null,'',location.pathname+location.search
       <h2 class="big">Hi, I'm <span class="serif">Rajesh.</span></h2>
       <p>DevOps engineer at Trinity Mobility. My role is split evenly between two jobs.</p>
       <p><b>50% R&amp;D lead:</b> I lead the company's move to <b>OpenObserve</b> and <b>OpenTelemetry</b>, bringing every service's logs, traces and metrics into one platform.</p>
-      <p><b>50% production:</b> I own daily production issues for 20+ live projects through LnM monitoring and Jira tickets, keep every platform inside its SLA, and install new clusters when a project needs one.</p>
+      <p><b>50% production:</b> I own daily production issues for 20+ live projects through LnM monitoring and Jira tickets, keep every platform inside its SLA on on-prem and Azure AKS Kubernetes (Kubernetes layer), and install new clusters when a project needs one.</p>
       <div class="row">
         <a class="btn dark" href="Rajeshkumar-K-Resume.pdf" target="_blank">Résumé ↓</a>
         <a class="btn ghostb" href="https://www.linkedin.com/in/rajeshkumark65/" target="_blank">LinkedIn ↗</a>
@@ -573,14 +573,14 @@ if(location.hash){history.replaceState(null,'',location.pathname+location.search
           <div>
             <div class="cat">01 · 50% of my role · Production</div>
             <h3>Daily production issues, kept inside SLA</h3>
-            <p class="lead">I own production issues for 20+ live smart-city and IoT projects running on Kubernetes, from the first alert to the permanent fix.</p>
+            <p class="lead">I own production issues for 20+ live smart-city and IoT projects running on Kubernetes, on-prem and on Azure AKS (Kubernetes layer), from the first alert to the permanent fix.</p>
             <ul>
               <li><b>LnM monitoring to Jira:</b> every alert becomes a ticket that is fixed or assigned, followed up and closed</li>
               <li><b>SLA-driven early warnings:</b> 70 / 80 / 90% thresholds flag problems before a breach</li>
               <li><b>Root cause, not just restart:</b> node, storage and workload failures fixed so they do not repeat</li>
               <li><b>Cluster installation:</b> new on-prem Kubernetes clusters set up when a project needs one</li>
             </ul>
-            <div class="chips"><span><i></i>Kubernetes</span><span>Prometheus</span><span>Grafana</span><span>ELK</span><span>Jira</span></div>
+            <div class="chips"><span><i></i>Kubernetes</span><span>Azure AKS</span><span>Prometheus</span><span>Grafana</span><span>ELK</span><span>Jira</span></div>
           </div>
           <div class="cluster" id="cluster">
             <div class="hd"><span>cluster · production</span><b>● all nodes ready</b></div>
@@ -899,6 +899,7 @@ if(location.hash){history.replaceState(null,'',location.pathname+location.search
   var fams=[['k8s','Delivery & Kubernetes','#24264a'],['obs','OpenObserve','#1d6b67'],['ai','Gen AI monitoring','#8a3a78'],['mon','Logging & Monitoring','#94561a'],['code','Scripting & OS','#3c6a37']];
   var E=[
    ['Ks','Kubernetes','k8s','kubernetes/kubernetes-original','Production clusters for 20+ live projects: operate, troubleshoot, install new ones.'],
+   ['Ak','Azure AKS','k8s','azure/azure-original','Kubernetes workloads on Azure AKS. I work at the Kubernetes layer only.'],
    ['Hm','Helm','k8s','helm/helm-original','Charts and per-environment values; chart bugs fixed at the source.'],
    ['Ac','ArgoCD','k8s','argocd/argocd-original','Syncs each new build from Nexus to the cluster, then I validate.'],
    ['Gl','GitLab','k8s','gitlab/gitlab-original','Source of truth: every OpenObserve and config change is pushed here.'],
