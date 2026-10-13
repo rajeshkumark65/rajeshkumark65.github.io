@@ -275,6 +275,7 @@ html.intro-lock,html.intro-lock body{overflow:hidden;overscroll-behavior:none}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
 .chips span{font-size:12px;padding:4px 10px;border-radius:999px;background:var(--bg2);color:var(--ink2);display:flex;align-items:center;gap:6px}
 .chips span i{width:7px;height:7px;border-radius:50%;background:var(--ok)}
+.soft{margin-top:34px}.soft .chips span{font-size:14px;padding:7px 14px;background:var(--bg)}
 .vis{border-radius:14px;overflow:hidden;background:var(--bg2);border:1px solid var(--line);align-self:center;cursor:zoom-in}
 .vis img{width:100%;height:auto}
 .vis.pad{padding:0}
@@ -555,6 +556,7 @@ if(location.hash){history.replaceState(null,'',location.pathname+location.search
       <div class="grid-el" id="grid"></div>
       <aside class="detail" id="detail"></aside>
     </div>
+    <div class="soft reveal"><div class="eyebrow"><b>+</b> Soft skills</div><div class="chips"><span><i></i>Communication</span><span>Problem-solving</span><span>Teamwork</span><span>Collaboration</span><span>Leadership</span><span>Adaptability</span><span>Critical thinking</span><span>Attention to detail</span></div></div>
   </div>
 </section>
 
