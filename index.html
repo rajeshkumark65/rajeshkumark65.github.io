@@ -257,7 +257,7 @@ html.intro-lock,html.intro-lock body{overflow:hidden;overscroll-behavior:none}
 
 /* ---------- work ---------- */
 .acc{display:flex;gap:12px;height:620px}
-.panel{flex:0 0 66px;min-width:66px;border-radius:20px;background:var(--card);border:1px solid var(--line);position:relative;overflow:hidden;cursor:pointer;transition:flex-grow .7s cubic-bezier(.3,.7,.2,1),box-shadow .4s;box-shadow:var(--shadow)}
+.panel{flex:0 0 56px;min-width:56px;border-radius:20px;background:var(--card);border:1px solid var(--line);position:relative;overflow:hidden;cursor:pointer;transition:flex-grow .7s cubic-bezier(.3,.7,.2,1),box-shadow .4s;box-shadow:var(--shadow)}
 .panel.open{flex:1 1 auto;cursor:default}
 .panel .vt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:22px 0;transition:opacity .3s}
 .panel .vt .no{font-family:var(--mono);font-size:12px;color:var(--mute)}
@@ -292,6 +292,7 @@ html.intro-lock,html.intro-lock body{overflow:hidden;overscroll-behavior:none}
 .bar b{position:absolute;inset:0 auto 0 0;border-radius:4px;background:linear-gradient(90deg,#3d5af1,#7ee2a8);transition:width 1.6s cubic-bezier(.3,.7,.2,1)}
 .th{position:relative;height:16px;margin-top:4px;color:#a9abd2;font-size:11px}
 .th span{position:absolute;transform:translateX(-50%)}
+.hop{display:grid;grid-template-columns:22px 1fr auto;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed #2c2e52}.hop .d{width:12px;height:12px;border-radius:50%;background:#7ee2a8;box-shadow:0 0 0 4px rgba(126,226,168,.15);animation:pod 2.4s ease-in-out infinite}.hop:nth-child(odd) .d{animation-delay:.6s}.hop .m{color:#a9abd2}.hop .d.w{background:#e6b54a;box-shadow:0 0 0 4px rgba(230,181,74,.18)}
 .alert{margin-top:12px;border:1px dashed #e6b54a;border-radius:8px;padding:9px 10px;color:#f1d9a0;display:flex;gap:8px;align-items:center}
 
 /* work widgets: data lake house + gen ai */
@@ -459,6 +460,7 @@ if(location.hash){history.replaceState(null,'',location.pathname+location.search
       <p>DevOps engineer at Trinity Mobility. My role is split evenly between two jobs.</p>
       <p><b>50% R&amp;D lead:</b> I lead the company's move to <b>OpenObserve</b> and <b>OpenTelemetry</b>, bringing every service's logs, traces and metrics into one platform.</p>
       <p><b>50% production:</b> I own daily production issues for 20+ live projects through LnM monitoring and Jira tickets, keep every platform inside its SLA on on-prem and Azure AKS Kubernetes (Kubernetes layer), and install new clusters when a project needs one.</p>
+      <p>I build monitoring for <b>microservices, APIs and ESB, data-lake engines, databases, IoT packet flow and GPU servers</b>, in OpenObserve and Grafana.</p>
       <div class="row">
         <a class="btn dark" href="Rajeshkumar-K-Resume.pdf" target="_blank">Résumé ↓</a>
         <a class="btn ghostb" href="https://www.linkedin.com/in/rajeshkumark65/" target="_blank">LinkedIn ↗</a>
@@ -520,7 +522,7 @@ if(location.hash){history.replaceState(null,'',location.pathname+location.search
         <div class="k">R&amp;D lead</div>
         <h3>OpenObserve &amp; OpenTelemetry</h3>
         <p>I lead the work to bring every service's <b>logs, traces and metrics</b> into one platform.</p>
-        <ul><li>Onboard services with OpenTelemetry collectors</li><li>Pipelines, VRL functions, alerts and dashboards</li><li>End-to-end tracing with trace&ndash;log correlation</li></ul>
+        <ul><li>Onboard services and 14 open-source engines with OpenTelemetry collectors</li><li>Pipelines, VRL functions, Email and Telegram alerts, dashboards</li><li>End-to-end tracing with trace&ndash;log correlation</li></ul>
         <div class="meter"><b style="width:50%"></b></div>
       </div>
       <div class="half dark">
@@ -620,10 +622,12 @@ if(location.hash){history.replaceState(null,'',location.pathname+location.search
           <div>
             <div class="cat">03 · Data platform</div>
             <h3>Data Lake House service health</h3>
-            <p class="lead">Health, performance and alerting for the data-lake engines in one overview, from service status down to each engine.</p>
+            <p class="lead">Health, performance and alerting for the data-lake engines and databases, from service status down to each job.</p>
             <ul>
               <li>Service health tree across ingestion, processing and storage</li>
               <li>Per-engine dashboards for Kafka, Kafka Connect, Spark, Livy, Trino, Airflow, MinIO, Druid, InfluxDB, Ranger, OpenMetadata and Hasura</li>
+              <li><b>Airflow job performance:</b> stage timings, failures and SLA status for every pipeline job</li>
+              <li><b>Databases:</b> PostgreSQL, MSSQL, MongoDB, Redis and Neo4j, all exporters in one Helm chart</li>
               <li>Alerts that separate real outages from noise</li>
             </ul>
             <div class="chips"><span><i></i>OpenObserve</span><span>Grafana</span><span>Kafka</span><span>Spark</span><span>Trino</span><span>Airflow</span><span>MinIO</span><span>Druid</span></div>
@@ -640,31 +644,27 @@ if(location.hash){history.replaceState(null,'',location.pathname+location.search
       </div>
 
       <div class="panel">
-        <div class="vt"><span class="no">04</span><h3>Release Pipeline</h3><span class="plus">+</span></div>
+        <div class="vt"><span class="no">04</span><h3>APIs &amp; Microservices</h3><span class="plus">+</span></div>
         <div class="pc">
           <div>
-            <div class="cat">04 · CI/CD · GitOps</div>
-            <h3>From git push to a validated release</h3>
-            <p class="lead">Every OpenObserve and observability change follows the same repeatable path to production.</p>
+            <div class="cat">04 · Application monitoring</div>
+            <h3>API, ESB and microservice health</h3>
+            <p class="lead">One place to see whether every API and service is healthy, how fast it answers and where it fails.</p>
             <ul>
-              <li>Work developed in Git and pushed to <b>GitLab</b></li>
-              <li><b>Jenkins</b> builds the latest version and stores the artifact in <b>Nexus</b></li>
-              <li><b>ArgoCD</b> syncs the new build to the cluster with Helm</li>
-              <li>The full application flow is validated before sign-off</li>
+              <li><b>API and ESB analytics</b> in OpenObserve: API traffic, response time and failures</li>
+              <li><b>Java (JVM) health:</b> status, uptime, CPU, heap, threads, HTTP requests and DB pool per service</li>
+              <li><b>Python service health</b> in the same view, with product and metric filters</li>
+              <li>Dashboards also migrated to <b>Grafana</b>, plus incident-trace and port monitoring</li>
             </ul>
-            <div class="chips"><span><i></i>GitLab</span><span>Jenkins</span><span>Nexus</span><span>ArgoCD</span><span>Helm</span></div>
+            <div class="chips"><span><i></i>OpenObserve</span><span>Grafana</span><span>WSO2 ESB</span><span>API Manager</span><span>JVM</span><span>Python</span></div>
           </div>
-          <div class="cluster">
-            <div class="hd"><span>release · openobserve-config</span><b>● synced &amp; healthy</b></div>
-            <div style="display:grid;gap:9px;line-height:1.5">
-              <div><span style="color:#a9abd2">$</span> git push origin main <span style="color:#7ee2a8">→ GitLab</span></div>
-              <div><span style="color:#a9abd2">jenkins</span> build #latest ......... <span style="color:#7ee2a8">SUCCESS</span></div>
-              <div><span style="color:#a9abd2">nexus</span> artifact stored ........ <span style="color:#7ee2a8">OK</span></div>
-              <div><span style="color:#a9abd2">argocd</span> app sync .............. <span style="color:#7ee2a8">Synced</span></div>
-              <div><span style="color:#a9abd2">argocd</span> health ................ <span style="color:#7ee2a8">Healthy</span></div>
-              <div><span style="color:#a9abd2">validate</span> logs · traces · metrics <span style="color:#7ee2a8">✓ flowing</span></div>
-            </div>
-            <div class="alert" style="border-color:#7ee2a8;color:#c9f3da">✓ Release verified end to end: data flowing, dashboards live</div>
+          <div class="cluster gai">
+            <div class="hd"><span>apis · esb · microservices</span><b>● healthy</b></div>
+            <div class="gr"><span class="gn">API traffic</span><svg class="spark" viewBox="0 0 120 24" preserveAspectRatio="none"><polyline points="0,16 10,14 20,15 30,10 40,12 50,8 60,11 70,7 80,9 90,6 100,10 110,8 120,9"/></svg></div>
+            <div class="gr"><span class="gn">ESB response time</span><svg class="spark s2" viewBox="0 0 120 24" preserveAspectRatio="none"><polyline points="0,13 10,12 20,13 30,12 40,14 50,12 60,11 70,13 80,12 90,11 100,13 110,12 120,12"/></svg></div>
+            <div class="gr"><span class="gn">JVM heap</span><div class="bar"><b class="gpu"></b></div></div>
+            <div class="gr"><span class="gn">Service status</span><div class="runs"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="f"></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="alert">⚠ one service failing: errors and traces one click away</div>
           </div>
         </div>
       </div>
@@ -712,6 +712,32 @@ if(location.hash){history.replaceState(null,'',location.pathname+location.search
         </div>
       </div>
 
+      <div class="panel">
+        <div class="vt"><span class="no">07</span><h3>IoT Packet Journey</h3><span class="plus">+</span></div>
+        <div class="pc">
+          <div>
+            <div class="cat">07 · IoT data flow</div>
+            <h3>Every device packet, hop by hop</h3>
+            <p class="lead">Following a single IoT packet from the device to the rules engine, to see where packets slow down or go missing.</p>
+            <ul>
+              <li>Hop map validated: device bridge, Kafka topics, NiFi flows, rules engine</li>
+              <li>One message ID stitches the packet across every hop</li>
+              <li>Packet count and delay per hop, so a drop points to one stage</li>
+            </ul>
+            <div class="chips"><span><i></i>Kafka</span><span>Apache NiFi</span><span>MQTT</span><span>Redis</span><span>OpenTelemetry</span><span>Grafana</span></div>
+          </div>
+          <div class="cluster">
+            <div class="hd"><span>iot packet · journey</span><b>● tracked</b></div>
+            <div class="hop"><i class="d"></i><span>device → bridge</span><span class="m">received</span></div>
+            <div class="hop"><i class="d"></i><span>bridge → Kafka topic</span><span class="m">published</span></div>
+            <div class="hop"><i class="d"></i><span>Kafka → NiFi flow</span><span class="m">processed</span></div>
+            <div class="hop"><i class="d w"></i><span>NiFi → rules engine</span><span class="m">delay rising</span></div>
+            <div class="hop"><i class="d"></i><span>output → dashboard</span><span class="m">delivered</span></div>
+            <div class="alert">⚠ delay at one hop: count and time per stage show where</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -746,7 +772,7 @@ if(location.hash){history.replaceState(null,'',location.pathname+location.search
       <div class="step"><div class="card"><div class="k">Education</div><h4>B.E. Mechanical Engineering</h4><div class="w">Kongu Engineering College</div><p>Graduated with a strong academic record, then moved into IT systems and DevOps.</p><span class="pill">CGPA 9.01 / 10</span></div><div class="pin"></div><div class="yr">2019</div></div>
       <div class="step"><div class="card"><div class="k">Internship</div><h4>DevOps Engineer Intern</h4><div class="w">StarAgile, with IBM · Apr – Aug 2024</div><p>CI/CD with Jenkins, AWS with Terraform, containers with Docker and Kubernetes.</p><span class="pill">Foundations</span></div><div class="pin"></div><div class="yr">2024</div></div>
       <div class="step"><div class="card"><div class="k">Full-time</div><h4>Associate DevOps Engineer</h4><div class="w">Trinity Mobility · Technical Assistance Center</div><p>Daily production issues for 20+ live smart-city and IoT projects through LnM and Jira, SLA ownership, releases via GitLab, Jenkins, Nexus and ArgoCD, and cluster installation when needed.</p><span class="pill">Mar 2025 – Present</span></div><div class="pin"></div><div class="yr">2025</div></div>
-      <div class="step"><div class="card"><div class="k">Lead role · 50% of my work</div><h4>Observability R&amp;D Lead</h4><div class="w">OpenObserve &amp; OpenTelemetry</div><p>Leading the work to bring logs, traces and metrics into OpenObserve with OpenTelemetry, with end-to-end tracing and trusted alerting.</p><span class="pill">2026 – Present</span></div><div class="pin"></div><div class="yr">2026</div></div>
+      <div class="step"><div class="card"><div class="k">Lead role · 50% of my work</div><h4>Observability R&amp;D Lead</h4><div class="w">OpenObserve &amp; OpenTelemetry</div><p>Leading the work to bring logs, traces and metrics into OpenObserve with OpenTelemetry: APIs and ESB, microservices, 14 open-source engines, databases, IoT packet flow and GPUs.</p><span class="pill">2026 – Present</span></div><div class="pin"></div><div class="yr">2026</div></div>
     </div>
   </div>
 </section>
@@ -925,14 +951,17 @@ if(location.hash){history.replaceState(null,'',location.pathname+location.search
    ['Al','Alerts','obs','','Realtime alerts routed by severity to email, Telegram and incidents.'],
    ['Ic','Incidents','obs','','Related alerts grouped into one incident, so one problem raises one ticket.'],
    ['Ru','RUM','obs','','Real user monitoring: page loads, errors and sessions from the browser.'],
-   ['Db','Database monitoring','obs','','Database health: connections, slow queries and storage.'],
+   ['Db','Database monitoring','obs','','PostgreSQL, MSSQL, MongoDB, Redis and Neo4j: connections, size and slow queries, all exporters in one Helm chart.'],
+   ['Ap','API & ESB analytics','obs','','API traffic, response time and failures across WSO2 ESB and API Manager.'],
+   ['Jv','Microservice health','obs','','Java (JVM) and Python services: status, uptime, CPU, heap, threads and DB pool.'],
+   ['Io','IoT packet journey','obs','','Packet count and delay per hop: device bridge, Kafka, NiFi, rules engine.'],
    ['Lk','LiveKit','ai','','Voice AI rooms and session health, monitored in OpenObserve.'],
-   ['Gp','NVIDIA GPU','ai','nvidia/nvidia-original','GPU utilisation, memory and temperature for AI workloads.'],
+   ['Gp','NVIDIA GPU','ai','nvidia/nvidia-original','GPU utilisation, memory, temperature and power for AI workloads.'],
    ['N8','n8n','ai','','Workflow runs and failures from the automation platform.'],
    ['Ll','LiteLLM','ai','','LLM gateway requests, latency and errors in one view.'],
    ['Lf','Langfuse','ai','','LLM traces brought into OpenObserve next to the rest of the stack.'],
    ['Pr','Prometheus','mon','prometheus/prometheus-original','Metrics, exporters and severity-based alert rules.'],
-   ['Gf','Grafana','mon','grafana/grafana-original','Service, platform and data-lake dashboards.'],
+   ['Gf','Grafana','mon','grafana/grafana-original','13 dashboards migrated from OpenObserve, plus incident-trace, port monitoring and Airflow job performance.'],
    ['Vm','VictoriaMetrics','mon','','Long-term metrics storage for live projects.'],
    ['Es','Elasticsearch','mon','elasticsearch/elasticsearch-original','ELK stack for production logs.'],
    ['Kb','Kibana','mon','kibana/kibana-original','Log search and investigation for client issues.'],
